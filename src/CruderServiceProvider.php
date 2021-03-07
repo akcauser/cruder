@@ -1,6 +1,6 @@
 <?php
 
-namespace Cruder;
+namespace Akcauser\Cruder;
 
 use Illuminate\Support\ServiceProvider;
 

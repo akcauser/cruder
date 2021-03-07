@@ -14,8 +14,13 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Cruder\\CruderServiceProvider"
+                "Akcauser\\Cruder\\CruderServiceProvider"
             ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Akcauser\\Cruder\\": "src/"
         }
     }
 }
