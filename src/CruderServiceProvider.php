@@ -12,7 +12,7 @@ class CruderServiceProvider extends ServiceProvider {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'cruder');
 
         $this->publishes([
-            __DIR__. '/../config/cruder.php' => config_path('cruder.php'),
+            __DIR__. '/config/cruder.php' => config_path('cruder.php'),
         ]);
     }
 
