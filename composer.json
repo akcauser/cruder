@@ -1,0 +1,14 @@
+{
+    "name": "akcauser/cruder",
+    "description": "CRUD Generator For Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "akcauser",
+            "email": "akcaertugrulgazi@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

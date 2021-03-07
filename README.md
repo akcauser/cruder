@@ -1,0 +1,3 @@
+# CRUD GENERATOR FOR LARAVEL
+
+Crud generator. 
