@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/example', function () {
     return view('cruder::example');
 });
+
+Route::get('/builder', function () {
+    return view('cruder::builder');
+});
