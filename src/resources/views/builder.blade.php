@@ -55,6 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <!-- /.card-header -->
                       <div class="card-body">
                         <form role="form" id="form">
+                            @method('post')
                             <input type="hidden" name="_token" id="token" value="{!! csrf_token() !!}"/>
                             <div class="row">
                                 <div class="col-sm-6">
@@ -562,6 +563,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           $.ajax({
 
               // type: "POST",
+              url: "{!! route('cruder.generate') !!}",
               method: "POST",
               dataType: 'json',
               contentType: 'application/json',

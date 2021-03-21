@@ -1,5 +1,6 @@
 <?php
 
+use Akcauser\Cruder\Controllers\GenerateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,5 @@ Route::get('/example', function () {
 Route::get('/builder', function () {
     return view('cruder::builder');
 });
+
+Route::post('generator', [GenerateController::class, 'generate'])->name('cruder.generate');
