@@ -86,40 +86,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                         <div class="form-check" style="max-width: 20%">
                                           <input class="form-check-input" type="checkbox" id="chkDelete">
-                                          <label class="form-check-label">Soft delete</label>
+                                          <label for="chkDelete" class="form-check-label">Soft delete</label>
                                         </div>
                                         <div class="form-check" style="max-width: 20%">
                                           <input class="form-check-input" type="checkbox" id="chkSave">
-                                          <label class="form-check-label">Save schema</label>
+                                          <label for="chkSave" class="form-check-label">Save schema</label>
                                         </div>
                                         <div class="form-check" style="max-width:20%">
                                             <input class="form-check-input" type="checkbox" id="chkSwagger">
-                                            <label class="form-check-label">Swagger</label>
+                                            <label for="chkSwagger" class="form-check-label">Swagger</label>
                                         </div>
                                         <div class="form-check" style="max-width: 20%">
                                           <input class="form-check-input" type="checkbox" id="chkTestCases">
-                                          <label class="form-check-label">Test cases</label>
+                                          <label for="chkTestCases" class="form-check-label">Test cases</label>
                                         </div>
                                         <div class="form-check" style="max-width: 20%">
                                           <input class="form-check-input" type="checkbox" id="chkDataTable">
-                                          <label class="form-check-label">Datatables</label>
+                                          <label for="chkDataTable" class="form-check-label">Datatables</label>
                                         </div>
                                         <div class="form-check" style="max-width: 20%">
                                           <input class="form-check-input" type="checkbox" id="chkMigration">
-                                          <label class="form-check-label">Migration</label>
+                                          <label for="chkMigration" class="form-check-label">Migration</label>
                                         </div>
                                         <div class="form-check" style="max-width: 20%">
                                           <input class="form-check-input" type="checkbox" id="chkForceMigrate">
-                                          <label class="form-check-label">Force migrate</label>
+                                          <label for="chkForceMigrate" class="form-check-label">Force migrate</label>
                                         </div>
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <label style="padding-top: 1%;">Prefix</label>
+                                    <label for="prefixInput" style="padding-top: 1%;">Prefix</label>
                                       <input type="text" class="form-control" id="prefixInput" placeholder="Enter prefix">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label style="padding-top: 1%;">Paginate</label>
+                                    <label for="paginateInput" style="padding-top: 1%;">Paginate</label>
                                       <input type="text" class="form-control" id="paginateInput">
                                 </div>
                             </div>
@@ -479,7 +479,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               '</td>'+
               '<td>'+
               '<input type="text" class="form-control txtForeignModel" required>'+
-              '<span class="required">*</span>'+
               '</td>'+
               '<td>'+
               '<input type="text" class="form-control txtForeignKey" >'+
