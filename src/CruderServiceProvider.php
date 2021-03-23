@@ -15,9 +15,9 @@ class CruderServiceProvider extends ServiceProvider {
             __DIR__. '/config/cruder.php' => config_path('cruder.php'),
         ]);
         $this->publishes([
-            __DIR__.'/assets/adminlte' => public_path('vendor/cruder/src/assets')
+            __DIR__.'/assets/adminlte' => public_path('assets')
             
-        ],'assets');
+        ],'public');
     }
 
     public function register()
