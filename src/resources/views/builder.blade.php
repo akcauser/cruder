@@ -12,9 +12,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>Cruder</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href={{ asset("plugins/fontawesome-free/css/all.min.css") }}>
+  <link rel="stylesheet" href={{ asset("assets/adminlte/plugins/fontawesome-free/css/all.min.css") }}>
   <!-- Theme style -->
-  <link rel="stylesheet" href={{ asset("dist/css/adminlte.min.css") }}>
+  <link rel="stylesheet" href={{ asset("assets/adminlte/dist/css/adminlte.min.css") }}>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -335,11 +335,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src={{ asset("plugins/jquery/jquery.min.js") }}></script>
+<script src={{ asset("assets/adminlte/plugins/jquery/jquery.min.js") }}></script>
 <!-- Bootstrap 4 -->
-<script src={{ asset("plugins/bootstrap/js/bootstrap.bundle.min.js") }}></script>
+<script src={{ asset("assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js") }}></script>
 <!-- AdminLTE App -->
-<script src={{ asset("dist/js/adminlte.min.js") }}></script>
+<script src={{ asset("assets/adminlte/dist/js/adminlte.min.js") }}></script>
 </body>
 
 <script>
