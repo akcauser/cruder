@@ -20,7 +20,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Akcauser\\Cruder\\": "src/"
+            "Akcauser\\Cruder\\": "src/",
+            "views": "src/resources/views"
         }
     }
 }

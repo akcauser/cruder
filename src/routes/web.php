@@ -22,4 +22,12 @@ Route::get('/builder', function () {
     return view('cruder::builder');
 });
 
+Route::get('/home', function () {
+    return view('cruder::layouts/home_layout');
+});
+
+Route::get('/ex', function () {
+    return view('cruder::layouts/app');
+});
+
 Route::post('generator', [GenerateController::class, 'generate'])->name('cruder.generate');

@@ -18,6 +18,11 @@ class CruderServiceProvider extends ServiceProvider {
             __DIR__.'/assets/adminlte' => public_path('assets')
             
         ],'public');
+
+        $this->publishes([
+            __DIR__.'/resources/views' => resource_path('views/akcauser/cruder')
+            
+        ],'views');
     }
 
     public function register()
