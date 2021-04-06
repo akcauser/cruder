@@ -56,8 +56,5 @@
 
     @include("akcauser.cruder.layouts.data_list_layout")
 
-    
-
-
 </body>
 </html>
