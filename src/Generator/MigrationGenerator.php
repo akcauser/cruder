@@ -2,17 +2,20 @@
 
 namespace Akcauser\Cruder\Generator;
 
-use Illuminate\Support\Facades\Artisan;
+use Akcauser\Cruder\Utils\FileUtil;
+use Illuminate\Support\Str;
+
 
 class MigrationGenerator
 {
     private $tableName;
     private $template;
-    private $code;
+    private $folderPath;
 
-    public function __construct($tableName)
+    public function __construct($modelName)
     {
-        $this->tableName = $tableName;
+        $this->tableName = Str::snake($modelName) . 's';
+        $this->folderPath = config('cruder.migrations_path');
 
         $this->generate();
     }
@@ -26,22 +29,18 @@ class MigrationGenerator
 
     protected function getTemplate()
     {
-        return file_get_contents(__DIR__ . '/../templates/models/migration.stub');
+        $this->template = file_get_contents(__DIR__ . '/../templates/models/migration.stub');
     }
 
     protected function replaceVariables()
     {
-        # code
-        $this->code = $this->template;
+        # set variables in templates
     }
 
     protected function store()
     {
-        $res = Artisan::call('make:migration Create' . $this->modelName . 'Table');
+        $fileName = date('Y_m_d_His') . '_' . 'create_' . $this->tableName . '_table.php';
 
-        $migrationFileName = date('y') . '_' . date('m') . '_' . date('d') . '_' . 'create' . ucfirst($this->tableName) . 'Table';
-
-        echo $res;
-        //file_put_contents(config('cruder.migrations_path'), $this->code);
+        FileUtil::newFile($this->folderPath, $fileName, $this->template);
     }
 }

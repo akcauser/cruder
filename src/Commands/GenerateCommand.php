@@ -2,6 +2,7 @@
 
 namespace Akcauser\Cruder\Commands;
 
+use Akcauser\Cruder\Generator\MigrationGenerator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
@@ -13,7 +14,7 @@ class GenerateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'cruder:new {MODEL_NAME} {FIELDS}';
+    protected $signature = 'cruder:new {MODEL_NAME}';
 
     /**
      * The console command description.
@@ -41,7 +42,6 @@ class GenerateCommand extends Command
     {
         // Get Model Name
         $modelName = $this->argument('MODEL_NAME');
-        $tableName = Str::snake($modelName);
 
         /*
         // todo: echo api details 
@@ -52,7 +52,10 @@ class GenerateCommand extends Command
         }
         */
 
-        Artisan::call('cruder:migration ' . $modelName);
+        // Create Migration 
+        new MigrationGenerator($modelName);
+        // Store to File
+
 
         // Get Model Features
 
