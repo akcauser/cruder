@@ -39,4 +39,18 @@ class FileUtil
 
         return false;
     }
+
+    public static function putContent($file, $content)
+    {
+        file_put_contents($file, $content, FILE_APPEND);
+    }
+
+    public static function getContent($file)
+    {
+        if (!file_exists($file)) {
+            return false;
+        }
+
+        return file_get_contents($file);
+    }
 }

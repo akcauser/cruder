@@ -12,6 +12,7 @@ class CruderServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'cruder');
 
+
         $this->publishes([
             __DIR__ . '/config/cruder.php' => config_path('cruder.php'),
         ]);

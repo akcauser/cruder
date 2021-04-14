@@ -1,7 +1,7 @@
 Route::prefix('blogs')->group(function () {
-    Route::get('', [BlogController::class, 'index'])->name('blog.index');
-    Route::post('', [BlogController::class, 'store'])->name('blog.store');
-    Route::get('{id}', [BlogController::class, 'show'])->name('blog.show');
-    Route::put('{id}', [BlogController::class, 'update'])->name('blog.update');
-    Route::delete('{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+    Route::get('', [\App\Http\Controllers\Api\ApiBlogController::class, 'index'])->name('blog.index');
+    Route::post('', [\App\Http\Controllers\Api\ApiBlogController::class, 'store'])->name('blog.store');
+    Route::get('{id}', [\App\Http\Controllers\Api\ApiBlogController::class, 'show'])->name('blog.show');
+    Route::put('{id}', [\App\Http\Controllers\Api\ApiBlogController::class, 'update'])->name('blog.update');
+    Route::delete('{id}', [\App\Http\Controllers\Api\ApiBlogController::class, 'destroy'])->name('blog.destroy');
 });

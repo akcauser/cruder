@@ -6,7 +6,7 @@ use App\Models\Blog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class BlogTest extends TestCase
+class ApiBlogTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -25,7 +25,7 @@ class BlogTest extends TestCase
         $response = $this->get('api/blogs');
 
         // assert response data count 
-        $response->assertJsonCount(5, 'data');
+        $response->assertJsonCount(5);
 
         // assert response code 200
         $response->assertStatus(200);
@@ -48,10 +48,8 @@ class BlogTest extends TestCase
         // assert response
         $response->assertStatus(200);
         $response->assertJson([
-            'data' => [
-                'title' => $blog['title'],
-                'body' => $blog['body'],
-            ]
+            'title' => $blog['title'],
+            'body' => $blog['body'],
         ]);
 
         // assert database with will create data.
@@ -78,11 +76,9 @@ class BlogTest extends TestCase
         // assert response
         $response->assertStatus(200);
         $response->assertJson([
-            'data' => [
-                'id' => $blog->id,
-                'title' => $newBlog['title'],
-                'body' => $newBlog['body'],
-            ]
+            'id' => $blog->id,
+            'title' => $newBlog['title'],
+            'body' => $newBlog['body'],
         ]);
 
         // assert database with will create data.
@@ -102,7 +98,7 @@ class BlogTest extends TestCase
         $blog = Blog::factory()->create();
 
         // request
-        $response = $this->deleteJson('api/blogs/' . $blog->id);
+        $response = $this->delete('api/blogs/' . $blog->id);
 
         // assert response
         $response->assertStatus(200);
@@ -127,11 +123,9 @@ class BlogTest extends TestCase
 
         // response control
         $response->assertJson([
-            'data' => [
-                'id' => $blog->id,
-                'title' => $blog['title'],
-                'body' => $blog['body'],
-            ]
+            'id' => $blog->id,
+            'title' => $blog['title'],
+            'body' => $blog['body'],
         ]);
 
         // response code 200

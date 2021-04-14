@@ -2,8 +2,17 @@
 
 namespace Akcauser\Cruder\Commands;
 
+use Akcauser\Cruder\Generator\ApiControllerGenerator;
+use Akcauser\Cruder\Generator\ApiRouteGenerator;
+use Akcauser\Cruder\Generator\TestGenerator;
+use Akcauser\Cruder\Generator\FactoryGenerator;
 use Akcauser\Cruder\Generator\MigrationGenerator;
 use Akcauser\Cruder\Generator\ModelGenerator;
+use Akcauser\Cruder\Generator\RepositoryAbstractGenerator;
+use Akcauser\Cruder\Generator\RepositoryConcreteGenerator;
+use Akcauser\Cruder\Generator\RepositoryProviderGenerator;
+use Akcauser\Cruder\Generator\SeederGenerator;
+use Akcauser\Cruder\Generator\WebControllerGenerator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
@@ -59,9 +68,34 @@ class GenerateCommand extends Command
         // Generate Model 
         new ModelGenerator($modelName);
 
+        // Generate Factory
+        new FactoryGenerator($modelName);
+
+        // Generate Seeder
+        new SeederGenerator($modelName);
+
+        // Generate Api Controller
+        new ApiControllerGenerator($modelName);
+
+        // Generate Web Controller
+        new WebControllerGenerator($modelName);
+
+        // Generate Repository Interface
+        new RepositoryAbstractGenerator($modelName);
+
+        // Generate Repository Concrete
+        new RepositoryConcreteGenerator($modelName);
+
+        // Generate Api Test
+        new TestGenerator($modelName);
+
+        // Add Api Routes
+        new ApiRouteGenerator($modelName);
+
+        // Register repository service provider
+        new RepositoryProviderGenerator($modelName);
 
         // Get Model Features
-
         // pagination
         // custom_table_name
         // soft delete
@@ -70,27 +104,6 @@ class GenerateCommand extends Command
 
         // Get Fields
         // Get Validation Rules
-
-        // Create Migration 
-        // Store to File
-
-        // Create Model
-        // Store to File
-
-        // Create Repository Interface
-        // Store to File
-
-        // Create Repository
-        // Store to File
-
-        // Create Factory
-        // Store to File
-
-        // Create Seeder?
-        // Store to File
-
-        // Create Controller
-        // Store to File
 
         // Add Web Views
         // Store to File

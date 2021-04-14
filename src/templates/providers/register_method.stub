@@ -1,0 +1,1 @@
+$this->app->singleton(\App\Repositories\Abstract\IBlogRepository::class, \App\Repositories\Concrete\BlogRepository::class);
