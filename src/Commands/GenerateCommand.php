@@ -3,6 +3,7 @@
 namespace Akcauser\Cruder\Commands;
 
 use Akcauser\Cruder\Generator\MigrationGenerator;
+use Akcauser\Cruder\Generator\ModelGenerator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
@@ -52,9 +53,11 @@ class GenerateCommand extends Command
         }
         */
 
-        // Create Migration 
+        // Generate Migration 
         new MigrationGenerator($modelName);
-        // Store to File
+
+        // Generate Model 
+        new ModelGenerator($modelName);
 
 
         // Get Model Features
