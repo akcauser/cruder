@@ -20,4 +20,19 @@ return [
     ],
     'repository_provider_path' => 'app/Providers/',
     'repository_provider_file' => 'RepositoryServiceProvider.php',
+
+
+    /**
+     * Primary Key Field Feature Default Settings
+     * Type: String
+     */
+    'pk_field' => "id",
+
+
+    /**
+     * Default Timestamps Fields
+     * If true, timestamp fields adding as default
+     * Options: true|false
+     */
+    'timestamps' => true,
 ];

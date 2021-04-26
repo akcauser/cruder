@@ -13,6 +13,7 @@ use Akcauser\Cruder\Generator\RepositoryConcreteGenerator;
 use Akcauser\Cruder\Generator\RepositoryProviderGenerator;
 use Akcauser\Cruder\Generator\SeederGenerator;
 use Akcauser\Cruder\Generator\WebControllerGenerator;
+use Akcauser\Cruder\Utils\FieldUtil;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
@@ -53,47 +54,87 @@ class GenerateCommand extends Command
         // Get Model Name
         $modelName = $this->argument('MODEL_NAME');
 
-        /*
-        // todo: echo api details 
-        $confirm = $this->confirm('Is correct, do you wish to continue? [y|N]');
-        if (!$confirm) {
-            // not confirmed
-            return $this->error('Cancelled');
+        // Get Fields, DB Types, HTML Types, Validations 
+        $fields = [];
+        while (true) {
+            // 1 tane field talep et
+            $field = $this->ask('Please a field, dbtype, htmltype, validation: (example: name string text required|string|max:255)');
+            if ($field == "") {
+                break;
+            }
+            $explode = explode(" ", $field);
+
+            // same column control
+            if (array_search($explode[0], array_column($fields, "name")) !== false) {
+                $this->warn('Column already exist');
+                continue;
+            }
+
+            // invalid dbtype control
+            if (!in_array($explode[1], FieldUtil::$dbtypes)) {
+                $this->warn("Invalid dbtype: $explode[1]");
+                continue;
+            }
+
+            // invalid htmltype control 
+            if (!in_array($explode[2], FieldUtil::$htmltypes)) {
+                $this->warn("Invalid htmltype: $explode[2]");
+                continue;
+            }
+
+            // add to fields array 
+            array_push($fields, [
+                'name' => $explode[0],
+                'dbtype' => $explode[1],
+                'htmltype' => $explode[2],
+                'validations' => $explode[3],
+            ]);
         }
-        */
+
+        // Ask For Custom Table Name 
+        $tableName = $this->ask("Do you want to custom table name?", MigrationGenerator::generateTableName($modelName));
+
+        // Ask SoftDelete Use
+        $softDelete = $this->ask("Do you want to Softdelete Feature? [Y|n]", "Y") == "Y" ? true : false;
+
+        // Ask For Custom Primary Key Name 
+        $primaryKey = $this->ask("Do you want to custom primary key field? Enter if you want:", "id");
+
+        // Ask Timestamp Use
+        $timestamps = $this->ask("Do you want to use Timestamps Feature? [Y|n]", "Y") == "Y" ? true : false;
 
         // Generate Migration 
-        new MigrationGenerator($modelName);
+        new MigrationGenerator($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps);
 
         // Generate Model 
-        new ModelGenerator($modelName);
+        //new ModelGenerator($modelName);
 
         // Generate Factory
-        new FactoryGenerator($modelName);
+        //new FactoryGenerator($modelName);
 
         // Generate Seeder
-        new SeederGenerator($modelName);
+        //new SeederGenerator($modelName);
 
         // Generate Api Controller
-        new ApiControllerGenerator($modelName);
+        //new ApiControllerGenerator($modelName);
 
         // Generate Web Controller
-        new WebControllerGenerator($modelName);
+        //new WebControllerGenerator($modelName);
 
         // Generate Repository Interface
-        new RepositoryAbstractGenerator($modelName);
+        //new RepositoryAbstractGenerator($modelName);
 
         // Generate Repository Concrete
-        new RepositoryConcreteGenerator($modelName);
+        //new RepositoryConcreteGenerator($modelName);
 
         // Generate Api Test
-        new TestGenerator($modelName);
+        //new TestGenerator($modelName);
 
         // Add Api Routes
-        new ApiRouteGenerator($modelName);
+        //new ApiRouteGenerator($modelName);
 
         // Register repository service provider
-        new RepositoryProviderGenerator($modelName);
+        //new RepositoryProviderGenerator($modelName);
 
         // Get Model Features
         // pagination
@@ -102,8 +143,7 @@ class GenerateCommand extends Command
         // swagger 
         // Datatables
 
-        // Get Fields
-        // Get Validation Rules
+
 
         // Add Web Views
         // Store to File
@@ -113,6 +153,16 @@ class GenerateCommand extends Command
 
         // Add Api Routes
         // Add to File
+
+
+        /*
+        // todo: echo api details 
+        $confirm = $this->confirm('Is correct, do you wish to continue? [y|N]');
+        if (!$confirm) {
+            // not confirmed
+            return $this->error('Cancelled');
+        }
+        */
 
         return;
     }

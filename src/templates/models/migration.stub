@@ -17,8 +17,7 @@ class CreateBlogsTable extends Migration
             $table->id();
 
             // Burada sütunlar oluşturulur 
-            $table->string('title');
-            $table->text('body');
+            %FIELDS%
 
             // softdelete var mı ? 
             $table->softDeletes();
