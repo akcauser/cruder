@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 
 class MigrationGenerator
 {
+    private $modelName;
     private $tableName;
     private $template;
     private $folderPath;
@@ -20,6 +21,7 @@ class MigrationGenerator
 
     public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps)
     {
+        $this->modelName = $modelName;
         $this->tableName = $tableName;
         $this->folderPath = config('cruder.migrations_path');
         $this->fields = $fields;
@@ -45,7 +47,10 @@ class MigrationGenerator
 
     protected function replaceVariables()
     {
+        $this->template = str_replace('%PRIMARY_KEY%', $this->primaryKey, $this->template);
         $this->template = str_replace('%FIELDS%', $this->fieldContent, $this->template);
+        $this->template = str_replace('%TABLE_NAME_CAPITALCASE%', $this->modelName . 's', $this->template);
+        $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
     }
 
     protected function store()
@@ -62,13 +67,17 @@ class MigrationGenerator
 
     protected function generateFieldContent()
     {
-
         foreach ($this->fields as $field) {
             $code = FieldUtil::generateDBField($field);
             $this->fieldContent  .= $code . "\n\t\t\t";
         }
+
+        if ($this->softDelete) {
+            $this->fieldContent  .= '$table->softDeletes();' . "\n\t\t\t";
+        }
+
+        if ($this->timestamps) {
+            $this->fieldContent  .= '$table->timestamps();' . "\n\t\t\t";
+        }
     }
 }
-
-
-// todo: id, timestamp, primary_key
