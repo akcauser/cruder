@@ -107,7 +107,7 @@ class GenerateCommand extends Command
         new MigrationGenerator($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps);
 
         // Generate Model 
-        //new ModelGenerator($modelName);
+        new ModelGenerator($modelName, $fields, $softDelete, $tableName);
 
         // Generate Factory
         //new FactoryGenerator($modelName);
