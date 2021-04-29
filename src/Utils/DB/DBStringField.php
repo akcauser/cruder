@@ -3,9 +3,9 @@
 namespace Akcauser\Cruder\Utils\DB;
 
 
-class IntegerField
+class DBStringField
 {
-    private static $template = '$table->integer("½FIELD_NAME½");';
+    private static $template = '$table->string("½FIELD_NAME½");';
 
     public static function create($fieldName)
     {

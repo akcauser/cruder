@@ -2,9 +2,12 @@
 
 namespace Akcauser\Cruder\Utils;
 
-use Akcauser\Cruder\Utils\DB\IntegerField;
-use Akcauser\Cruder\Utils\DB\StringField;
-use Akcauser\Cruder\Utils\DB\TextField;
+use Akcauser\Cruder\Utils\DB\DBIntegerField;
+use Akcauser\Cruder\Utils\DB\DBStringField;
+use Akcauser\Cruder\Utils\DB\DBTextField;
+use Akcauser\Cruder\Utils\Factory\FactoryIntegerField;
+use Akcauser\Cruder\Utils\Factory\FactoryStringField;
+use Akcauser\Cruder\Utils\Factory\FactoryTextField;
 
 class FieldUtil
 {
@@ -24,13 +27,28 @@ class FieldUtil
     {
         switch ($field["dbtype"]) {
             case 'string':
-                return StringField::create($field["name"]);
+                return DBStringField::create($field["name"]);
                 break;
             case 'integer':
-                return IntegerField::create($field["name"]);
+                return DBIntegerField::create($field["name"]);
                 break;
             case 'text':
-                return TextField::create($field["name"]);
+                return DBTextField::create($field["name"]);
+                break;
+        }
+    }
+
+    public static function generateFactoryField($field)
+    {
+        switch ($field["dbtype"]) {
+            case 'string':
+                return FactoryStringField::create($field["name"]);
+                break;
+            case 'integer':
+                return FactoryIntegerField::create($field["name"]);
+                break;
+            case 'text':
+                return FactoryTextField::create($field["name"]);
                 break;
         }
     }

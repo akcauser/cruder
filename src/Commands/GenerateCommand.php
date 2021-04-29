@@ -110,7 +110,7 @@ class GenerateCommand extends Command
         new ModelGenerator($modelName, $fields, $softDelete, $tableName);
 
         // Generate Factory
-        //new FactoryGenerator($modelName);
+        new FactoryGenerator($modelName, $fields);
 
         // Generate Seeder
         //new SeederGenerator($modelName);

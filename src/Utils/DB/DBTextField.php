@@ -3,7 +3,7 @@
 namespace Akcauser\Cruder\Utils\DB;
 
 
-class TextField
+class DBTextField
 {
     private static $template = '$table->text("½FIELD_NAME½");';
 
