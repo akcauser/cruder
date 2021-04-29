@@ -2,87 +2,73 @@
 
 namespace App\Repositories\Concrete;
 
-use App\Models\Blog;
-use App\Repositories\Abstract\IBlogRepository;
+use App\Models\%MODEL_NAME%;
+use App\Repositories\Abstract\I%MODEL_NAME%Repository;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-// Data Katmanı
-class BlogRepository implements IBlogRepository
+class %MODEL_NAME%Repository implements I%MODEL_NAME%Repository
 {
     public function get_all()
     {
-        return Blog::get();
+        return %MODEL_NAME%::get();
     }
 
     public function store(Request $request)
     {
-        // validation will be in for loop
-        $request->validate([
-            'title' => ['required', 'string', 'max:255',],
-            'body' => ['required', 'string'],
-        ]);
+        // validation
+        $request->validate(%MODEL_NAME%::$validationRules);
 
-        // save model
-        $blog = new Blog();
-        $blog->title = $request->title;
-        $blog->body = $request->body;
+        $%MODEL_NAME_CAMEL_CASE% = new %MODEL_NAME%();
+        $%MODEL_NAME_CAMEL_CASE%->title = $request->title;
+        $%MODEL_NAME_CAMEL_CASE%->body = $request->body;
         
         // save record, if can not save then return false
-        $res = $blog->save();
+        $res = $%MODEL_NAME_CAMEL_CASE%->save();
         if (!$res) {
             return false;
         }
 
-        return $blog;
+        return $%MODEL_NAME_CAMEL_CASE%;
     }
 
     public function update(Request $request)
     {
         // find or fail
-        $blog = Blog::find($request->id);
-        if (!$blog)
+        $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::find($request->id);
+        if (!$%MODEL_NAME_CAMEL_CASE%)
             return 'none';
 
-        // validation will be in for loop
-        $request->validate([
-            'title' => ['required', 'string', 'max:255',],
-            'body' => ['required', 'string'],
-        ]);
+        // validation
+        $request->validate(%MODEL_NAME%::$validationRules);
 
-        // find and update blog
-        $blog = Blog::find($request->id);
-        $blog->title = $request->title;
-        $blog->body = $request->body;
+        $%MODEL_NAME_CAMEL_CASE%->title = $request->title;
+        $%MODEL_NAME_CAMEL_CASE%->body = $request->body;
 
         // save record, if can not save then return false
-        $res = $blog->save();
+        $res = $%MODEL_NAME_CAMEL_CASE%->save();
         if (!$res) {
             return false;
         }
 
-        return $blog;
+        return $%MODEL_NAME_CAMEL_CASE%;
     }
 
     public function delete(Request $request)
     {
-        // find or fail
-        $blog = Blog::find($request->id);
-        if (!$blog)
+        $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::find($request->id);
+        if (!$%MODEL_NAME_CAMEL_CASE%)
             return 'none';
 
-        // delete model
-        return $blog->delete();
+        return $%MODEL_NAME_CAMEL_CASE%->delete();
     }
 
     public function get(Request $request)
     {
-        // find or fail
-        $blog = Blog::find($request->id);
-        if (!$blog)
+        $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::find($request->id);
+        if (!$%MODEL_NAME_CAMEL_CASE%)
             return 'none';
 
-        // find and update blog
-        return Blog::find($request->id);
+        return $%MODEL_NAME_CAMEL_CASE%;
     }
 }

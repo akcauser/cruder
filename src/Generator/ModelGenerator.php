@@ -16,6 +16,7 @@ class ModelGenerator
     private $fillableFields = "";
     private $traits = "";
     private $usePart = "";
+    private $validationRules = "";
 
     public function __construct($modelName, $fields, $softDelete, $tableName)
     {
@@ -33,6 +34,7 @@ class ModelGenerator
         $this->getTemplate();
         $this->generateTraits();
         $this->generateFillableFields();
+        $this->generateValidationRules();
         $this->replaceVariables();
         $this->store();
     }
@@ -44,16 +46,12 @@ class ModelGenerator
 
     protected function replaceVariables()
     {
-        //%MODEL_NAME%
         $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
-        //%USE_PART%
         $this->template = str_replace('%USE_PART%', $this->usePart, $this->template);
-        //%TRAITS%
         $this->template = str_replace('%TRAITS%', $this->traits, $this->template);
-        //%TABLE_NAME%
         $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
-        //%FILLABLE_FIELDS_ARRAY%
         $this->template = str_replace('%FILLABLE_FIELDS_ARRAY%', $this->fillableFields, $this->template);
+        $this->template = str_replace('%VALIDATION_RULES%', $this->validationRules, $this->template);
     }
 
     protected function store()
@@ -66,7 +64,7 @@ class ModelGenerator
     public function generateFillableFields()
     {
         foreach ($this->fields as $field) {
-            $this->fillableFields .= "'" . $field['name'] . "'";
+            $this->fillableFields .= "'" . $field['name'] . "',\n\t\t";
         }
     }
 
@@ -75,6 +73,13 @@ class ModelGenerator
         if ($this->softDelete) {
             $this->usePart .= 'use Illuminate\Database\Eloquent\SoftDeletes;' . "\n";
             $this->traits .= 'use SoftDeletes;' . "\n\t";
+        }
+    }
+
+    public function generateValidationRules()
+    {
+        foreach ($this->fields as $field) {
+            $this->validationRules .= "'" . $field['name'] . "' => '" . $field['validations'] . "',\n\t\t";
         }
     }
 }

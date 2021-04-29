@@ -3,7 +3,7 @@
 namespace Akcauser\Cruder\Generator;
 
 use Akcauser\Cruder\Utils\FileUtil;
-
+use Illuminate\Support\Str;
 
 class RepositoryConcreteGenerator
 {
@@ -33,7 +33,8 @@ class RepositoryConcreteGenerator
 
     protected function replaceVariables()
     {
-        # set variables in templates
+        $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
+        $this->template = str_replace('%MODEL_NAME_CAMEL_CASE%', Str::camel($this->modelName), $this->template);
     }
 
     protected function store()

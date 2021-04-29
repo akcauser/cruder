@@ -116,16 +116,16 @@ class GenerateCommand extends Command
         new SeederGenerator($modelName);
 
         // Generate Api Controller
-        //new ApiControllerGenerator($modelName);
+        new ApiControllerGenerator($modelName);
 
         // Generate Web Controller
         //new WebControllerGenerator($modelName);
 
         // Generate Repository Interface
-        //new RepositoryAbstractGenerator($modelName);
+        new RepositoryAbstractGenerator($modelName);
 
         // Generate Repository Concrete
-        //new RepositoryConcreteGenerator($modelName);
+        new RepositoryConcreteGenerator($modelName);
 
         // Generate Api Test
         //new TestGenerator($modelName);
