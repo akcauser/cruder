@@ -103,6 +103,27 @@ class GenerateCommand extends Command
         // Ask Timestamp Use
         $timestamps = $this->ask("Do you want to use Timestamps Feature? [Y|n]", "Y") == "Y" ? true : false;
 
+        // Kullanıcının girdiği değerler ekrana çıktı olarak verilir. Kullanıcı değerleri kontrol edip onayladıktan sonra api oluşturulur.
+        $this->info('***** Api Details *****');
+        $this->line('Table Name= ' . $tableName);
+        $this->line('Soft Delete= ' . ($softDelete ? 'Yes' : 'No'));
+        $this->line('Primary Key= ' . $primaryKey);
+        $this->line('Timestamps= ' . ($timestamps ? 'Yes' : 'No'));
+        $this->warn('Fields:');
+        foreach ($fields as $field) {
+            $this->line("Field name: " . $field["name"]);
+            $this->line("Database Type: " . $field['dbtype']);
+            $this->line("HTML Type: " . $field['htmltype']);
+            $this->line("Validation Rules: " . $field['validations']);
+            $this->line("-------");
+        }
+
+        $this->line("\n");
+        $confirm = $this->confirm('Is correct, do you wish to continue? [y|N]');
+        if (!$confirm) {
+            return $this->error('Cancelled');
+        }
+
         // Generate Migration 
         new MigrationGenerator($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps);
 
@@ -138,12 +159,8 @@ class GenerateCommand extends Command
 
         // Get Model Features
         // pagination
-        // custom_table_name
-        // soft delete
         // swagger 
         // Datatables
-
-
 
         // Add Web Views
         // Store to File
@@ -151,18 +168,7 @@ class GenerateCommand extends Command
         // Add Web Routes
         // Add to File
 
-        // Add Api Routes
-        // Add to File
-
-
-        /*
-        // todo: echo api details 
-        $confirm = $this->confirm('Is correct, do you wish to continue? [y|N]');
-        if (!$confirm) {
-            // not confirmed
-            return $this->error('Cancelled');
-        }
-        */
+        $this->info('Completed!');
 
         return;
     }
