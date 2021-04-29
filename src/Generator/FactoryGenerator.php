@@ -39,7 +39,6 @@ class FactoryGenerator
     protected function replaceVariables()
     {
         $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
-        // %FIELDS%
         $this->template = str_replace('%FIELDS%', $this->fieldContent, $this->template);
     }
 

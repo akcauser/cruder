@@ -113,7 +113,7 @@ class GenerateCommand extends Command
         new FactoryGenerator($modelName, $fields);
 
         // Generate Seeder
-        //new SeederGenerator($modelName);
+        new SeederGenerator($modelName);
 
         // Generate Api Controller
         //new ApiControllerGenerator($modelName);
