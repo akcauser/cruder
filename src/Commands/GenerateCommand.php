@@ -125,16 +125,16 @@ class GenerateCommand extends Command
         new RepositoryAbstractGenerator($modelName);
 
         // Generate Repository Concrete
-        new RepositoryConcreteGenerator($modelName);
+        new RepositoryConcreteGenerator($modelName, $fields);
 
         // Generate Api Test
-        //new TestGenerator($modelName);
+        new TestGenerator($modelName, $fields, $tableName);
 
         // Add Api Routes
-        //new ApiRouteGenerator($modelName);
+        new ApiRouteGenerator($modelName);
 
         // Register repository service provider
-        //new RepositoryProviderGenerator($modelName);
+        new RepositoryProviderGenerator($modelName);
 
         // Get Model Features
         // pagination

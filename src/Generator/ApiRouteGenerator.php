@@ -3,7 +3,7 @@
 namespace Akcauser\Cruder\Generator;
 
 use Akcauser\Cruder\Utils\FileUtil;
-use Facade\FlareClient\Stacktrace\File;
+use Illuminate\Support\Str;
 
 class ApiRouteGenerator
 {
@@ -33,7 +33,8 @@ class ApiRouteGenerator
 
     protected function replaceVariables()
     {
-        # set variables in templates
+        $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
+        $this->template = str_replace('%MODEL_NAME_SNAKE%', Str::snake($this->modelName, "_"), $this->template);
     }
 
     protected function store()

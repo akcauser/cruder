@@ -1,7 +1,7 @@
-Route::prefix('blogs')->group(function () {
-    Route::get('', [\App\Http\Controllers\Api\ApiBlogController::class, 'index'])->name('blog.index');
-    Route::post('', [\App\Http\Controllers\Api\ApiBlogController::class, 'store'])->name('blog.store');
-    Route::get('{id}', [\App\Http\Controllers\Api\ApiBlogController::class, 'show'])->name('blog.show');
-    Route::put('{id}', [\App\Http\Controllers\Api\ApiBlogController::class, 'update'])->name('blog.update');
-    Route::delete('{id}', [\App\Http\Controllers\Api\ApiBlogController::class, 'destroy'])->name('blog.destroy');
+Route::prefix('%MODEL_NAME_SNAKE%s')->group(function () {
+    Route::get('', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'index'])->name('%MODEL_NAME_SNAKE%.index');
+    Route::post('', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'store'])->name('%MODEL_NAME_SNAKE%.store');
+    Route::get('{id}', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'show'])->name('%MODEL_NAME_SNAKE%.show');
+    Route::put('{id}', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'update'])->name('%MODEL_NAME_SNAKE%.update');
+    Route::delete('{id}', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'destroy'])->name('%MODEL_NAME_SNAKE%.destroy');
 });

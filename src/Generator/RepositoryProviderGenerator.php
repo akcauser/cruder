@@ -44,7 +44,7 @@ class RepositoryProviderGenerator
 
     protected function replaceVariables()
     {
-        # set variables in templates
+        $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
     }
 
     protected function store()

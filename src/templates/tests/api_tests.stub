@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Blog;
+use App\Models\%MODEL_NAME%;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ApiBlogTest extends TestCase
+class Api%MODEL_NAME%Test extends TestCase
 {
     use RefreshDatabase;
 
@@ -19,15 +19,11 @@ class ApiBlogTest extends TestCase
     public function test_index()
     {
         // 5 record added to database
-        Blog::factory()->count(5)->create();
+        %MODEL_NAME%::factory()->count(5)->create();
 
-        // request
-        $response = $this->get('api/blogs');
+        $response = $this->get('api/%MODEL_NAME_SNAKE%s');
 
-        // assert response data count 
         $response->assertJsonCount(5);
-
-        // assert response code 200
         $response->assertStatus(200);
     }
 
@@ -40,20 +36,17 @@ class ApiBlogTest extends TestCase
     public function test_store()
     {
         // create a record template and get attributes
-        $blog = Blog::factory()->make()->getAttributes();
+        $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::factory()->make()->getAttributes();
 
-        // request
-        $response = $this->postJson('api/blogs', $blog);
+        $response = $this->postJson('api/%MODEL_NAME_SNAKE%s', $%MODEL_NAME_CAMEL_CASE%);
 
-        // assert response
         $response->assertStatus(200);
         $response->assertJson([
-            'title' => $blog['title'],
-            'body' => $blog['body'],
+            %ASSERT_FIELDS%    
         ]);
 
         // assert database with will create data.
-        $this->assertDatabaseHas('blogs', $blog);
+        $this->assertDatabaseHas('%TABLE_NAME%', $%MODEL_NAME_CAMEL_CASE%);
     }
 
     /**
@@ -65,24 +58,21 @@ class ApiBlogTest extends TestCase
     public function test_update()
     {
         // add a record
-        $blog = Blog::factory()->create();
+        $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::factory()->create();
 
         // create new record template 
-        $newBlog = Blog::factory()->make()->getAttributes();
+        $new%MODEL_NAME% = %MODEL_NAME%::factory()->make()->getAttributes();
 
-        // request
-        $response = $this->putJson('api/blogs/' . $blog->id, $newBlog);
+        $response = $this->putJson('api/%MODEL_NAME_SNAKE%s/' . $%MODEL_NAME_CAMEL_CASE%->id, $new%MODEL_NAME%);
 
-        // assert response
         $response->assertStatus(200);
         $response->assertJson([
-            'id' => $blog->id,
-            'title' => $newBlog['title'],
-            'body' => $newBlog['body'],
+            'id' => $%MODEL_NAME_CAMEL_CASE%->id,
+            %UPDATE_ASSERT_FIELDS%
         ]);
 
         // assert database with will create data.
-        $this->assertDatabaseHas('blogs', $newBlog);
+        $this->assertDatabaseHas('%TABLE_NAME%', $new%MODEL_NAME%);
     }
 
 
@@ -95,16 +85,14 @@ class ApiBlogTest extends TestCase
     public function test_destroy()
     {
         // add a record
-        $blog = Blog::factory()->create();
+        $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::factory()->create();
 
-        // request
-        $response = $this->delete('api/blogs/' . $blog->id);
+        $response = $this->delete('api/%MODEL_NAME_SNAKE%s/' . $%MODEL_NAME_CAMEL_CASE%->id);
 
-        // assert response
         $response->assertStatus(200);
 
         // assert database with will create data.
-        $this->assertSoftDeleted('blogs', $blog->getAttributes());
+        $this->assertSoftDeleted('%TABLE_NAME%', $%MODEL_NAME_CAMEL_CASE%->getAttributes());
     }
 
     /**
@@ -116,19 +104,14 @@ class ApiBlogTest extends TestCase
     public function test_show()
     {
         // 5 record added to database
-        $blog = Blog::factory()->create();
+        $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::factory()->create();
 
-        // request
-        $response = $this->get('api/blogs/' . $blog->id);
+        $response = $this->get('api/%MODEL_NAME_SNAKE%s/' . $%MODEL_NAME_CAMEL_CASE%->id);
 
-        // response control
         $response->assertJson([
-            'id' => $blog->id,
-            'title' => $blog['title'],
-            'body' => $blog['body'],
+            'id' => $%MODEL_NAME_CAMEL_CASE%->id,
+            %ASSERT_FIELDS%
         ]);
-
-        // response code 200
         $response->assertStatus(200);
     }
 }
