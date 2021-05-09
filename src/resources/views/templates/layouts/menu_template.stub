@@ -1,0 +1,5 @@
+<li class="active">
+    <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}"><i class="fas fa-square"></i>
+        <span>$MODEL_NAME_PLURAL_HUMAN$</span>
+    </a>
+</li>

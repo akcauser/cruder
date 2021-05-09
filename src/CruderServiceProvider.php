@@ -16,6 +16,10 @@ class CruderServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/cruder.php' => config_path('cruder.php'),
         ]);
+
+        $this->publishes([
+            __DIR__.'/assets/stisla-laravel' => public_path('cruder/assets'),
+        ], 'public');
     }
 
     public function register()

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+<title>Your Title — Stisla</title>
+
+<!-- General CSS Files -->
+<link rel="stylesheet" href="../dist/modules/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../dist/modules/fontawesome/css/all.min.css">
+
+<!-- Plugins -->
+<link rel="stylesheet" href="../dist/modules/bootstrap-social/bootstrap-social.css">
+
+<!-- Template CSS -->
+<link rel="stylesheet" href="../dist/css/style.css">
+<link rel="stylesheet" href="../dist/css/components.css">
+</head>
+
+<body>
+<div id="app">
+    <div class="main-wrapper">
+        <div class="navbar-lg"></div>
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <li>
+                <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </li>
+        </nav>
+        
+        @include('layouts.sidebar')
+        <div class="main-content" style="min-height: 168px;">
+             @yield('content')
+        </div>
+        <footer class="main-footer">
+          <div class="footer-left">
+            Copyright © 2021 <div class="bullet"></div> Design By <a href="#">Akcauser</a>
+          </div>
+          <div class="footer-right">
+          </div>
+        </footer>
+    </div>
+</div>
+
+<!-- General JS Scripts -->
+<script src="../dist/modules/jquery.min.js"></script>
+<script src="../dist/modules/popper.js"></script>
+<script src="../dist/modules/tooltip.js"></script>
+<script src="../dist/modules/bootstrap/js/bootstrap.min.js"></script>
+<script src="../dist/modules/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="../dist/modules/moment.min.js"></script>
+<script src="../dist/js/stisla.js"></script>
+
+<!-- Plugins -->
+
+<!-- Page Specific JS File -->
+
+<!-- Template JS File -->
+<script src="../dist/js/scripts.js"></script>
+<script src="../dist/js/custom.js"></script>
+</body>
+</html>
