@@ -4,8 +4,7 @@ namespace Akcauser\Cruder\Generator;
 
 use Akcauser\Cruder\Utils\FileUtil;
 
-
-class WebControllerGenerator
+class ServiceAbstractGenerator
 {
     private $modelName;
     private $template;
@@ -14,7 +13,7 @@ class WebControllerGenerator
     public function __construct($modelName)
     {
         $this->modelName = $modelName;
-        $this->folderPath = config('cruder.controllers_path.web');
+        $this->folderPath = config('cruder.service_paths.abstract');
 
         $this->generate();
     }
@@ -28,17 +27,17 @@ class WebControllerGenerator
 
     protected function getTemplate()
     {
-        $this->template = file_get_contents(__DIR__ . '/../templates/controller/web_controller.stub');
+        $this->template = file_get_contents(__DIR__ . '/../templates/services/service_abstract.stub');
     }
 
     protected function replaceVariables()
     {
-        # set variables in templates
+        $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
     }
 
     protected function store()
     {
-        $fileName = $this->modelName . 'Controller.php';
+        $fileName = 'I' . $this->modelName . 'Service.php';
 
         FileUtil::newFile($this->folderPath, $fileName, $this->template);
     }

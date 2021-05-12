@@ -3,10 +3,9 @@
 namespace Akcauser\Cruder\Generator;
 
 use Akcauser\Cruder\Utils\FileUtil;
-use Illuminate\Support\Str;
 
 
-class ApiControllerGenerator
+class CmsControllerGenerator
 {
     private $modelName;
     private $template;
@@ -16,8 +15,8 @@ class ApiControllerGenerator
     public function __construct($modelName)
     {
         $this->modelName = $modelName;
-        $this->folderPath = config('cruder.controllers_path.api');
-        $this->prefix = config('cruder.prefix.api');
+        $this->folderPath = config('cruder.controllers_path.cms');
+        $this->prefix = config('cruder.prefix.cms');
 
         $this->generate();
     }
@@ -31,13 +30,12 @@ class ApiControllerGenerator
 
     protected function getTemplate()
     {
-        $this->template = file_get_contents(__DIR__ . '/../templates/controller/api_controller.stub');
+        $this->template = file_get_contents(__DIR__ . '/../templates/controller/cms_controller.stub');
     }
 
     protected function replaceVariables()
     {
-        $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
-        $this->template = str_replace('%MODEL_NAME_CAMEL_CASE%', Str::camel($this->modelName), $this->template);
+        # set variables in templates
     }
 
     protected function store()

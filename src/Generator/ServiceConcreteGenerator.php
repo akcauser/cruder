@@ -5,7 +5,7 @@ namespace Akcauser\Cruder\Generator;
 use Akcauser\Cruder\Utils\FileUtil;
 use Illuminate\Support\Str;
 
-class RepositoryConcreteGenerator
+class ServiceConcreteGenerator
 {
     private $modelName;
     private $template;
@@ -17,7 +17,7 @@ class RepositoryConcreteGenerator
     {
         $this->modelName = $modelName;
         $this->fields = $fields;
-        $this->folderPath = config('cruder.repositories_path.concrete');
+        $this->folderPath = config('cruder.service_paths.concrete');
 
         $this->generate();
     }
@@ -25,34 +25,25 @@ class RepositoryConcreteGenerator
     protected function generate()
     {
         $this->getTemplate();
-        $this->generateAssignFields();
         $this->replaceVariables();
         $this->store();
     }
 
     protected function getTemplate()
     {
-        $this->template = file_get_contents(__DIR__ . '/../templates/repository/repository_concrete.stub');
+        $this->template = file_get_contents(__DIR__ . '/../templates/services/service_concrete.stub');
     }
 
     protected function replaceVariables()
     {
         $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
         $this->template = str_replace('%MODEL_NAME_CAMEL_CASE%', Str::camel($this->modelName), $this->template);
-        $this->template = str_replace('%ASSIGN_FIELDS%', $this->assignFields, $this->template);
     }
 
     protected function store()
     {
-        $fileName = $this->modelName . 'Repository.php';
+        $fileName = $this->modelName . 'Service.php';
 
         FileUtil::newFile($this->folderPath, $fileName, $this->template);
-    }
-
-    public function generateAssignFields()
-    {
-        foreach ($this->fields as $field) {
-            $this->assignFields .= '$' . Str::camel($this->modelName) . '->' . $field['name'] . ' = $request->' . $field['name'] . ';' . "\n\t\t";
-        }
     }
 }

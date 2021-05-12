@@ -3,43 +3,39 @@
 namespace Akcauser\Cruder\Generator;
 
 use Akcauser\Cruder\Utils\FileUtil;
-use Illuminate\Support\Str;
 
-class ApiRouteGenerator
+
+class UpdateRequestGenerator
 {
     private $modelName;
-    private $template;
-    private $folderPath;
-    private $fileName;
 
     public function __construct($modelName)
     {
         $this->modelName = $modelName;
-        $this->folderPath = config('cruder.routes.folder');
-        $this->fileName = config('cruder.routes.api_file');
+        $this->folderPath = "App/Http/Requests/";
+        $this->fileName = $modelName . "UpdateRequest.php";
         $this->generate();
     }
 
     protected function generate()
     {
-        $this->getTemplate();
+        $this->getTemplate();;
         $this->replaceVariables();
         $this->store();
     }
 
     protected function getTemplate()
     {
-        $this->template = file_get_contents(__DIR__ . '/../templates/routes/api_routes.stub');
+        $this->template = file_get_contents(__DIR__ . '/../templates/requests/update_request.stub');
     }
 
     protected function replaceVariables()
     {
         $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
-        $this->template = str_replace('%MODEL_NAME_SNAKE%', Str::snake($this->modelName, "_"), $this->template);
     }
 
     protected function store()
     {
-        FileUtil::putContent($this->folderPath . $this->fileName, $this->template);
+        FileUtil::newFile($this->folderPath, $this->fileName, $this->template);
     }
 }

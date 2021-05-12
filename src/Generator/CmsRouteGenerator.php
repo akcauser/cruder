@@ -5,7 +5,7 @@ namespace Akcauser\Cruder\Generator;
 use Akcauser\Cruder\Utils\FileUtil;
 use Illuminate\Support\Str;
 
-class ApiRouteGenerator
+class CmsRouteGenerator
 {
     private $modelName;
     private $template;
@@ -16,7 +16,15 @@ class ApiRouteGenerator
     {
         $this->modelName = $modelName;
         $this->folderPath = config('cruder.routes.folder');
-        $this->fileName = config('cruder.routes.api_file');
+        $this->fileName = config('cruder.routes.cms_file');
+
+        // if cms.php doesnt exist, add cms.php file and init template
+        $content = FileUtil::getContent($this->folderPath . $this->fileName);
+        if (!$content) {
+            $emptyTemplate = file_get_contents(__DIR__ . '/../templates/routes/cms_initialize.stub');
+            FileUtil::newFile($this->folderPath, $this->fileName, $emptyTemplate);
+        }
+
         $this->generate();
     }
 
@@ -29,7 +37,7 @@ class ApiRouteGenerator
 
     protected function getTemplate()
     {
-        $this->template = file_get_contents(__DIR__ . '/../templates/routes/api_routes.stub');
+        $this->template = file_get_contents(__DIR__ . '/../templates/routes/cms_routes.stub');
     }
 
     protected function replaceVariables()

@@ -5,7 +5,7 @@ namespace Akcauser\Cruder\Generator;
 use Akcauser\Cruder\Utils\FileUtil;
 
 
-class RepositoryProviderGenerator
+class ServiceProviderGenerator
 {
     private $modelName;
     private $template;
@@ -15,13 +15,13 @@ class RepositoryProviderGenerator
     public function __construct($modelName)
     {
         $this->modelName = $modelName;
-        $this->folderPath = config('cruder.repository_provider_path');
-        $this->fileName = config('cruder.repository_provider_file');
+        $this->folderPath = config('cruder.providers_path');
+        $this->fileName = "BusinessServiceProvider.php";
 
         // get service provider file
         $content = FileUtil::getContent($this->folderPath . $this->fileName);
         if (!$content) {
-            $emptyTemplate = file_get_contents(__DIR__ . '/../templates/providers/repository_service_provider.stub');
+            $emptyTemplate = file_get_contents(__DIR__ . '/../templates/providers/business_service_provider.stub');
             // if not exist create with template
             FileUtil::newFile($this->folderPath, $this->fileName, $emptyTemplate);
             // register app.php providers
@@ -39,7 +39,7 @@ class RepositoryProviderGenerator
 
     protected function getTemplate()
     {
-        $this->template = file_get_contents(__DIR__ . '/../templates/providers/register_method.stub');
+        $this->template = file_get_contents(__DIR__ . '/../templates/providers/service_singleton.stub');
     }
 
     protected function replaceVariables()

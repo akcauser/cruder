@@ -1,0 +1,1 @@
+$this->app->singleton(\App\Cruder\DataService\Abstract\I%MODEL_NAME%DataService::class, \App\Cruder\DataService\Concrete\%MODEL_NAME%DataService::class);

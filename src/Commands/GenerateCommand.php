@@ -4,6 +4,11 @@ namespace Akcauser\Cruder\Commands;
 
 use Akcauser\Cruder\Generator\ApiControllerGenerator;
 use Akcauser\Cruder\Generator\ApiRouteGenerator;
+use Akcauser\Cruder\Generator\CmsControllerGenerator;
+use Akcauser\Cruder\Generator\CmsRouteGenerator;
+use Akcauser\Cruder\Generator\DataServiceAbstractGenerator;
+use Akcauser\Cruder\Generator\DataServiceConcreteGenerator;
+use Akcauser\Cruder\Generator\DataServiceProviderGenerator;
 use Akcauser\Cruder\Generator\TestGenerator;
 use Akcauser\Cruder\Generator\FactoryGenerator;
 use Akcauser\Cruder\Generator\MigrationGenerator;
@@ -12,6 +17,11 @@ use Akcauser\Cruder\Generator\RepositoryAbstractGenerator;
 use Akcauser\Cruder\Generator\RepositoryConcreteGenerator;
 use Akcauser\Cruder\Generator\RepositoryProviderGenerator;
 use Akcauser\Cruder\Generator\SeederGenerator;
+use Akcauser\Cruder\Generator\ServiceAbstractGenerator;
+use Akcauser\Cruder\Generator\ServiceConcreteGenerator;
+use Akcauser\Cruder\Generator\ServiceProviderGenerator;
+use Akcauser\Cruder\Generator\StoreRequestGenerator;
+use Akcauser\Cruder\Generator\UpdateRequestGenerator;
 use Akcauser\Cruder\Generator\WebControllerGenerator;
 use Akcauser\Cruder\Utils\FieldUtil;
 use Illuminate\Console\Command;
@@ -140,33 +150,40 @@ class GenerateCommand extends Command
         new ApiControllerGenerator($modelName);
 
         // Generate Web Controller
-        //new WebControllerGenerator($modelName);
+        new CmsControllerGenerator($modelName);
 
-        // Generate Repository Interface
-        new RepositoryAbstractGenerator($modelName);
+        // Generate Service
+        new ServiceAbstractGenerator($modelName);
+        new ServiceConcreteGenerator($modelName, $fields);
+        new ServiceProviderGenerator($modelName);
 
-        // Generate Repository Concrete
-        new RepositoryConcreteGenerator($modelName, $fields);
+        // DataService Generator
+        new DataServiceAbstractGenerator($modelName);
+        new DataServiceConcreteGenerator($modelName, $fields);
+        new DataServiceProviderGenerator($modelName);
 
-        // Generate Api Test
+        // Generate Test
         new TestGenerator($modelName, $fields, $tableName);
+
+        // Add Web Views
+        // Store to File
+
+        // Request Generator
+        new StoreRequestGenerator($modelName);
+        new UpdateRequestGenerator($modelName);
 
         // Add Api Routes
         new ApiRouteGenerator($modelName);
+        new CmsRouteGenerator($modelName);
 
-        // Register repository service provider
-        new RepositoryProviderGenerator($modelName);
+
 
         // Get Model Features
         // pagination
         // swagger 
         // Datatables
 
-        // Add Web Views
-        // Store to File
 
-        // Add Web Routes
-        // Add to File
 
         $this->info('Completed!');
 

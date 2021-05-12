@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Cruder\DataService\Abstract;
+
+use App\Models\%MODEL_NAME%;
+
+interface I%MODEL_NAME%DataService
+{
+    public function get_all();
+    public function filter($search);
+    public function store($data);
+    public function update(%MODEL_NAME% $%MODEL_NAME_CAMEL_CASE%, $data);
+    public function delete(%MODEL_NAME% $%MODEL_NAME_CAMEL_CASE%);
+    public function get($id);
+}

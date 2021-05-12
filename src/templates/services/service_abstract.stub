@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Cruder\Service\Abstract;
+
+use App\Http\Requests\%MODEL_NAME%StoreRequest;
+use App\Http\Requests\%MODEL_NAME%UpdateRequest;
+
+interface I%MODEL_NAME%Service
+{
+    public function get_all();
+    public function store(%MODEL_NAME%StoreRequest $request);
+    public function update(%MODEL_NAME%UpdateRequest $request, $id);
+    public function delete($id);
+    public function get($id);
+}

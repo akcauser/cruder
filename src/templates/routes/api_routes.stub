@@ -1,7 +1,7 @@
 Route::prefix('%MODEL_NAME_SNAKE%s')->group(function () {
-    Route::get('', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'index'])->name('%MODEL_NAME_SNAKE%.index');
-    Route::post('', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'store'])->name('%MODEL_NAME_SNAKE%.store');
-    Route::get('{id}', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'show'])->name('%MODEL_NAME_SNAKE%.show');
-    Route::put('{id}', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'update'])->name('%MODEL_NAME_SNAKE%.update');
-    Route::delete('{id}', [\App\Http\Controllers\Api\Api%MODEL_NAME%Controller::class, 'destroy'])->name('%MODEL_NAME_SNAKE%.destroy');
+    Route::get('', [\App\Http\Controllers\API\API%MODEL_NAME%Controller::class, 'index'])->name('api.%MODEL_NAME_SNAKE%s.index');
+    Route::post('', [\App\Http\Controllers\API\API%MODEL_NAME%Controller::class, 'store'])->name('api.%MODEL_NAME_SNAKE%s.store');
+    Route::get('{id}', [\App\Http\Controllers\API\API%MODEL_NAME%Controller::class, 'show'])->name('api.%MODEL_NAME_SNAKE%s.show');
+    Route::put('{id}', [\App\Http\Controllers\API\API%MODEL_NAME%Controller::class, 'update'])->name('api.%MODEL_NAME_SNAKE%s.update');
+    Route::delete('{id}', [\App\Http\Controllers\API\API%MODEL_NAME%Controller::class, 'destroy'])->name('api.%MODEL_NAME_SNAKE%s.destroy');
 });

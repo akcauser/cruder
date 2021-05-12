@@ -16,7 +16,7 @@ class %MODEL_NAME% extends Model
     protected $fillable = [
         %FILLABLE_FIELDS_ARRAY%
     ];
-    
+
     public static $validationRules = [
         %VALIDATION_RULES%
     ];

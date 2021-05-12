@@ -1,1 +1,0 @@
-$this->app->singleton(\App\Repositories\Abstract\I%MODEL_NAME%Repository::class, \App\Repositories\Concrete\%MODEL_NAME%Repository::class);

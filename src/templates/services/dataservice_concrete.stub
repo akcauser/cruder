@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Cruder\DataService\Concrete;
+
+use App\Cruder\DataService\Abstract\I%MODEL_NAME%DataService;
+use App\Models\%MODEL_NAME%;
+
+class %MODEL_NAME%DataService implements I%MODEL_NAME%DataService
+{
+    public function get_all()
+    {
+        return %MODEL_NAME%::paginate(15);
+    }
+
+    public function filter($search)
+    {
+        $query = %MODEL_NAME%::query();
+        
+        if (isset($search)) {
+            $words = explode(' ', $search);
+            if (count($words) > 0) {
+                $query = $query->where(function ($sQuery) use ($words) {
+                    foreach ($words as $word) {
+                        $sQuery->orWhere('title', 'like', "%$word%");
+                        $sQuery->orWhere('body', 'like', "%$word%");
+                    }
+                });
+            }
+        }
+
+        return $query->paginate(15);
+    }
+
+    /**
+     * @param array $data 
+     * @return mixed
+     */
+    public function store($data)
+    {
+        $%MODEL_NAME_CAMEL_CASE% = new %MODEL_NAME%();
+        %ASSIGN_FIELDS%
+
+        if (!$%MODEL_NAME_CAMEL_CASE%->save()) {
+            return false;
+        }
+
+        return $%MODEL_NAME_CAMEL_CASE%;
+    }
+
+    /**
+     * @param %MODEL_NAME% $%MODEL_NAME_CAMEL_CASE%
+     * @param array $data 
+     * @return mixed
+     */
+    public function update(%MODEL_NAME% $%MODEL_NAME_CAMEL_CASE%, $data)
+    {
+        %ASSIGN_FIELDS%
+
+        if (!$%MODEL_NAME_CAMEL_CASE%->save()) {
+            return false;
+        }
+
+        return $%MODEL_NAME_CAMEL_CASE%;
+    }
+
+    public function delete(%MODEL_NAME% $%MODEL_NAME_CAMEL_CASE%)
+    {
+        return $%MODEL_NAME_CAMEL_CASE%->delete();
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function get($id)
+    {
+        return %MODEL_NAME%::find($id);
+    }
+}

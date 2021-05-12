@@ -15,6 +15,7 @@ class TestGenerator
     private $tableName;
     private $assignFields;
     private $updateAssignFields;
+    private $prefix;
 
     public function __construct($modelName, $fields, $tableName)
     {
@@ -22,6 +23,7 @@ class TestGenerator
         $this->fields = $fields;
         $this->tableName = $tableName;
         $this->folderPath = config('cruder.tests_path');
+        $this->prefix = config('cruder.prefix.api');
 
         $this->generate();
     }
@@ -50,7 +52,7 @@ class TestGenerator
 
     protected function store()
     {
-        $fileName = 'Api' . $this->modelName . 'Test.php';
+        $fileName = $this->prefix . $this->modelName . 'Test.php';
 
         FileUtil::newFile($this->folderPath, $fileName, $this->template);
     }

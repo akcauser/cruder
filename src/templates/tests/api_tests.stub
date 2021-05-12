@@ -23,7 +23,7 @@ class Api%MODEL_NAME%Test extends TestCase
 
         $response = $this->get('api/%MODEL_NAME_SNAKE%s');
 
-        $response->assertJsonCount(5);
+        $response->assertJsonCount(5, 'data');
         $response->assertStatus(200);
     }
 

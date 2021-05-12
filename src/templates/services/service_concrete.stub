@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Cruder\Service\Concrete;
+
+use App\Cruder\DataService\Abstract\I%MODEL_NAME%DataService;
+use App\Cruder\Service\Abstract\I%MODEL_NAME%Service;
+use App\Http\Requests\%MODEL_NAME%StoreRequest;
+use App\Http\Requests\%MODEL_NAME%UpdateRequest;
+
+class %MODEL_NAME%Service implements I%MODEL_NAME%Service
+{
+    private I%MODEL_NAME%DataService $%MODEL_NAME_CAMEL_CASE%DataService;
+
+    public function __construct(I%MODEL_NAME%DataService $%MODEL_NAME_CAMEL_CASE%DataService)
+    {
+        $this->%MODEL_NAME_CAMEL_CASE%DataService = $%MODEL_NAME_CAMEL_CASE%DataService;
+    }
+
+    public function get($id)
+    {
+        $%MODEL_NAME_CAMEL_CASE% = $this->%MODEL_NAME_CAMEL_CASE%DataService->get($id);
+        if (!$%MODEL_NAME_CAMEL_CASE%) {
+            return 404;
+        }
+
+        return $%MODEL_NAME_CAMEL_CASE%;
+    }
+
+    public function get_all()
+    {
+        if(request('search')){
+            return $this->%MODEL_NAME_CAMEL_CASE%DataService->filter(request('search'));    
+        }else{
+            return $this->%MODEL_NAME_CAMEL_CASE%DataService->get_all();
+        }
+    }
+
+    public function store(%MODEL_NAME%StoreRequest $request)
+    {
+        $response = $this->%MODEL_NAME_CAMEL_CASE%DataService->store($request->all());
+        if (!$response) {
+            return 500;
+        }
+
+        return $response;
+    }
+
+    public function update(%MODEL_NAME%UpdateRequest $request, $id)
+    {
+        $%MODEL_NAME_CAMEL_CASE% = $this->%MODEL_NAME_CAMEL_CASE%DataService->get($id);
+        if (!$%MODEL_NAME_CAMEL_CASE%) {
+            return 404;
+        }
+
+        $response = $this->%MODEL_NAME_CAMEL_CASE%DataService->update($%MODEL_NAME_CAMEL_CASE%, $request->all());
+        if (!$response) {
+            return 500;
+        }
+
+        return $response;
+    }
+
+    public function delete($id)
+    {
+        $%MODEL_NAME_CAMEL_CASE% = $this->%MODEL_NAME_CAMEL_CASE%DataService->get($id);
+        if (!$%MODEL_NAME_CAMEL_CASE%) {
+            return 404;
+        }
+
+        $response = $this->%MODEL_NAME_CAMEL_CASE%DataService->delete($%MODEL_NAME_CAMEL_CASE%);
+        if (!$response) {
+            return 500;
+        }
+
+        return $response;
+    }
+}

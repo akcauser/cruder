@@ -1,0 +1,9 @@
+Route::prefix('%MODEL_NAME_SNAKE%s')->group(function () {
+    Route::get('', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'index'])->name('cms.%MODEL_NAME_SNAKE%s.index');
+    Route::get('create', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'create'])->name('cms.%MODEL_NAME_SNAKE%s.create');
+    Route::get('{id}', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'show'])->name('cms.%MODEL_NAME_SNAKE%s.show');
+    Route::post('', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'store'])->name('cms.%MODEL_NAME_SNAKE%s.store');
+    Route::get('{id}/edit', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'edit'])->name('cms.%MODEL_NAME_SNAKE%s.edit');
+    Route::put('{id}', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'update'])->name('cms.%MODEL_NAME_SNAKE%s.update');
+    Route::delete('{id}', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'delete'])->name('cms.%MODEL_NAME_SNAKE%s.destroy');
+});
