@@ -1,1 +1,0 @@
-<td>sütun deneme</td>

@@ -21,6 +21,9 @@ Route::get('/example', function () {
 Route::get('/builder', function () {
     return view('cruder::builder');
 });
+Route::get('/builder2', function () {
+    return view('cruder::builder2');
+});
 
 Route::get('/home', function () {
     return view('cruder::layouts/home_layout');

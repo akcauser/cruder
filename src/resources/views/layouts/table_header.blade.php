@@ -1,1 +1,0 @@
-<th>header deneme</th>
