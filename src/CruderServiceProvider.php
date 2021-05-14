@@ -15,10 +15,8 @@ class CruderServiceProvider extends ServiceProvider {
             __DIR__. '/config/cruder.php' => config_path('cruder.php'),
         ]);
         $this->publishes([
-            __DIR__.'/assets/stisla' => public_path('cruder/assets'),
-            __DIR__.'/assets/adminlte' => public_path('cruder/assets'),
-            __DIR__.'/assets/jquery' => public_path('cruder/assets')
-            
+            __DIR__.'/public' => public_path('vendor/cruder'),
+                   
         ],'cruder-assets');
     }
 
