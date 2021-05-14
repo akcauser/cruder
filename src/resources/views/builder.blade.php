@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
+  <link rel="stylesheet"  href="{{ 'assets' }}/stisla/library/select2.min.css"/>
+
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ 'assets' }}/stisla/css/style.css">
   <link rel="stylesheet" href="{{ 'assets' }}/stisla/css/components.css">
@@ -566,12 +568,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="{{ 'assets' }}/stisla/js/stisla.js"></script>
-
-
 
   <!-- JS Libraies -->
-
+  <script src="{{ 'assets' }}/stisla/js/stisla.js"></script>
+  <script src="{{ 'assets' }}/stisla/library/select2.full.min.js"></script>
   <!-- Page Specific JS File -->
 
   <!-- Template JS File -->
@@ -581,6 +581,7 @@
 <script>
   $(document).ready(function () {
     var clicks = 0;
+    
 
     $("#form").on("submit", function () {
           var fieldArr = [];
@@ -766,9 +767,11 @@
         var created_at_field = create_default_fields("created_at")
         var updated_at_field = create_default_fields("updated_at")
         var default_rows = created_at_field + updated_at_field
-    
-       $('#table tbody').append(default_rows)
+        
+     
+        $('#table tbody').append(default_rows)
       }
+      $('select').select2();
       clicks = clicks + 1;
     })
 
