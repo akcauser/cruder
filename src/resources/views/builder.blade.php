@@ -16,6 +16,36 @@
   <link rel="stylesheet" href="{{ 'vendor' }}/cruder/assets/stisla/css/style.css">
   <link rel="stylesheet" href="{{ 'vendor' }}/cruder/assets/stisla/css/components.css">
 
+
+  <style>
+    #table th:last-child, #table td:last-child{
+      padding-left: 0px;
+      width: 30px;
+    }
+    #table th {
+      padding: 15px 0px 15px 5px;
+    }
+    #table td {
+      padding: 15px 0px 0px 5px;
+    }
+    #table th:nth-child(3), #table td:nth-child(3) {
+      width: 100px;
+    }
+
+    #table th:nth-child(5), #table td:nth-child(5),
+    #table th:nth-child(6), #table td:nth-child(6),
+    #table th:nth-child(7), #table td:nth-child(7),
+    #table th:nth-child(8), #table td:nth-child(8),
+    #table th:nth-child(9), #table td:nth-child(9),
+    #table th:nth-child(10),#table td:nth-child(10),
+    #table th:nth-child(11),#table td:nth-child(11) {
+      text-align: center;
+    }
+    .form-check-input{
+      width: 16px;
+      height: 16px;
+    }
+  </style>
 </head>
 
 <body class="layout-3">
@@ -578,6 +608,7 @@
   <script src="{{ 'vendor' }}/cruder/assets/stisla/js/scripts.js"></script>
   <script src="{{ 'vendor' }}/cruder/assets/stisla/js/custom.js"></script>
 </body>
+
 <script>
   $(document).ready(function () {
     var clicks = 0;
@@ -799,8 +830,11 @@
           '</div>'+
           '</td>'+'</tr>'
             
-            
-      $('#relationShipTable tbody').append(tr_element);
+          
+          
+      
+          $('#relationShipTable tbody').append(tr_element);
+          $('select').select2();
     })
 
     $(document).on('click', '.remove', function(e) {
@@ -818,7 +852,7 @@
             '</div>'+
           '</td>'+
           '<td>'+
-            '<div class="form-group">'+
+            '<div class="form-group" style="width: 130px;">'+
               '<select class="form-control select2 dbType-select2">'+
                 '<option value="increments">Increments</option>'+
                 '<option value="integer">Integer</option>'+
@@ -848,7 +882,7 @@
             '</div>'+
           '</td>'+
           '<td>'+
-            '<div class="form-group">'+
+            '<div class="form-group" style="width: 130px;">'+
               '<select class="form-control select2 htmlType-select2">'+
                 '<option value="text">Text</option>'+
                 '<option value="email">Email</option>'+
@@ -896,7 +930,7 @@
       return field;
     }
     function create_select_dbtype(){
-      var field = '<div class="form-group">'+
+      var field = '<div class="form-group" style="width: 130px;">'+
                       '<select class="form-control select2 dbType-select2">'+
                         '<option value="increments">Increments</option>'+
                         '<option value="integer">Integer</option>'+
@@ -923,7 +957,7 @@
       return field;
     }
     function create_select_html(){
-      var field = '<div class="form-group">'+
+      var field = '<div class="form-group" style="width: 130px;">'+
                       '<select class="form-control select2 htmlType-select2">'+
                         '<option value="text">Text</option>'+
                         '<option value="email">Email</option>'+
@@ -955,22 +989,21 @@
     function addRelationSelectToRelationshipTable(){
       var selectString='<div class="form-group">'+
       '<select class="form-control select2 relationshipType-select2" >'+
-              '<option value="1t1">One to One</option>'+
-              '<option value="1tm">One to Many</option>'+
-              '<option value="mt1">Many to One</option>'+
-              '<option value="mtm">Many to Many</option>'+
-              '</select>'+
-              '<div class="form-group">'+
-              '<input type="text" class="form-control foreignTable txtForeignTable" style="display: none" placeholder="Custom Table Name"/>'+
-            '</div>'+
-          '</div>'
+        '<option value="1t1">One to One</option>'+
+        '<option value="1tm">One to Many</option>'+
+        '<option value="mt1">Many to One</option>'+
+        '<option value="mtm">Many to Many</option>'+
+        '</select>'+
+          '<div class="form-group">'+
+            '<input type="text" class="form-control foreignTable txtForeignTable" style="display: none" placeholder="Custom Table Name"/>'+
+          '</div>'+
+        '</div>'
 
-          
-          
+
       return selectString;
     }
 
   });
-
+  
 </script>
 </html>
