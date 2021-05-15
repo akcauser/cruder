@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/example', function () {
-    return view('cruder::example');
-});
+Route::get('', function () {
+    return view('cruder::cms.index');
+})->name('cruder::cms.index');

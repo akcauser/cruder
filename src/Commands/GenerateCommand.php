@@ -13,6 +13,7 @@ use Akcauser\Cruder\Generator\TestGenerator;
 use Akcauser\Cruder\Generator\FactoryGenerator;
 use Akcauser\Cruder\Generator\MigrationGenerator;
 use Akcauser\Cruder\Generator\ModelGenerator;
+use Akcauser\Cruder\Generator\PagesGenerator;
 use Akcauser\Cruder\Generator\RepositoryAbstractGenerator;
 use Akcauser\Cruder\Generator\RepositoryConcreteGenerator;
 use Akcauser\Cruder\Generator\RepositoryProviderGenerator;
@@ -165,9 +166,6 @@ class GenerateCommand extends Command
         // Generate Test
         new TestGenerator($modelName, $fields, $tableName);
 
-        // Add Web Views
-        // Store to File
-
         // Request Generator
         new StoreRequestGenerator($modelName);
         new UpdateRequestGenerator($modelName);
@@ -176,7 +174,10 @@ class GenerateCommand extends Command
         new ApiRouteGenerator($modelName);
         new CmsRouteGenerator($modelName);
 
+        // Add Pages
+        new PagesGenerator($modelName);
 
+        // Store to File
 
         // Get Model Features
         // pagination
