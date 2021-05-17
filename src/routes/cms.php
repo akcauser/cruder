@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('', function () {
-    return view('cruder::cms.index');
-})->name('cruder::cms.index');
+    return view('cms.index');
+})->name('cms.index');

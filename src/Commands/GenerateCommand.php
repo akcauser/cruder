@@ -2,32 +2,34 @@
 
 namespace Akcauser\Cruder\Commands;
 
-use Akcauser\Cruder\Generator\ApiControllerGenerator;
-use Akcauser\Cruder\Generator\ApiRouteGenerator;
-use Akcauser\Cruder\Generator\CmsControllerGenerator;
-use Akcauser\Cruder\Generator\CmsRouteGenerator;
+use Akcauser\Cruder\Generator\Controller\ApiControllerGenerator;
+use Akcauser\Cruder\Generator\Routes\ApiRouteGenerator;
+use Akcauser\Cruder\Generator\Controller\CmsControllerGenerator;
+use Akcauser\Cruder\Generator\Routes\CmsRouteGenerator;
 use Akcauser\Cruder\Generator\DataServiceAbstractGenerator;
 use Akcauser\Cruder\Generator\DataServiceConcreteGenerator;
 use Akcauser\Cruder\Generator\DataServiceProviderGenerator;
 use Akcauser\Cruder\Generator\TestGenerator;
-use Akcauser\Cruder\Generator\FactoryGenerator;
+use Akcauser\Cruder\Generator\Database\FactoryGenerator;
+use Akcauser\Cruder\Generator\HTML\CreatePageGenerator;
+use Akcauser\Cruder\Generator\HTML\EditPageGenerator;
+use Akcauser\Cruder\Generator\HTML\FieldsGenerator;
+use Akcauser\Cruder\Generator\HTML\IndexPageGenerator;
+use Akcauser\Cruder\Generator\HTML\ShowFieldsGenerator;
+use Akcauser\Cruder\Generator\HTML\ShowPageGenerator;
+use Akcauser\Cruder\Generator\HTML\SidebarMenuItemGenerator;
+use Akcauser\Cruder\Generator\HTML\TableTdsGenerator;
+use Akcauser\Cruder\Generator\HTML\TableThsGenerator;
 use Akcauser\Cruder\Generator\MigrationGenerator;
 use Akcauser\Cruder\Generator\ModelGenerator;
-use Akcauser\Cruder\Generator\PagesGenerator;
-use Akcauser\Cruder\Generator\RepositoryAbstractGenerator;
-use Akcauser\Cruder\Generator\RepositoryConcreteGenerator;
-use Akcauser\Cruder\Generator\RepositoryProviderGenerator;
-use Akcauser\Cruder\Generator\SeederGenerator;
+use Akcauser\Cruder\Generator\Database\SeederGenerator;
 use Akcauser\Cruder\Generator\ServiceAbstractGenerator;
 use Akcauser\Cruder\Generator\ServiceConcreteGenerator;
 use Akcauser\Cruder\Generator\ServiceProviderGenerator;
-use Akcauser\Cruder\Generator\StoreRequestGenerator;
-use Akcauser\Cruder\Generator\UpdateRequestGenerator;
-use Akcauser\Cruder\Generator\WebControllerGenerator;
+use Akcauser\Cruder\Generator\Request\StoreRequestGenerator;
+use Akcauser\Cruder\Generator\Request\UpdateRequestGenerator;
 use Akcauser\Cruder\Utils\FieldUtil;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Str;
 
 class GenerateCommand extends Command
 {
@@ -130,8 +132,8 @@ class GenerateCommand extends Command
         }
 
         $this->line("\n");
-        $confirm = $this->confirm('Is correct, do you wish to continue? [y|N]');
-        if (!$confirm) {
+        $confirm = $this->confirm('Is correct, do you wish to continue? [Y|n]');
+        if ($confirm) {
             return $this->error('Cancelled');
         }
 
@@ -175,7 +177,15 @@ class GenerateCommand extends Command
         new CmsRouteGenerator($modelName);
 
         // Add Pages
-        new PagesGenerator($modelName);
+        new IndexPageGenerator($modelName);
+        new ShowPageGenerator($modelName);
+        new CreatePageGenerator($modelName);
+        new EditPageGenerator($modelName);
+        new SidebarMenuItemGenerator($modelName);
+        new FieldsGenerator($modelName, $fields);
+        new ShowFieldsGenerator($modelName, $fields);
+        new TableThsGenerator($modelName, $fields);
+        new TableTdsGenerator($modelName, $fields, $primaryKey);
 
         // Store to File
 

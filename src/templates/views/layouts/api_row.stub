@@ -5,5 +5,5 @@
     <td>
         <div class="badge badge-success">Active</div>
     </td>
-    <td><a href="{{ route('cruder::cms.blogs.index') }}" class="btn btn-primary">Go</a></td>
+    <td><a href="{{ route('cms.blogs.index') }}" class="btn btn-primary">Go</a></td>
 </tr>

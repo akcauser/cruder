@@ -1,23 +1,23 @@
 <?php
 
-namespace Akcauser\Cruder\Generator;
+namespace Akcauser\Cruder\Generator\Database;
 
+use Akcauser\Cruder\Generator\Abstract\Generator;
 use Akcauser\Cruder\Utils\FieldUtil;
-use Akcauser\Cruder\Utils\FileUtil;
 
 
-class FactoryGenerator
+class FactoryGenerator extends Generator
 {
-    private $modelName;
-    private $template;
-    private $folderPath;
     private $fields;
     private $fieldContent;
 
     public function __construct($modelName, $fields)
     {
         $this->modelName = $modelName;
-        $this->folderPath = config('cruder.factories_path');
+        $this->targetFolder = config('cruder.factories_path');
+        $this->templatePath = __DIR__ . '/../../templates/models/factory.stub';
+        $this->targetFile = $this->modelName . 'Factory.php';
+        $this->fileChangeType = "new";
         $this->fields = $fields;
 
         $this->generate();
@@ -25,28 +25,14 @@ class FactoryGenerator
 
     protected function generate()
     {
-        $this->getTemplate();
         $this->generateFieldContent();
-        $this->replaceVariables();
-        $this->store();
-    }
-
-    protected function getTemplate()
-    {
-        $this->template = file_get_contents(__DIR__ . '/../templates/models/factory.stub');
+        parent::generate();
     }
 
     protected function replaceVariables()
     {
-        $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
+        parent::replaceVariables();
         $this->template = str_replace('%FIELDS%', $this->fieldContent, $this->template);
-    }
-
-    protected function store()
-    {
-        $fileName = $this->modelName . 'Factory.php';
-
-        FileUtil::newFile($this->folderPath, $fileName, $this->template);
     }
 
     protected function generateFieldContent()

@@ -1,4 +1,4 @@
-@extends('cruder::cms.layouts.app')
+@extends('cms.layouts.app')
 
 @section('content')
 <div class="main-content">
@@ -32,7 +32,7 @@
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
-                                    @include('cruder::cms.api_rows')
+                                    @include('cms.api_rows')
                                 </table>
                             </div>
                         </div>

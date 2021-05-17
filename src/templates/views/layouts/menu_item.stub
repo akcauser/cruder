@@ -1,6 +1,6 @@
 <li class="nav-item dropdown">
-    <a href="{{route('cruder::cms.blogs.index')}}" class="nav-link">
+    <a href="{{route('cms.%MODEL_NAME_SNAKE_CASE%.index')}}" class="nav-link">
         <i class="fas fa-square"></i>
-        <span>Blogs</span>
+        <span>%MODEL_NAME%s</span>
     </a>
 </li>

@@ -2,43 +2,43 @@
 
 namespace App\Http\Controllers\CMS;
 
-use App\Cruder\Service\Abstract\IBlogService;
+use App\Cruder\Service\Abstract\I%MODEL_NAME%Service;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BlogStoreRequest;
-use App\Http\Requests\BlogUpdateRequest;
+use App\Http\Requests\%MODEL_NAME%StoreRequest;
+use App\Http\Requests\%MODEL_NAME%UpdateRequest;
 
-class CMSBlogController extends Controller
+class CMS%MODEL_NAME%Controller extends Controller
 {
-    protected IBlogService $blogService;
+    protected I%MODEL_NAME%Service $%MODEL_NAME_CAMEL_CASE%Service;
 
-    public function __construct(IBlogService $blogService)
+    public function __construct(I%MODEL_NAME%Service $%MODEL_NAME_CAMEL_CASE%Service)
     {
-        $this->blogService = $blogService;
+        $this->%MODEL_NAME_CAMEL_CASE%Service = $%MODEL_NAME_CAMEL_CASE%Service;
     }
 
     public function index()
     {
-        $blogs = $this->blogService->get_all();
-        return view('cms.blogs.index', compact('blogs'));
+        $%MODEL_NAME_CAMEL_CASE_PLURAL% = $this->%MODEL_NAME_CAMEL_CASE%Service->get_all();
+        return view('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.index', compact('%MODEL_NAME_CAMEL_CASE_PLURAL%'));
     }
 
     public function show($id)
     {
-        $blog = $this->blogService->get($id);
-        if ($blog === 404)
+        $%MODEL_NAME_CAMEL_CASE% = $this->%MODEL_NAME_CAMEL_CASE%Service->get($id);
+        if ($%MODEL_NAME_CAMEL_CASE% === 404)
             abort(404);
 
-        return view('cms.blogs.show', compact('blog'));
+        return view('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.show', compact('%MODEL_NAME_CAMEL_CASE%'));
     }
 
     public function create()
     {
-        return view('cms.blogs.create');
+        return view('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.create');
     }
 
-    public function store(BlogStoreRequest $request)
+    public function store(%MODEL_NAME%StoreRequest $request)
     {
-        $response = $this->blogService->store($request);
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->store($request);
         if ($response === 500)
             return back()->with('Success', 'Not created.');
         
@@ -47,16 +47,16 @@ class CMSBlogController extends Controller
 
     public function edit($id)
     {
-        $blog = $this->blogService->get($id);
-        if ($blog === 404)
+        $%MODEL_NAME_CAMEL_CASE% = $this->%MODEL_NAME_CAMEL_CASE%Service->get($id);
+        if ($%MODEL_NAME_CAMEL_CASE% === 404)
             abort(404);
 
-        return view('cms.blogs.edit', compact('blog'));
+        return view('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.edit', compact('%MODEL_NAME_CAMEL_CASE%'));
     }
 
-    public function update(BlogUpdateRequest $request, $id)
+    public function update(%MODEL_NAME%UpdateRequest $request, $id)
     {
-        $response = $this->blogService->update($request, $id);
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->update($request, $id);
         if ($response === 500)
             return back()->with('Success', 'Not Updated.');
         elseif ($response === 404)
@@ -67,7 +67,7 @@ class CMSBlogController extends Controller
 
     public function delete($id)
     {
-        $response = $this->blogService->delete($id);
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->delete($id);
         if ($response === 500)
             return back()->with('Success', 'Not deleted.');
         elseif ($response === 404)
