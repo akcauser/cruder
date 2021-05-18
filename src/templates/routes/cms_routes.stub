@@ -1,0 +1,9 @@
+Route::prefix('%MODEL_NAME_SNAKE_CASE_PLURAL%')->group(function () {
+    Route::get('', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'index'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.index');
+    Route::get('create', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'create'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.create');
+    Route::get('{id}', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'show'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.show');
+    Route::post('', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'store'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.store');
+    Route::get('{id}/edit', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'edit'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.edit');
+    Route::put('{id}', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'update'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.update');
+    Route::delete('{id}', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'delete'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.destroy');
+});

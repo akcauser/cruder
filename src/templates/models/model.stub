@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+%USE_PART%
+
+class %MODEL_NAME% extends Model
+{
+    use HasFactory;
+    %TRAITS%
+
+    protected $table = "%TABLE_NAME%";
+
+    protected $fillable = [
+        %FILLABLE_FIELDS_ARRAY%
+    ];
+
+    public static $validationRules = [
+        %VALIDATION_RULES%
+    ];
+}

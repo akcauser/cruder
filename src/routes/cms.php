@@ -34,3 +34,7 @@ Route::get('/ex', function () {
 });
 
 Route::post('generator', [GenerateController::class, 'generate'])->name('cruder.generate');
+
+Route::get('', function () {
+    return view('cms.index');
+})->name('cms.index');

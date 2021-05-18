@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Http\Controllers\CMS;
+
+use App\Cruder\Service\Abstract\I%MODEL_NAME%Service;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\%MODEL_NAME%StoreRequest;
+use App\Http\Requests\%MODEL_NAME%UpdateRequest;
+
+class CMS%MODEL_NAME%Controller extends Controller
+{
+    protected I%MODEL_NAME%Service $%MODEL_NAME_CAMEL_CASE%Service;
+
+    public function __construct(I%MODEL_NAME%Service $%MODEL_NAME_CAMEL_CASE%Service)
+    {
+        $this->%MODEL_NAME_CAMEL_CASE%Service = $%MODEL_NAME_CAMEL_CASE%Service;
+    }
+
+    public function index()
+    {
+        $%MODEL_NAME_CAMEL_CASE_PLURAL% = $this->%MODEL_NAME_CAMEL_CASE%Service->get_all();
+        return view('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.index', compact('%MODEL_NAME_CAMEL_CASE_PLURAL%'));
+    }
+
+    public function show($id)
+    {
+        $%MODEL_NAME_CAMEL_CASE% = $this->%MODEL_NAME_CAMEL_CASE%Service->get($id);
+        if ($%MODEL_NAME_CAMEL_CASE% === 404)
+            abort(404);
+
+        return view('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.show', compact('%MODEL_NAME_CAMEL_CASE%'));
+    }
+
+    public function create()
+    {
+        return view('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.create');
+    }
+
+    public function store(%MODEL_NAME%StoreRequest $request)
+    {
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->store($request);
+        if ($response === 500)
+            return back()->with('Success', 'Not created.');
+        
+        return back()->with('Success', 'Created');
+    }
+
+    public function edit($id)
+    {
+        $%MODEL_NAME_CAMEL_CASE% = $this->%MODEL_NAME_CAMEL_CASE%Service->get($id);
+        if ($%MODEL_NAME_CAMEL_CASE% === 404)
+            abort(404);
+
+        return view('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.edit', compact('%MODEL_NAME_CAMEL_CASE%'));
+    }
+
+    public function update(%MODEL_NAME%UpdateRequest $request, $id)
+    {
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->update($request, $id);
+        if ($response === 500)
+            return back()->with('Success', 'Not Updated.');
+        elseif ($response === 404)
+            abort(404);
+
+        return back()->with('Success', 'Updated.');
+    }
+
+    public function delete($id)
+    {
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->delete($id);
+        if ($response === 500)
+            return back()->with('Success', 'Not deleted.');
+        elseif ($response === 404)
+            abort(404);
+
+        // todo: list page open
+    }
+}
+

@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Cruder\Service\Abstract\I%MODEL_NAME%Service;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\%MODEL_NAME%StoreRequest;
+use App\Http\Requests\%MODEL_NAME%UpdateRequest;
+
+class API%MODEL_NAME%Controller extends Controller
+{
+    protected I%MODEL_NAME%Service $%MODEL_NAME_CAMEL_CASE%Service;
+
+    public function __construct(I%MODEL_NAME%Service $%MODEL_NAME_CAMEL_CASE%Service)
+    {
+        $this->%MODEL_NAME_CAMEL_CASE%Service = $%MODEL_NAME_CAMEL_CASE%Service;
+    }
+
+    public function index()
+    {
+        $%MODEL_NAME_CAMEL_CASE_PLURAL% = $this->%MODEL_NAME_CAMEL_CASE%Service->get_all();
+
+        return response()->json($%MODEL_NAME_CAMEL_CASE_PLURAL%);
+    }
+
+
+    public function show($id)
+    {
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->get($id);
+        if ($response === 404)
+            return response()->json('%MODEL_NAME% not found', 404);
+
+        return response()->json($response);
+    }
+
+    public function store(%MODEL_NAME%StoreRequest $request)
+    {
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->store($request);
+        if ($response === 500)
+            return response()->json('%MODEL_NAME% not created', 500);
+        elseif ($response === 404)
+            return response()->json('%MODEL_NAME% not found', 404);
+
+        return response()->json($response);
+    }
+
+    public function update(%MODEL_NAME%UpdateRequest $request, $id)
+    {
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->update($request, $id);
+        if ($response === 500)
+            return response()->json('%MODEL_NAME% not updated', 500);
+        elseif ($response === 404)
+            return response()->json('%MODEL_NAME% not found', 404);
+
+        return response()->json($response);
+    }
+
+    public function destroy($id)
+    {
+        $response = $this->%MODEL_NAME_CAMEL_CASE%Service->delete($id);
+        if ($response === 500)
+            return response()->json('%MODEL_NAME% not deleted', 500);
+        elseif ($response === 404)
+            return response()->json('%MODEL_NAME% not found', 404);
+
+        return response()->json('%MODEL_NAME% deleted');
+    }
+}
