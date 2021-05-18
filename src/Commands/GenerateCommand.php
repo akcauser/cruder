@@ -2,35 +2,10 @@
 
 namespace Akcauser\Cruder\Commands;
 
-use Akcauser\Cruder\Generator\Controller\ApiControllerGenerator;
-use Akcauser\Cruder\Generator\Routes\ApiRouteGenerator;
-use Akcauser\Cruder\Generator\Controller\CmsControllerGenerator;
-use Akcauser\Cruder\Generator\Routes\CmsRouteGenerator;
-use Akcauser\Cruder\Generator\DataServiceAbstractGenerator;
-use Akcauser\Cruder\Generator\DataServiceConcreteGenerator;
-use Akcauser\Cruder\Generator\DataServiceProviderGenerator;
-use Akcauser\Cruder\Generator\TestGenerator;
-use Akcauser\Cruder\Generator\Database\FactoryGenerator;
-use Akcauser\Cruder\Generator\HTML\CreatePageGenerator;
-use Akcauser\Cruder\Generator\HTML\EditPageGenerator;
-use Akcauser\Cruder\Generator\HTML\FieldsGenerator;
-use Akcauser\Cruder\Generator\HTML\IndexPageGenerator;
-use Akcauser\Cruder\Generator\HTML\ShowFieldsGenerator;
-use Akcauser\Cruder\Generator\HTML\ShowPageGenerator;
-use Akcauser\Cruder\Generator\HTML\SidebarMenuItemGenerator;
-use Akcauser\Cruder\Generator\HTML\TableTdsGenerator;
-use Akcauser\Cruder\Generator\HTML\TableThsGenerator;
+use Akcauser\Cruder\Generator\Main\MainGenerator;
 use Akcauser\Cruder\Generator\MigrationGenerator;
-use Akcauser\Cruder\Generator\ModelGenerator;
-use Akcauser\Cruder\Generator\Database\SeederGenerator;
-use Akcauser\Cruder\Generator\ServiceAbstractGenerator;
-use Akcauser\Cruder\Generator\ServiceConcreteGenerator;
-use Akcauser\Cruder\Generator\ServiceProviderGenerator;
-use Akcauser\Cruder\Generator\Request\StoreRequestGenerator;
-use Akcauser\Cruder\Generator\Request\UpdateRequestGenerator;
 use Akcauser\Cruder\Utils\FieldUtil;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class GenerateCommand extends Command
 {
@@ -142,67 +117,7 @@ class GenerateCommand extends Command
             return $this->error('Cancelled');
         }
 
-        // Generate Migration 
-        new MigrationGenerator($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps);
-
-        // Generate Model 
-        new ModelGenerator($modelName, $fields, $softDelete, $tableName);
-
-        // Generate Factory
-        new FactoryGenerator($modelName, $fields);
-
-        // Generate Seeder
-        new SeederGenerator($modelName);
-
-        // Generate Api Controller
-        new ApiControllerGenerator($modelName);
-
-        // Generate Web Controller
-        new CmsControllerGenerator($modelName);
-
-        // Generate Service
-        new ServiceAbstractGenerator($modelName);
-        new ServiceConcreteGenerator($modelName, $fields);
-        new ServiceProviderGenerator($modelName);
-
-        // DataService Generator
-        new DataServiceAbstractGenerator($modelName);
-        new DataServiceConcreteGenerator($modelName, $fields);
-        new DataServiceProviderGenerator($modelName);
-
-        // Generate Test
-        new TestGenerator($modelName, $fields, $tableName);
-
-        // Request Generator
-        new StoreRequestGenerator($modelName);
-        new UpdateRequestGenerator($modelName);
-
-        // Add Api Routes
-        new ApiRouteGenerator($modelName);
-        new CmsRouteGenerator($modelName);
-
-        // Add Pages
-        new IndexPageGenerator($modelName);
-        new ShowPageGenerator($modelName);
-        new CreatePageGenerator($modelName);
-        new EditPageGenerator($modelName);
-        new SidebarMenuItemGenerator($modelName);
-        new FieldsGenerator($modelName, $fields);
-        new ShowFieldsGenerator($modelName, $fields);
-        new TableThsGenerator($modelName, $fields);
-        new TableTdsGenerator($modelName, $fields, $primaryKey);
-
-        // Store to File
-
-        // Get Model Features
-        // pagination
-        // swagger 
-        // Datatables
-
-
-        if ($forceMigrate) {
-            Artisan::call('migrate');
-        }
+        new MainGenerator($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate);
 
         $this->info('Completed!');
 
