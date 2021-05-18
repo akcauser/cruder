@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet"  href="{{ 'vendor' }}/cruder/assets/stisla/library/select2.min.css"/>
+  <link rel="stylesheet"  href="{{ asset('stisla') }}/library/select2.min.css"/>
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ 'vendor' }}/cruder/assets/stisla/css/style.css">
-  <link rel="stylesheet" href="{{ 'vendor' }}/cruder/assets/stisla/css/components.css">
+  <link rel="stylesheet" href="{{ asset('stisla') }}/css/style.css">
+  <link rel="stylesheet" href="{{ asset('stisla') }}/css/components.css">
 
 
   <style>
@@ -96,19 +96,19 @@
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="../assets/img/products/product-3-50.png" alt="product">
+                  <img class="mr-3 rounded" width="30" sr/img/products/product-3-50.png" alt="product">
                   oPhone S9 Limited Edition
                 </a>
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="../assets/img/products/product-2-50.png" alt="product">
+                  <img class="mr-3 rounded" width="30" sr/img/products/product-2-50.png" alt="product">
                   Drone X2 New Gen-7
                 </a>
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="../assets/img/products/product-1-50.png" alt="product">
+                  <img class="mr-3 rounded" width="30" sr/img/products/product-1-50.png" alt="product">
                   Headphone Blitz
                 </a>
               </div>
@@ -145,7 +145,7 @@
               <div class="dropdown-list-content dropdown-list-message">
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle">
+                    <img alt="image" sr/img/avatar/avatar-1.png" class="rounded-circle">
                     <div class="is-online"></div>
                   </div>
                   <div class="dropdown-item-desc">
@@ -156,7 +156,7 @@
                 </a>
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="../assets/img/avatar/avatar-2.png" class="rounded-circle">
+                    <img alt="image" sr/img/avatar/avatar-2.png" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Dedik Sugiharto</b>
@@ -166,7 +166,7 @@
                 </a>
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="../assets/img/avatar/avatar-3.png" class="rounded-circle">
+                    <img alt="image" sr/img/avatar/avatar-3.png" class="rounded-circle">
                     <div class="is-online"></div>
                   </div>
                   <div class="dropdown-item-desc">
@@ -177,7 +177,7 @@
                 </a>
                 <a href="#" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="../assets/img/avatar/avatar-4.png" class="rounded-circle">
+                    <img alt="image" sr/img/avatar/avatar-4.png" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Ardian Rahardiansyah</b>
@@ -187,7 +187,7 @@
                 </a>
                 <a href="#" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle">
+                    <img alt="image" sr/img/avatar/avatar-5.png" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Alfa Zulkarnain</b>
@@ -261,7 +261,7 @@
             </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+            <img alt="image" sr/img/avatar/avatar-1.png" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
@@ -600,13 +600,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
   <!-- JS Libraies -->
-  <script src="{{ 'vendor' }}/cruder/assets/stisla/js/stisla.js"></script>
-  <script src="{{ 'vendor' }}/cruder/assets/stisla/library/select2.full.min.js"></script>
+  <script src="{{ 'stisla' }}/js/stisla.js"></script>
+  <script src="{{ 'stisla' }}/library/select2.full.min.js"></script>
   <!-- Page Specific JS File -->
 
   <!-- Template JS File -->
-  <script src="{{ 'vendor' }}/cruder/assets/stisla/js/scripts.js"></script>
-  <script src="{{ 'vendor' }}/cruder/assets/stisla/js/custom.js"></script>
+  <script src="{{ 'stisla' }}/js/scripts.js"></script>
+  <script src="{{ 'stisla' }}/js/custom.js"></script>
 </body>
 
 <script>
