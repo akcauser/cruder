@@ -30,6 +30,7 @@ use Akcauser\Cruder\Generator\Request\StoreRequestGenerator;
 use Akcauser\Cruder\Generator\Request\UpdateRequestGenerator;
 use Akcauser\Cruder\Utils\FieldUtil;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class GenerateCommand extends Command
 {
@@ -108,13 +109,16 @@ class GenerateCommand extends Command
         $tableName = $this->ask("Do you want to custom table name?", MigrationGenerator::generateTableName($modelName));
 
         // Ask SoftDelete Use
-        $softDelete = $this->ask("Do you want to Softdelete Feature? [Y|n]", "Y") == "Y" ? true : false;
+        $softDelete = $this->confirm("Do you want to Softdelete Feature? [Y|n]", true) ? true : false;
 
         // Ask For Custom Primary Key Name 
         $primaryKey = $this->ask("Do you want to custom primary key field? Enter if you want:", "id");
 
         // Ask Timestamp Use
-        $timestamps = $this->ask("Do you want to use Timestamps Feature? [Y|n]", "Y") == "Y" ? true : false;
+        $timestamps = $this->confirm("Do you want to use Timestamps Feature? [Y|n]", true) ? true : false;
+
+        // Ask Timestamp Use
+        $forceMigrate = $this->confirm("Do you want to use force migrate this migration? [y|N]", false) ? true : false;
 
         // Kullanıcının girdiği değerler ekrana çıktı olarak verilir. Kullanıcı değerleri kontrol edip onayladıktan sonra api oluşturulur.
         $this->info('***** Api Details *****');
@@ -122,6 +126,7 @@ class GenerateCommand extends Command
         $this->line('Soft Delete= ' . ($softDelete ? 'Yes' : 'No'));
         $this->line('Primary Key= ' . $primaryKey);
         $this->line('Timestamps= ' . ($timestamps ? 'Yes' : 'No'));
+        $this->line('Force Migrate= ' . ($forceMigrate ? 'Yes' : 'No'));
         $this->warn('Fields:');
         foreach ($fields as $field) {
             $this->line("Field name: " . $field["name"]);
@@ -132,8 +137,8 @@ class GenerateCommand extends Command
         }
 
         $this->line("\n");
-        $confirm = $this->confirm('Is correct, do you wish to continue? [Y|n]');
-        if ($confirm) {
+        $confirm = $this->confirm('Is correct, do you wish to continue? [Y|n]', true);
+        if (!$confirm) {
             return $this->error('Cancelled');
         }
 
@@ -195,6 +200,9 @@ class GenerateCommand extends Command
         // Datatables
 
 
+        if ($forceMigrate) {
+            Artisan::call('migrate');
+        }
 
         $this->info('Completed!');
 
