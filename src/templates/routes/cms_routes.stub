@@ -1,4 +1,4 @@
-Route::prefix('%MODEL_NAME_SNAKE_CASE_PLURAL%')->group(function () {
+Route::prefix('cruder/%MODEL_NAME_SNAKE_CASE_PLURAL%')->group(function () {
     Route::get('', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'index'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.index');
     Route::get('create', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'create'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.create');
     Route::get('{id}', [App\Http\Controllers\CMS\CMS%MODEL_NAME%Controller::class, 'show'])->name('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.show');
