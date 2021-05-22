@@ -1,8 +1,4 @@
 <div class="section-body">
-    {{--
-    <h2 class="section-title">This is Example Page</h2>
-    <p class="section-lead">This page is just an example for you to create your own page.</p>
-    --}}
     <div class="card">
         <div class="card-header">
             <h4>Builder</h4>
@@ -10,7 +6,7 @@
         <div class="card-body">
             <form role="form" id="form">
                 @method('post')
-                <input type="hidden" name="_token" id="token" value="{!! csrf_token() !!}" />
+                @csrf
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">

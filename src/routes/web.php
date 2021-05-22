@@ -19,12 +19,16 @@ use Illuminate\Support\Facades\Route;
  */
 
 if (env('APP_ENV') == 'local') {
-    Route::get('/builder', function () {
+    Route::get('cruder/builder', function () {
         return view('cruder::builder');
-    });
+    })->name("cruder.builder");
 
-    Route::post('generator', [GenerateController::class, 'generate'])->name('cruder::generate');
+    Route::post('cruder/generator', [GenerateController::class, 'generate'])->name('cruder.generate');
 }
+
+Route::get('cruder/github', function () {
+    return redirect('https://github.com/akcauser/cruder');
+})->name('cruder.github');
 
 Route::get('cruder', function () {
     return view('cms.index');

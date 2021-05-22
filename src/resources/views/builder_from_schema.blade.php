@@ -6,7 +6,7 @@
     <div class="card-body">
       <form role="form" id="schemaForm">
         @method('post')
-        <input type="hidden" name="_token" id="token" value="{!! csrf_token() !!}" />
+        @csrf
 
         <div class="row">
           <div class="col-md-6">

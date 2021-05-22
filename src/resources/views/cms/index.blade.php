@@ -21,6 +21,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Api List Table</h4>
+                            <a href="{{ route('cruder::builder') }}" class="btn btn-primary">New Api</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

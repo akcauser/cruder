@@ -14,7 +14,7 @@ class CruderServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/config/cruder.php' => config_path('cruder.php'),
-            __DIR__ . '/resources/views' => resource_path('views/'),
+            __DIR__ . '/resources/views/cms/' => resource_path('views/cms/'),
         ]);
 
         $this->publishes([

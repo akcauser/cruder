@@ -6,7 +6,7 @@ use App\Models\%MODEL_NAME%;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class Api%MODEL_NAME%Test extends TestCase
+class API%MODEL_NAME%Test extends TestCase
 {
     use RefreshDatabase;
 

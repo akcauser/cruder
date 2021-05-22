@@ -9,20 +9,16 @@ class GenerateController extends Controller
 {
     public function generate(Request $request)
     {
-        // json burada
-        echo $request->modelName;
-        exit;
+        dd($request);
     }
 
     public function rollback(Request $request)
     {
         dd($request);
-        # code...
     }
-    
+
     public function schema(Request $request)
     {
         dd($request);
-        # code...
     }
 }
