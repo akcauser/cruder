@@ -55,16 +55,18 @@ class FieldUtil
 
     public static function generateHTMLField($field)
     {
-        switch ($field["dbtype"]) {
-            case 'string':
+        switch ($field["htmltype"]) {
+            case 'text':
                 return __DIR__ . '/../templates/views/html_fields/string.stub';
                 break;
-            case 'integer':
+            case 'number':
                 return __DIR__ . '/../templates/views/html_fields/integer.stub';
                 break;
-            case 'text':
+            case 'textarea':
                 return __DIR__ . '/../templates/views/html_fields/text.stub';
                 break;
+            default:
+                return false;
         }
     }
 }

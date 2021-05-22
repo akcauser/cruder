@@ -1,6 +1,6 @@
 <?php
 
-use Akcauser\Cruder\Controllers\GenerateController;
+use Akcauser\Cruder\Http\Controllers\BuilderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +23,7 @@ if (env('APP_ENV') == 'local') {
         return view('cruder::builder');
     })->name("cruder.builder");
 
-    Route::post('cruder/generator', [GenerateController::class, 'generate'])->name('cruder.generate');
+    Route::post('cruder/generator', [BuilderController::class, 'generate'])->name('cruder.generate');
 }
 
 Route::get('cruder/github', function () {

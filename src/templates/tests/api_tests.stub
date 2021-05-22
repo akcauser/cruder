@@ -92,7 +92,7 @@ class API%MODEL_NAME%Test extends TestCase
         $response->assertStatus(200);
 
         // assert database with will create data.
-        $this->assertSoftDeleted('%TABLE_NAME%', $%MODEL_NAME_CAMEL_CASE%->getAttributes());
+        %ASSERT_DELETED%
     }
 
     /**

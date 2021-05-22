@@ -157,8 +157,8 @@
               }
               fieldArr.push({
                   name: $(this).find('.fieldNameInput').val(),
-                  dbType: $(this).find('.dbType-select2').val(),
-                  htmlType: htmlValue,
+                  dbtype: $(this).find('.dbType-select2').val(),
+                  htmltype: htmlValue,
                   validations: $(this).find('.validationInput').val(),
                   foreignTable: $(this).find('.txtForeignTable').val(),
                   isForeign: $(this).find('.chkForeign').prop('checked'),
@@ -189,8 +189,6 @@
                   prefix: $('#prefixInput').val(),
                   paginate: $('#paginateInput').val(),
                   forceMigrate: $('#chkForceMigrate').prop('checked'),
-              },
-              addOns: {
                   swagger: $('#chkSwagger').prop('checked')
               },
               fields: fieldArr,

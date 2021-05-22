@@ -16,21 +16,28 @@ class TestGenerator
     private $assignFields;
     private $updateAssignFields;
     private $prefix;
+    private $assertDeleted;
+    private $softDelete;
 
-    public function __construct($modelName, $fields, $tableName)
+    public function __construct($modelName, $fields, $tableName, $softDelete)
     {
         $this->modelName = $modelName;
         $this->fields = $fields;
         $this->tableName = $tableName;
         $this->folderPath = config('cruder.tests_path');
         $this->prefix = config('cruder.prefix.api');
+        $this->softDelete = $softDelete;
 
         $this->generate();
     }
 
     protected function generate()
     {
-        $this->getTemplate();;
+        $this->generateAssertFields();
+        $this->generateUpdateAssertFields();
+        $this->generateAssertDeleted();
+
+        $this->getTemplate();
         $this->replaceVariables();
         $this->store();
     }
@@ -42,6 +49,7 @@ class TestGenerator
 
     protected function replaceVariables()
     {
+        $this->template = str_replace('%ASSERT_DELETED%', $this->assertDeleted, $this->template);
         $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
         $this->template = str_replace('%MODEL_NAME_CAMEL_CASE%', Str::camel($this->modelName), $this->template);
         $this->template = str_replace('%MODEL_NAME_SNAKE%', Str::snake($this->modelName, "_"), $this->template);
@@ -68,6 +76,15 @@ class TestGenerator
     {
         foreach ($this->fields as $field) {
             $this->updateAssignFields .= '"' . $field['name'] . '" => $new' . $this->modelName . '["' . $field['name'] . '"],' . "\n\t\t";
+        }
+    }
+
+    public function generateAssertDeleted()
+    {
+        if ($this->softDelete) {
+            $this->assertDeleted = '$this->assertSoftDeleted("%TABLE_NAME%", $%MODEL_NAME_CAMEL_CASE%->getAttributes());';
+        } else {
+            $this->assertDeleted = '$this->assertDeleted("%TABLE_NAME%", $%MODEL_NAME_CAMEL_CASE%->getAttributes());';
         }
     }
 }

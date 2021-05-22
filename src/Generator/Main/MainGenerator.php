@@ -83,7 +83,7 @@ class MainGenerator
         new DataServiceProviderGenerator($this->modelName);
 
         // Generate Test
-        new TestGenerator($this->modelName, $this->fields, $this->tableName);
+        new TestGenerator($this->modelName, $this->fields, $this->tableName, $this->softDelete);
 
         // Request Generator
         new StoreRequestGenerator($this->modelName);

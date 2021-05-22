@@ -31,7 +31,7 @@ return [
         'abstract' => 'app/Cruder/DataService/Abstract/',
         'concrete' => 'app/Cruder/DataService/Concrete/',
     ],
-
+    'requests_path' => 'app/Http/Requests/',
     /**
      * Route Filed 
      */
