@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Blank Page &mdash; Stisla</title>
+    <title>Encodeurs &mdash; Cruder</title>
 
     @include('cms.layouts.template_styles')
     @yield('page_styles')
