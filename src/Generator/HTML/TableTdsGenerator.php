@@ -1,8 +1,8 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\HTML;
+namespace Encodeurs\Cruder\Generator\HTML;
 
-use Akcauser\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
 
 class TableTdsGenerator extends Generator
 {

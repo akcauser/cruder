@@ -1,8 +1,8 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\Controller;
+namespace Encodeurs\Cruder\Generator\Controller;
 
-use Akcauser\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
 
 
 class ApiControllerGenerator extends Generator

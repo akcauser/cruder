@@ -1,10 +1,10 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\HTML;
+namespace Encodeurs\Cruder\Generator\HTML;
 
-use Akcauser\Cruder\Generator\Abstract\Generator;
-use Akcauser\Cruder\Utils\FieldUtil;
-use Akcauser\Cruder\Utils\FileUtil;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Utils\FieldUtil;
+use Encodeurs\Cruder\Utils\FileUtil;
 
 class FieldsGenerator extends Generator
 {

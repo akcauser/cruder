@@ -1,6 +1,6 @@
 <?php
 
-use Akcauser\Cruder\Http\Controllers\BuilderController;
+use Encodeurs\Cruder\Http\Controllers\BuilderController;
 use Illuminate\Support\Facades\Route;
 
 /*

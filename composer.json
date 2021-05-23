@@ -1,26 +1,50 @@
 {
-    "name": "akcauser/cruder",
+    "name": "encodeurs/cruder",
     "description": "CRUD Generator For Laravel",
+    "keywords": [
+        "laravel",
+        "crud",
+        "generator",
+        "swagger",
+        "rest",
+        "api",
+        "migration",
+        "model",
+        "request",
+        "service",
+        "interface",
+        "dependency",
+        "test",
+        "view"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
+        {
+            "name": "mrvyldr",
+            "email": "merveyildir@ogr.iu.edu.tr"
+        },
         {
             "name": "akcauser",
             "email": "akcaertugrulgazi@gmail.com"
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": "^7.3|^8.0",
+        "laravel/framework": "^8.12",
+        "darkaonline/l5-swagger": "^8.0"
+    },
     "extra": {
         "laravel": {
             "providers": [
-                "Akcauser\\Cruder\\CruderServiceProvider"
+                "Encodeurs\\Cruder\\CruderServiceProvider"
             ]
         }
     },
     "autoload": {
         "psr-4": {
-            "Akcauser\\Cruder\\": "src/"
+            "Encodeurs\\Cruder\\": "src/"
         }
     }
 }

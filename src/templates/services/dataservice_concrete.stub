@@ -9,7 +9,7 @@ class %MODEL_NAME%DataService implements I%MODEL_NAME%DataService
 {
     public function get_all()
     {
-        return %MODEL_NAME%::paginate(15);
+        return %MODEL_NAME%::paginate(%PAGINATE%);
     }
 
     public function filter($search)

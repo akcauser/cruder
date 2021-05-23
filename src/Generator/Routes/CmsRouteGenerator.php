@@ -1,8 +1,8 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\Routes;
+namespace Encodeurs\Cruder\Generator\Routes;
 
-use Akcauser\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
 
 class CmsRouteGenerator extends Generator
 {

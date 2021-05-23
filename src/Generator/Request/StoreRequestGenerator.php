@@ -1,8 +1,8 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\Request;
+namespace Encodeurs\Cruder\Generator\Request;
 
-use Akcauser\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
 
 
 class StoreRequestGenerator extends Generator

@@ -1,13 +1,13 @@
 <?php
 
-namespace Akcauser\Cruder\Utils;
+namespace Encodeurs\Cruder\Utils;
 
-use Akcauser\Cruder\Utils\DB\DBIntegerField;
-use Akcauser\Cruder\Utils\DB\DBStringField;
-use Akcauser\Cruder\Utils\DB\DBTextField;
-use Akcauser\Cruder\Utils\Factory\FactoryIntegerField;
-use Akcauser\Cruder\Utils\Factory\FactoryStringField;
-use Akcauser\Cruder\Utils\Factory\FactoryTextField;
+use Encodeurs\Cruder\Utils\DB\DBIntegerField;
+use Encodeurs\Cruder\Utils\DB\DBStringField;
+use Encodeurs\Cruder\Utils\DB\DBTextField;
+use Encodeurs\Cruder\Utils\Factory\FactoryIntegerField;
+use Encodeurs\Cruder\Utils\Factory\FactoryStringField;
+use Encodeurs\Cruder\Utils\Factory\FactoryTextField;
 
 class FieldUtil
 {

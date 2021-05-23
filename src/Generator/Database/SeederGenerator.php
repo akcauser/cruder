@@ -1,8 +1,8 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\Database;
+namespace Encodeurs\Cruder\Generator\Database;
 
-use Akcauser\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
 
 
 class SeederGenerator extends Generator

@@ -1,9 +1,9 @@
 <?php
 
-namespace Akcauser\Cruder\Http\Controllers;
+namespace Encodeurs\Cruder\Http\Controllers;
 
-use Akcauser\Cruder\Generator\Main\MainGenerator;
-use Akcauser\Cruder\Http\Requests\BuilderGenerateRequest;
+use Encodeurs\Cruder\Generator\Main\MainGenerator;
+use Encodeurs\Cruder\Http\Requests\BuilderGenerateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

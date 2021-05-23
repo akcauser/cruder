@@ -1,6 +1,6 @@
 <?php
 
-namespace Akcauser\Cruder\Utils\Factory;
+namespace Encodeurs\Cruder\Utils\Factory;
 
 
 class FactoryIntegerField

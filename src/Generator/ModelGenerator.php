@@ -1,8 +1,8 @@
 <?php
 
-namespace Akcauser\Cruder\Generator;
+namespace Encodeurs\Cruder\Generator;
 
-use Akcauser\Cruder\Utils\FileUtil;
+use Encodeurs\Cruder\Utils\FileUtil;
 
 
 class ModelGenerator

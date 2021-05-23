@@ -1,6 +1,6 @@
 <?php
 
-namespace Akcauser\Cruder\Utils;
+namespace Encodeurs\Cruder\Utils;
 
 class InputUtil
 {

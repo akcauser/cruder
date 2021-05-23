@@ -1,6 +1,6 @@
 <?php
 
-namespace Akcauser\Cruder\Http\Requests;
+namespace Encodeurs\Cruder\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

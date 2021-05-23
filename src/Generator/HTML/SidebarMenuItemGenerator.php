@@ -1,8 +1,8 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\HTML;
+namespace Encodeurs\Cruder\Generator\HTML;
 
-use Akcauser\Cruder\Utils\FileUtil;
+use Encodeurs\Cruder\Utils\FileUtil;
 use Illuminate\Support\Str;
 
 class SidebarMenuItemGenerator

@@ -1,9 +1,9 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\Schema;
+namespace Encodeurs\Cruder\Generator\Schema;
 
-use Akcauser\Cruder\Generator\Abstract\Generator;
-use Akcauser\Cruder\Utils\FieldUtil;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Utils\FieldUtil;
 
 class SchemaJsonGenerator extends Generator
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Akcauser\Cruder\Commands;
+namespace Encodeurs\Cruder\Commands;
 
-use Akcauser\Cruder\Generator\Main\MainGenerator;
-use Akcauser\Cruder\Generator\MigrationGenerator;
-use Akcauser\Cruder\Utils\FieldUtil;
+use Encodeurs\Cruder\Generator\Main\MainGenerator;
+use Encodeurs\Cruder\Generator\MigrationGenerator;
+use Encodeurs\Cruder\Utils\FieldUtil;
 use Illuminate\Console\Command;
 
 class GenerateCommand extends Command

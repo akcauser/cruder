@@ -1,10 +1,10 @@
 <?php
 
-namespace Akcauser\Cruder\Generator;
+namespace Encodeurs\Cruder\Generator;
 
-use Akcauser\Cruder\Utils\DatabaseUtil;
-use Akcauser\Cruder\Utils\FieldUtil;
-use Akcauser\Cruder\Utils\FileUtil;
+use Encodeurs\Cruder\Utils\DatabaseUtil;
+use Encodeurs\Cruder\Utils\FieldUtil;
+use Encodeurs\Cruder\Utils\FileUtil;
 use Illuminate\Support\Str;
 
 

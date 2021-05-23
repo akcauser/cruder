@@ -7,7 +7,7 @@ This package allows you to create API and perform CRUD Scaffolding. It helps you
 
 Include the package in your project with the command:
 
-`composer require akcauser / cruder`
+`composer require encodeurs/cruder`
 
 # Usage
 

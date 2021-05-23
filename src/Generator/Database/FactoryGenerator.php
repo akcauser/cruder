@@ -1,9 +1,9 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\Database;
+namespace Encodeurs\Cruder\Generator\Database;
 
-use Akcauser\Cruder\Generator\Abstract\Generator;
-use Akcauser\Cruder\Utils\FieldUtil;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Utils\FieldUtil;
 
 
 class FactoryGenerator extends Generator

@@ -1,6 +1,6 @@
 <?php
 
-namespace Akcauser\Cruder\Utils\DB;
+namespace Encodeurs\Cruder\Utils\DB;
 
 
 class DBStringField

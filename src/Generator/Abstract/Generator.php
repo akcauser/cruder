@@ -1,8 +1,8 @@
 <?php
 
-namespace Akcauser\Cruder\Generator\Abstract;
+namespace Encodeurs\Cruder\Generator\Abstract;
 
-use Akcauser\Cruder\Utils\FileUtil;
+use Encodeurs\Cruder\Utils\FileUtil;
 use Illuminate\Support\Str;
 
 abstract class Generator

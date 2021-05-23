@@ -1,6 +1,6 @@
 <?php
 
-namespace Akcauser\Cruder;
+namespace Encodeurs\Cruder;
 
 use Illuminate\Support\ServiceProvider;
 
