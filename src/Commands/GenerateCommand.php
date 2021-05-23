@@ -71,12 +71,21 @@ class GenerateCommand extends Command
                 continue;
             }
 
+            $searchable = $this->confirm("Searchable? [Y|n]", true) ? true : false;
+            $nullable = $this->confirm("Nullable? [Y|n]", true) ? true : false;
+            $fillable = $this->confirm("Fillable? [Y|n]", true) ? true : false;
+            $inIndex = $this->confirm("In index? [y|N]", false) ? true : false;
+
             // add to fields array 
             array_push($fields, [
                 'name' => $explode[0],
                 'dbtype' => $explode[1],
                 'htmltype' => $explode[2],
                 'validations' => $explode[3],
+                'searchable' => $searchable,
+                'fillable' => $fillable,
+                'inIndex' => $inIndex,
+                'nullable' => $nullable,
             ]);
         }
 

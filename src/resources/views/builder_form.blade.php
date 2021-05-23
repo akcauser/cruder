@@ -88,11 +88,9 @@
                                     <th>DB Type</th>
                                     <th>Validations</th>
                                     <th>Html Type</th>
-                                    <th>Primary</th>
                                     <th>Nullable</th>
                                     <th>Searchable</th>
                                     <th>Fillable</th>
-                                    <th>In Form</th>
                                     <th>In Index</th>
                                     <th></th>
                                 </tr>

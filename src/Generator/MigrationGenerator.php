@@ -2,6 +2,7 @@
 
 namespace Akcauser\Cruder\Generator;
 
+use Akcauser\Cruder\Utils\DatabaseUtil;
 use Akcauser\Cruder\Utils\FieldUtil;
 use Akcauser\Cruder\Utils\FileUtil;
 use Illuminate\Support\Str;
@@ -18,6 +19,7 @@ class MigrationGenerator
     private $primaryKey;
     private $timestamps;
     private $fieldContent = "";
+    private $indexFieldsContent = "";
 
     public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps)
     {
@@ -51,6 +53,8 @@ class MigrationGenerator
         $this->template = str_replace('%FIELDS%', $this->fieldContent, $this->template);
         $this->template = str_replace('%TABLE_NAME_CAPITALCASE%', $this->modelName . 's', $this->template);
         $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
+        $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
+        $this->template = str_replace('%INDEX_FIELDS%', $this->indexFieldsContent, $this->template);
     }
 
     protected function store()
@@ -79,5 +83,7 @@ class MigrationGenerator
         if ($this->timestamps) {
             $this->fieldContent  .= '$table->timestamps();' . "\n\t\t\t";
         }
+
+        $this->indexFieldsContent = DatabaseUtil::generateIndexFields($this->fields);
     }
 }

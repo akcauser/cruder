@@ -64,7 +64,8 @@ class ModelGenerator
     public function generateFillableFields()
     {
         foreach ($this->fields as $field) {
-            $this->fillableFields .= "'" . $field['name'] . "',\n\t\t";
+            if ($field["fillable"])
+                $this->fillableFields .= "'" . $field['name'] . "',\n\t\t";
         }
     }
 

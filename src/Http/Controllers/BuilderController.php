@@ -20,7 +20,7 @@ class BuilderController extends Controller
             primaryKey: "id",
             timestamps: $request->options["timestamps"],
             forceMigrate: $request->options["forceMigrate"],
-            paginate: $request->options->paginate ?? 15,
+            paginate: $request->options["paginate"] ?? 15,
         );
 
         $response = $mainGenerator->call();

@@ -164,8 +164,6 @@
                   nullable: $(this).find('.chkNullable').prop('checked'),
                   searchable: $(this).find('.chkSearchable').prop('checked'),
                   fillable: $(this).find('.chkFillable').prop('checked'),
-                  primary: $(this).find('.chkPrimary').prop('checked'),
-                  inForm: $(this).find('.chkInForm').prop('checked'),
                   inIndex: $(this).find('.chkInIndex').prop('checked')
               });
           });
@@ -299,9 +297,6 @@
             create_select_html()+
           '</td>'+
           '<td>'+
-            create_checkbox("chkPrimary", "")+
-          '</td>'+
-          '<td>'+
             create_checkbox("chkNullable", "")+
           '</td>'+
           '<td>'+
@@ -311,10 +306,7 @@
             create_checkbox("chkFillable","checked")+
           '</td>'+
           '<td>'+
-            create_checkbox("chkInForm","checked")+
-          '</td>'+
-          '<td>'+
-            create_checkbox("chkInIndex","checked")+
+            create_checkbox("chkInIndex","")+
           '</td>'+
           '<td><i class="remove fas fa-trash" style="cursor: pointer;color: red"></i></td>'+
           '</div>'+
@@ -427,9 +419,6 @@
             '</div>'+
           '</td>'+
           '<td>'+
-            create_checkbox("chkPrimary", "")+
-          '</td>'+
-          '<td>'+
             create_checkbox("chkNullable", "")+
           '</td>'+
           '<td>'+
@@ -439,10 +428,7 @@
             create_checkbox("chkFillable","checked")+
           '</td>'+
           '<td>'+
-            create_checkbox("chkInForm","checked")+
-          '</td>'+
-          '<td>'+
-            create_checkbox("chkInIndex","checked")+
+            create_checkbox("chkInIndex","")+
           '</td>'+
           '<td><i class="remove fas fa-trash" style="cursor: pointer;color: red"></i></td>'+
           '</div>'+
