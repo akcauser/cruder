@@ -26,12 +26,7 @@ class FieldsGenerator extends Generator
     protected function getTemplate()
     {
         foreach ($this->fields as $field) {
-            $htmlField = FieldUtil::generateHTMLField($field);
-            if (!$htmlField) {
-                abort(500);
-            }
-            $fieldContent = FileUtil::getContent($htmlField);
-            $fieldContent = str_replace('%FIELD_NAME%', $field["name"], $fieldContent);
+            $fieldContent = FieldUtil::generateHTMLField($field);
             $this->template .= $fieldContent . "\n";
         }
     }

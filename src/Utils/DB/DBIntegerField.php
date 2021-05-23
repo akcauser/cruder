@@ -5,7 +5,7 @@ namespace Akcauser\Cruder\Utils\DB;
 
 class DBIntegerField
 {
-    private static $template = '$table->integer("½FIELD_NAME½");';
+    private static $template = '$table->integer("½FIELD_NAME½")%NULLABLE%;';
 
     public static function create($fieldName)
     {

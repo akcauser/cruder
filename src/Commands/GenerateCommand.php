@@ -117,9 +117,14 @@ class GenerateCommand extends Command
             return $this->error('Cancelled');
         }
 
-        new MainGenerator($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate);
+        $mainGenerator = new MainGenerator($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate);
 
-        $this->info('Completed!');
+        $response = $mainGenerator->call();
+
+        if ($response)
+            $this->info('Completed!');
+        else
+            $this->alert("Error");
 
         return;
     }

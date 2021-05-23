@@ -30,6 +30,12 @@
                         <div class="custom-switches-stacked mt-2">
                             <label class="custom-switch">
                                 <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                                    id="chkTimestamps">
+                                <span class="custom-switch-indicator"></span>
+                                <span class="custom-switch-description">Timestamp Fields</span>
+                            </label>
+                            <label class="custom-switch">
+                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
                                     id="chkDelete">
                                 <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description">Soft delete</span>
@@ -54,21 +60,26 @@
                             </label>
                         </div>
                     </div>
+                    <!--
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Prefix</label>
                             <input type="text" class="form-control" id="prefixInput" placeholder="Enter prefix">
                         </div>
                     </div>
+                -->
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Paginate</label>
-                            <input type="text" class="form-control" id="paginateInput" placeholder="Enter prefix">
+                            <input type="text" class="form-control" id="paginateInput" placeholder="Enter page data count">
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="row mt-4">
+                    <div>
+                    Default Fields: id=>(bigIncrement,primaryKey)
+                    </div>
                     <div class="table-responsive mt-4">
                         <table class="table table-striped table-md" id="table">
                             <thead>
@@ -78,7 +89,7 @@
                                     <th>Validations</th>
                                     <th>Html Type</th>
                                     <th>Primary</th>
-                                    <th>Is Foreign</th>
+                                    <th>Nullable</th>
                                     <th>Searchable</th>
                                     <th>Fillable</th>
                                     <th>In Form</th>

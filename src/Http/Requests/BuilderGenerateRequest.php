@@ -39,7 +39,7 @@ class BuilderGenerateRequest extends FormRequest
                 "boolean",
             ],
             "options.paginate" => [
-                "required",
+                "nullable",
                 "integer",
             ],
             "options.prefix" => [

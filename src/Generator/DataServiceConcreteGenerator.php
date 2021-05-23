@@ -13,11 +13,13 @@ class DataServiceConcreteGenerator
     private $fields;
     private $assignFields;
     private $subQueryFields;
+    private $paginate;
 
-    public function __construct($modelName, $fields)
+    public function __construct($modelName, $fields, $paginate)
     {
         $this->modelName = $modelName;
         $this->fields = $fields;
+        $this->paginate = $paginate;
         $this->folderPath = config('cruder.dataservice_paths.concrete');
 
         $this->generate();
@@ -42,6 +44,7 @@ class DataServiceConcreteGenerator
         $this->template = str_replace('%MODEL_NAME_CAMEL_CASE%', Str::camel($this->modelName), $this->template);
         $this->template = str_replace('%ASSIGN_FIELDS%', $this->assignFields, $this->template);
         $this->template = str_replace('%SUB_QUERY_FIELDS%', $this->subQueryFields, $this->template);
+        $this->template = str_replace('%PAGINATE%', $this->paginate, $this->template);
     }
 
     protected function store()

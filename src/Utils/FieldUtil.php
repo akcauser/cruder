@@ -25,17 +25,27 @@ class FieldUtil
 
     public static function generateDBField($field)
     {
+        $dbField = "";
         switch ($field["dbtype"]) {
             case 'string':
-                return DBStringField::create($field["name"]);
+                $dbField = DBStringField::create($field["name"]);
                 break;
             case 'integer':
-                return DBIntegerField::create($field["name"]);
+                $dbField = DBIntegerField::create($field["name"]);
                 break;
             case 'text':
-                return DBTextField::create($field["name"]);
+                $dbField = DBTextField::create($field["name"]);
                 break;
+            default:
+                return false;
         }
+
+        if ($field["nullable"]) {
+            $dbField = str_replace("%NULLABLE%", "->nullable()", $dbField);
+        } else {
+            $dbField = str_replace("%NULLABLE%", "", $dbField);
+        }
+        return $dbField;
     }
 
     public static function generateFactoryField($field)
@@ -55,18 +65,27 @@ class FieldUtil
 
     public static function generateHTMLField($field)
     {
+        $htmlField = "";
         switch ($field["htmltype"]) {
             case 'text':
-                return __DIR__ . '/../templates/views/html_fields/string.stub';
+                $htmlField = __DIR__ . '/../templates/views/html_fields/text.stub';
                 break;
             case 'number':
-                return __DIR__ . '/../templates/views/html_fields/integer.stub';
+                $htmlField = __DIR__ . '/../templates/views/html_fields/number.stub';
                 break;
             case 'textarea':
-                return __DIR__ . '/../templates/views/html_fields/text.stub';
+                $htmlField = __DIR__ . '/../templates/views/html_fields/textarea.stub';
                 break;
             default:
                 return false;
         }
+        $fieldContent = FileUtil::getContentByPath($htmlField);
+        $fieldContent = str_replace('%FIELD_NAME%', $field["name"], $fieldContent);
+        if ($field["nullable"]) {
+            $fieldContent = str_replace("%REQUIRED%", "", $fieldContent);
+        } else {
+            $fieldContent = str_replace("%REQUIRED%", "required", $fieldContent);
+        }
+        return $fieldContent;
     }
 }

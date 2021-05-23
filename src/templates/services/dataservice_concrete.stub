@@ -27,7 +27,7 @@ class %MODEL_NAME%DataService implements I%MODEL_NAME%DataService
             }
         }
 
-        return $query->paginate(15);
+        return $query->paginate(%PAGINATE%);
     }
 
     /**

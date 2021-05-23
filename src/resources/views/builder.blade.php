@@ -161,7 +161,7 @@
                   htmltype: htmlValue,
                   validations: $(this).find('.validationInput').val(),
                   foreignTable: $(this).find('.txtForeignTable').val(),
-                  isForeign: $(this).find('.chkForeign').prop('checked'),
+                  nullable: $(this).find('.chkNullable').prop('checked'),
                   searchable: $(this).find('.chkSearchable').prop('checked'),
                   fillable: $(this).find('.chkFillable').prop('checked'),
                   primary: $(this).find('.chkPrimary').prop('checked'),
@@ -185,11 +185,12 @@
               tableName: $('#customTableNameInput').val(),
               options: {
                   softDelete: $('#chkDelete').prop('checked'),
+                  timestamps: $('#chkTimestamps').prop('checked'),
                   save: $('#chkSave').prop('checked'),
-                  prefix: $('#prefixInput').val(),
+                  //prefix: $('#prefixInput').val(),
                   paginate: $('#paginateInput').val(),
                   forceMigrate: $('#chkForceMigrate').prop('checked'),
-                  swagger: $('#chkSwagger').prop('checked')
+                  swagger: $('#chkSwagger').prop('checked'),
               },
               fields: fieldArr,
               relations: relationFieldArr
@@ -275,7 +276,7 @@
     });
 
     $("#addFieldButton").click(function() {
-  
+      clicks = 1;
       if(clicks >= 1){
         var tr_element ='<tr class="item">'+
           '<td>'+
@@ -301,7 +302,7 @@
             create_checkbox("chkPrimary", "")+
           '</td>'+
           '<td>'+
-            create_checkbox("chkForeign", "")+
+            create_checkbox("chkNullable", "")+
           '</td>'+
           '<td>'+
             create_checkbox("chkSearchable","checked")+
@@ -429,7 +430,7 @@
             create_checkbox("chkPrimary", "")+
           '</td>'+
           '<td>'+
-            create_checkbox("chkForeign", "")+
+            create_checkbox("chkNullable", "")+
           '</td>'+
           '<td>'+
             create_checkbox("chkSearchable","checked")+

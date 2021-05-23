@@ -11,7 +11,23 @@ class BuilderController extends Controller
 {
     public function generate(BuilderGenerateRequest $request)
     {
-        new MainGenerator($request->modelName, $request->tableName, $request->fields, $request->softDelete, "id", true, $request->forceMigrate);
+        // primary key generator
+        $mainGenerator = new MainGenerator(
+            modelName: $request->modelName,
+            tableName: $request->tableName ?? null,
+            fields: $request->fields,
+            softDelete: $request->options["softDelete"],
+            primaryKey: "id",
+            timestamps: $request->options["timestamps"],
+            forceMigrate: $request->options["forceMigrate"],
+            paginate: $request->options->paginate ?? 15,
+        );
+
+        $response = $mainGenerator->call();
+        if ($response)
+            return response()->json(["message" => "Success"]);
+
+        return response()->json("Error", 500);
     }
 
     public function rollback(Request $request)

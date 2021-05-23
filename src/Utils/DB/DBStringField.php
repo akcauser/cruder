@@ -5,7 +5,7 @@ namespace Akcauser\Cruder\Utils\DB;
 
 class DBStringField
 {
-    private static $template = '$table->string("½FIELD_NAME½");';
+    private static $template = '$table->string("½FIELD_NAME½")%NULLABLE%;';
 
     public static function create($fieldName)
     {

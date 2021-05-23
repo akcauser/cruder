@@ -47,4 +47,13 @@ class FileUtil
 
         return file_get_contents($file);
     }
+
+    public static function getContentByPath($file)
+    {
+        if (!file_exists($file)) {
+            return false;
+        }
+
+        return file_get_contents($file);
+    }
 }

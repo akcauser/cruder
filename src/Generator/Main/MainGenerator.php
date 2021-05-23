@@ -28,6 +28,7 @@ use Akcauser\Cruder\Generator\ServiceConcreteGenerator;
 use Akcauser\Cruder\Generator\ServiceProviderGenerator;
 use Akcauser\Cruder\Generator\Request\StoreRequestGenerator;
 use Akcauser\Cruder\Generator\Request\UpdateRequestGenerator;
+use Akcauser\Cruder\Utils\DatabaseUtil;
 use Illuminate\Support\Facades\Artisan;
 
 class MainGenerator
@@ -39,79 +40,93 @@ class MainGenerator
     private $primaryKey;
     private $timestamps;
     private $forceMigrate;
+    private $paginate;
 
-    public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate)
+    public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate, $paginate = 15)
     {
         $this->modelName = $modelName;
-        $this->tableName = $tableName;
+
+        // Generate Table Name
+        if ($tableName)
+            $this->tableName = $tableName;
+        else
+            $this->tableName = DatabaseUtil::generateTableName($modelName);
+
+
         $this->fields = $fields;
         $this->softDelete = $softDelete;
         $this->primaryKey = $primaryKey;
         $this->timestamps = $timestamps;
         $this->forceMigrate = $forceMigrate;
-        $this->call();
+        $this->paginate = $paginate;
     }
 
-    private function call()
+    public function call()
     {
-        // Generate Migration 
-        new MigrationGenerator($this->modelName, $this->tableName, $this->fields, $this->softDelete, $this->primaryKey, $this->timestamps);
+        try {
+            // Generate Migration 
+            new MigrationGenerator($this->modelName, $this->tableName, $this->fields, $this->softDelete, $this->primaryKey, $this->timestamps);
 
-        // Generate Model 
-        new ModelGenerator($this->modelName, $this->fields, $this->softDelete, $this->tableName);
+            // Generate Model 
+            new ModelGenerator($this->modelName, $this->fields, $this->softDelete, $this->tableName);
 
-        // Generate Factory
-        new FactoryGenerator($this->modelName, $this->fields);
+            // Generate Factory
+            new FactoryGenerator($this->modelName, $this->fields);
 
-        // Generate Seeder
-        new SeederGenerator($this->modelName);
+            // Generate Seeder
+            new SeederGenerator($this->modelName);
 
-        // Generate Api Controller
-        new ApiControllerGenerator($this->modelName);
+            // Generate Api Controller
+            new ApiControllerGenerator($this->modelName);
 
-        // Generate Web Controller
-        new CmsControllerGenerator($this->modelName);
+            // Generate Web Controller
+            new CmsControllerGenerator($this->modelName);
 
-        // Generate Service
-        new ServiceAbstractGenerator($this->modelName);
-        new ServiceConcreteGenerator($this->modelName, $this->fields);
-        new ServiceProviderGenerator($this->modelName);
+            // Generate Service
+            new ServiceAbstractGenerator($this->modelName);
+            new ServiceConcreteGenerator($this->modelName, $this->fields);
+            new ServiceProviderGenerator($this->modelName);
 
-        // DataService Generator
-        new DataServiceAbstractGenerator($this->modelName);
-        new DataServiceConcreteGenerator($this->modelName, $this->fields);
-        new DataServiceProviderGenerator($this->modelName);
+            // DataService Generator
+            new DataServiceAbstractGenerator($this->modelName);
+            new DataServiceConcreteGenerator($this->modelName, $this->fields, $this->paginate);
+            new DataServiceProviderGenerator($this->modelName);
 
-        // Generate Test
-        new TestGenerator($this->modelName, $this->fields, $this->tableName, $this->softDelete);
+            // Generate Test
+            new TestGenerator($this->modelName, $this->fields, $this->tableName, $this->softDelete);
 
-        // Request Generator
-        new StoreRequestGenerator($this->modelName);
-        new UpdateRequestGenerator($this->modelName);
+            // Request Generator
+            new StoreRequestGenerator($this->modelName);
+            new UpdateRequestGenerator($this->modelName);
 
-        // Add Api Routes
-        new ApiRouteGenerator($this->modelName);
-        new CmsRouteGenerator($this->modelName);
+            // Add Api Routes
+            new ApiRouteGenerator($this->modelName);
+            new CmsRouteGenerator($this->modelName);
 
-        // Add Pages
-        new IndexPageGenerator($this->modelName);
-        new ShowPageGenerator($this->modelName);
-        new CreatePageGenerator($this->modelName);
-        new EditPageGenerator($this->modelName);
-        new SidebarMenuItemGenerator($this->modelName);
-        new FieldsGenerator($this->modelName, $this->fields);
-        new ShowFieldsGenerator($this->modelName, $this->fields);
-        new TableThsGenerator($this->modelName, $this->fields);
-        new TableTdsGenerator($this->modelName, $this->fields, $this->primaryKey);
+            // Add Pages
+            new IndexPageGenerator($this->modelName);
+            new ShowPageGenerator($this->modelName);
+            new CreatePageGenerator($this->modelName);
+            new EditPageGenerator($this->modelName);
+            new SidebarMenuItemGenerator($this->modelName);
+            new FieldsGenerator($this->modelName, $this->fields);
+            new ShowFieldsGenerator($this->modelName, $this->fields);
+            new TableThsGenerator($this->modelName, $this->fields);
+            new TableTdsGenerator($this->modelName, $this->fields, $this->primaryKey);
 
-        // Store to File
+            // Store to File
 
-        // pagination
-        // swagger 
-        // Datatables
+            // pagination
+            // swagger 
+            // Datatables
 
-        if ($this->forceMigrate) {
-            Artisan::call('migrate');
+            if ($this->forceMigrate) {
+                Artisan::call('migrate');
+            }
+            return true;
+        } catch (\Throwable $th) {
+            throw $th;
+            return false;;
         }
     }
 }

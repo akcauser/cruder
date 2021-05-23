@@ -38,7 +38,7 @@ return [
     'routes' => [
         'folder' => 'routes/',
         'api_file' => 'api.php',
-        'cms_file' => 'cms.php',
+        'cms_file' => 'web.php',
     ],
 
     'providers_path' => 'app/Providers/',
