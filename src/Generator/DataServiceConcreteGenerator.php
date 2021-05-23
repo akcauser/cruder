@@ -58,7 +58,9 @@ class DataServiceConcreteGenerator
     {
         foreach ($this->fields as $field) {
             $this->assignFields .= '$' . Str::camel($this->modelName) . '->' . $field['name'] . ' = $data["' . $field['name'] . '"];' . "\n\t\t";
-            $this->subQueryFields .= '$sQuery->orWhere(\'' . $field['name'] . '\', \'like\', "%$word%");' . "\n\t\t\t\t\t\t";
+
+            if ($field["searchable"])
+                $this->subQueryFields .= '$sQuery->orWhere(\'' . $field['name'] . '\', \'like\', "%$word%");' . "\n\t\t\t\t\t\t";
         }
     }
 }
