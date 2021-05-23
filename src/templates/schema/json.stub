@@ -1,0 +1,14 @@
+{
+    "modelName": "%MODEL_NAME%",
+    "tableName": "%TABLE_NAME%",
+    "options": {
+        "paginate": %PAGINATE%,
+        "softDelete": %SOFT_DELETE%,
+        "forceMigrate": %FORCE_MIGRATE%,
+        "timestamps": %TIMESTAMPS%,
+        "swagger": %SWAGGER%
+    },
+    "fields": [
+        %FIELDS%
+    ]
+}

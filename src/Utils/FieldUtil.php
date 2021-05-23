@@ -88,4 +88,21 @@ class FieldUtil
         }
         return $fieldContent;
     }
+
+    public static function generateJsonSchemaField($field)
+    {
+        $path = __DIR__ . '/../templates/schema/json_field.stub';
+        $jsonField = FileUtil::getContentByPath($path);
+
+        $jsonField = str_replace("%NAME%", $field["name"], $jsonField);
+        $jsonField = str_replace("%DB_TYPE%", $field["dbtype"], $jsonField);
+        $jsonField = str_replace("%HTML_TYPE%", $field["htmltype"], $jsonField);
+        $jsonField = str_replace("%VALIDATIONS%", $field["validations"], $jsonField);
+        $jsonField = str_replace("%NULLABLE%", $field["nullable"] ? "true" : "false", $jsonField);
+        $jsonField = str_replace("%SEARCHABLE%", $field["searchable"] ? "true" : "false", $jsonField);
+        $jsonField = str_replace("%IN_INDEX%", $field["inIndex"] ? "true" : "false", $jsonField);
+        $jsonField = str_replace("%FILLABLE%", $field["fillable"] ? "true" : "false", $jsonField);
+
+        return $jsonField;
+    }
 }

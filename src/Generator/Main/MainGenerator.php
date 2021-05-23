@@ -5,6 +5,7 @@ namespace Akcauser\Cruder\Generator\Main;
 use Akcauser\Cruder\Generator\Controller\ApiControllerGenerator;
 use Akcauser\Cruder\Generator\Routes\ApiRouteGenerator;
 use Akcauser\Cruder\Generator\Controller\CmsControllerGenerator;
+use Akcauser\Cruder\Generator\Schema\SchemaJsonGenerator;
 use Akcauser\Cruder\Generator\Routes\CmsRouteGenerator;
 use Akcauser\Cruder\Generator\DataServiceAbstractGenerator;
 use Akcauser\Cruder\Generator\DataServiceConcreteGenerator;
@@ -113,7 +114,7 @@ class MainGenerator
             new ShowFieldsGenerator($this->modelName, $this->fields);
             new TableThsGenerator($this->modelName, $this->fields);
             new TableTdsGenerator($this->modelName, $this->fields, $this->primaryKey);
-
+            new SchemaJsonGenerator($this->modelName, $this->fields, $this->paginate, $this->softDelete, $this->forceMigrate, $this->timestamps, $this->tableName);
             // Store to File
 
             // pagination
@@ -121,8 +122,9 @@ class MainGenerator
             // Datatables
 
             if ($this->forceMigrate) {
-                Artisan::call('migrate');
+                Artisan::call('migrate:fresh --seed');
             }
+
             return true;
         } catch (\Throwable $th) {
             throw $th;

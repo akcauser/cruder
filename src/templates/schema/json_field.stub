@@ -1,0 +1,10 @@
+{
+    "name": "%NAME%",
+    "dbtype": "%DB_TYPE%",
+    "htmltype": "%HTML_TYPE%",
+    "validations": "%VALIDATIONS%",
+    "nullable": %NULLABLE%,
+    "searchable": %SEARCHABLE%,
+    "inIndex": %IN_INDEX%,
+    "fillable": %FILLABLE%
+}
