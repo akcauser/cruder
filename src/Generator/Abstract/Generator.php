@@ -64,15 +64,16 @@ abstract class Generator
 
         // REPLACE NAMESPACE
         $this->template = str_replace('%MODEL_NAMESPACE%', config('cruder.namespace.model'), $this->template);
-        $this->template = str_replace('%API_CONTROLLER_NAMESPACE%', config('cruder.namespace.controller') . "\\" . config('cruder.api_prefix') . ";", $this->template);
-        $this->template = str_replace('%CMS_CONTROLLER_NAMESPACE%', config('cruder.namespace.controller') . "\\" . config('cruder.cms_prefix') . ";", $this->template);
-        $this->template = str_replace('%FACTORY_NAMESPACE%', config('cruder.namespace.factory') . ";", $this->template);
-        $this->template = str_replace('%SEEDER_NAMESPACE%', config('cruder.namespace.seeder') . ";", $this->template);
-        $this->template = str_replace('%TEST_NAMESPACE%', config('cruder.namespace.test') . ";", $this->template);
-        $this->template = str_replace('%REQUEST_NAMESPACE%', config('cruder.namespace.request') . ";", $this->template);
-        $this->template = str_replace('%PROVIDER_NAMESPACE%', config('cruder.namespace.provider') . ";", $this->template);
-        $this->template = str_replace('%SERVICE_NAMESPACE%', config('cruder.namespace.service') . ";", $this->template);
-        $this->template = str_replace('%DATA_SERVICE_NAMESPACE%', config('cruder.namespace.data_service') . ";", $this->template);
+        $this->template = str_replace('%CONTROLLER_NAMESPACE%', config('cruder.namespace.controller'), $this->template);
+        $this->template = str_replace('%API_CONTROLLER_NAMESPACE%', config('cruder.namespace.controller') . "\\" . config('cruder.api_prefix'), $this->template);
+        $this->template = str_replace('%CMS_CONTROLLER_NAMESPACE%', config('cruder.namespace.controller') . "\\" . config('cruder.cms_prefix'), $this->template);
+        $this->template = str_replace('%FACTORY_NAMESPACE%', config('cruder.namespace.factory'), $this->template);
+        $this->template = str_replace('%SEEDER_NAMESPACE%', config('cruder.namespace.seeder'), $this->template);
+        $this->template = str_replace('%TEST_NAMESPACE%', config('cruder.namespace.test'), $this->template);
+        $this->template = str_replace('%REQUEST_NAMESPACE%', config('cruder.namespace.request'), $this->template);
+        $this->template = str_replace('%PROVIDER_NAMESPACE%', config('cruder.namespace.provider'), $this->template);
+        $this->template = str_replace('%SERVICE_NAMESPACE%', config('cruder.namespace.service'), $this->template);
+        $this->template = str_replace('%DATA_SERVICE_NAMESPACE%', config('cruder.namespace.data_service'), $this->template);
         // REPLACE PREFIX
     }
 

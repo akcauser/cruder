@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Cruder\Service\Abstract;
+namespace %SERVICE_NAMESPACE%\Abstract;
 
-use App\Http\Requests\%MODEL_NAME%StoreRequest;
-use App\Http\Requests\%MODEL_NAME%UpdateRequest;
+use %REQUEST_NAMESPACE%\%MODEL_NAME%StoreRequest;
+use %REQUEST_NAMESPACE%\%MODEL_NAME%UpdateRequest;
 
 interface I%MODEL_NAME%Service
 {

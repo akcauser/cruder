@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\CMS;
+namespace %CMS_CONTROLLER_NAMESPACE%;
 
-use App\Cruder\Service\Abstract\I%MODEL_NAME%Service;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\%MODEL_NAME%StoreRequest;
-use App\Http\Requests\%MODEL_NAME%UpdateRequest;
+use %SERVICE_NAMESPACE%\Abstract\I%MODEL_NAME%Service;
+use %CONTROLLER_NAMESPACE%\Controller;
+use %REQUEST_NAMESPACE%\%MODEL_NAME%StoreRequest;
+use %REQUEST_NAMESPACE%\%MODEL_NAME%UpdateRequest;
 
 class CMS%MODEL_NAME%Controller extends Controller
 {

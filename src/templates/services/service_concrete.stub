@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Cruder\Service\Concrete;
+namespace %SERVICE_NAMESPACE%\Concrete;
 
-use App\Cruder\DataService\Abstract\I%MODEL_NAME%DataService;
-use App\Cruder\Service\Abstract\I%MODEL_NAME%Service;
-use App\Http\Requests\%MODEL_NAME%StoreRequest;
-use App\Http\Requests\%MODEL_NAME%UpdateRequest;
+use %DATA_SERVICE_NAMESPACE%\Abstract\I%MODEL_NAME%DataService;
+use %SERVICE_NAMESPACE%\Abstract\I%MODEL_NAME%Service;
+use %REQUEST_NAMESPACE%\%MODEL_NAME%StoreRequest;
+use %REQUEST_NAMESPACE%\%MODEL_NAME%UpdateRequest;
 
 class %MODEL_NAME%Service implements I%MODEL_NAME%Service
 {

@@ -1,1 +1,1 @@
-$this->app->singleton(\App\Cruder\Service\Abstract\I%MODEL_NAME%Service::class, \App\Cruder\Service\Concrete\%MODEL_NAME%Service::class);
+$this->app->singleton(\%SERVICE_NAMESPACE%\Abstract\I%MODEL_NAME%Service::class, \%SERVICE_NAMESPACE%\Concrete\%MODEL_NAME%Service::class);

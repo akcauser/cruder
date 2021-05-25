@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace %SEEDER_NAMESPACE%;
 
-use App\Models\%MODEL_NAME%;
+use %MODEL_NAMESPACE%\%MODEL_NAME%;
 use Illuminate\Database\Seeder;
 
 class %MODEL_NAME%Seeder extends Seeder

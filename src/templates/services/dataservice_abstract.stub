@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Cruder\DataService\Abstract;
+namespace %DATA_SERVICE_NAMESPACE%\Abstract;
 
-use App\Models\%MODEL_NAME%;
+use %MODEL_NAMESPACE%\%MODEL_NAME%;
 
 interface I%MODEL_NAME%DataService
 {

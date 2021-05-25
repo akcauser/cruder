@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Cruder\DataService\Concrete;
+namespace %DATA_SERVICE_NAMESPACE%\Concrete;
 
-use App\Cruder\DataService\Abstract\I%MODEL_NAME%DataService;
-use App\Models\%MODEL_NAME%;
+use %DATA_SERVICE_NAMESPACE%\Abstract\I%MODEL_NAME%DataService;
+use %MODEL_NAMESPACE%\%MODEL_NAME%;
 
 class %MODEL_NAME%DataService implements I%MODEL_NAME%DataService
 {

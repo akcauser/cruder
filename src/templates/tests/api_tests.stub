@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace %TEST_NAMESPACE%;
 
-use App\Models\%MODEL_NAME%;
+use %MODEL_NAMESPACE%\%MODEL_NAME%;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
