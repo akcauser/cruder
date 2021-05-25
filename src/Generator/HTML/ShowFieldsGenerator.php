@@ -17,8 +17,9 @@ class ShowFieldsGenerator extends Generator
         $this->modelName = $modelName;
         $this->fields = $fields;
         $this->fileChangeType = "new";
-        $this->targetFolder = "resources/views/cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
-        $this->generate();
+        $this->targetFolder = config('cruder.path.view') . "cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
+
+        parent::__construct();
     }
 
     protected function getTemplate()

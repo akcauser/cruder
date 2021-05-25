@@ -21,7 +21,7 @@ class API%MODEL_NAME%Test extends TestCase
         // 5 record added to database
         %MODEL_NAME%::factory()->count(5)->create();
 
-        $response = $this->get('api/%MODEL_NAME_SNAKE%s');
+        $response = $this->get('api/%MODEL_NAME_SNAKE_CASE%s');
 
         $response->assertJsonCount(5, 'data');
         $response->assertStatus(200);
@@ -38,7 +38,7 @@ class API%MODEL_NAME%Test extends TestCase
         // create a record template and get attributes
         $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::factory()->make()->getAttributes();
 
-        $response = $this->postJson('api/%MODEL_NAME_SNAKE%s', $%MODEL_NAME_CAMEL_CASE%);
+        $response = $this->postJson('api/%MODEL_NAME_SNAKE_CASE%s', $%MODEL_NAME_CAMEL_CASE%);
 
         $response->assertStatus(200);
         $response->assertJson([
@@ -63,7 +63,7 @@ class API%MODEL_NAME%Test extends TestCase
         // create new record template 
         $new%MODEL_NAME% = %MODEL_NAME%::factory()->make()->getAttributes();
 
-        $response = $this->putJson('api/%MODEL_NAME_SNAKE%s/' . $%MODEL_NAME_CAMEL_CASE%->id, $new%MODEL_NAME%);
+        $response = $this->putJson('api/%MODEL_NAME_SNAKE_CASE%s/' . $%MODEL_NAME_CAMEL_CASE%->id, $new%MODEL_NAME%);
 
         $response->assertStatus(200);
         $response->assertJson([
@@ -87,7 +87,7 @@ class API%MODEL_NAME%Test extends TestCase
         // add a record
         $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::factory()->create();
 
-        $response = $this->delete('api/%MODEL_NAME_SNAKE%s/' . $%MODEL_NAME_CAMEL_CASE%->id);
+        $response = $this->delete('api/%MODEL_NAME_SNAKE_CASE%s/' . $%MODEL_NAME_CAMEL_CASE%->id);
 
         $response->assertStatus(200);
 
@@ -106,7 +106,7 @@ class API%MODEL_NAME%Test extends TestCase
         // 5 record added to database
         $%MODEL_NAME_CAMEL_CASE% = %MODEL_NAME%::factory()->create();
 
-        $response = $this->get('api/%MODEL_NAME_SNAKE%s/' . $%MODEL_NAME_CAMEL_CASE%->id);
+        $response = $this->get('api/%MODEL_NAME_SNAKE_CASE%s/' . $%MODEL_NAME_CAMEL_CASE%->id);
 
         $response->assertJson([
             'id' => $%MODEL_NAME_CAMEL_CASE%->id,

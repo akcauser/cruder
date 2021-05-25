@@ -6,17 +6,14 @@ use Encodeurs\Cruder\Generator\Abstract\Generator;
 
 class CmsControllerGenerator extends Generator
 {
-    private $prefix;
-
     public function __construct($modelName)
     {
-        $this->prefix = "CMS";
         $this->modelName = $modelName;
-        $this->targetFolder = "app/Http/Controllers/$this->prefix/";
+        $this->targetFolder = config('cruder.path.controller') . config('cruder.cms_prefix') . "/";;
         $this->templatePath = __DIR__ . '/../../templates/controller/cms_controller.stub';
-        $this->targetFile = $this->prefix . $this->modelName . 'Controller.php';
+        $this->targetFile = config('cruder.cms_prefix') . $this->modelName . 'Controller.php';
         $this->fileChangeType = "new";
 
-        $this->generate();
+        parent::__construct();
     }
 }

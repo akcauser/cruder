@@ -10,9 +10,10 @@ class IndexPageGenerator extends Generator
     {
         $this->modelName = $modelName;
         $this->fileChangeType = "new";
-        $this->targetFolder = "resources/views/cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
+        $this->targetFolder = config('cruder.path.view') . "cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
         $this->targetFile = "index.blade.php";
         $this->templatePath = __DIR__ . '/../../templates/views/pages/index.stub';
-        $this->generate();
+
+        parent::__construct();
     }
 }

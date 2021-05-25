@@ -17,10 +17,11 @@ class TableTdsGenerator extends Generator
         $this->modelName = $modelName;
         $this->fields = $fields;
         $this->fileChangeType = "new";
-        $this->targetFolder = "resources/views/cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
+        $this->targetFolder = config('cruder.path.view') . "cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
         $this->targetFile = "table_td.blade.php";
         $this->primaryKey = $primaryKey;
-        $this->generate();
+
+        parent::__construct();
     }
 
     protected function getTemplate()

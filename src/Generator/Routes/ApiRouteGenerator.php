@@ -9,10 +9,11 @@ class ApiRouteGenerator extends Generator
     public function __construct($modelName)
     {
         $this->modelName = $modelName;
-        $this->targetFolder = config('cruder.routes.folder');
-        $this->targetFile = config('cruder.routes.api_file');
+        $this->targetFolder = config('cruder.path.route');
+        $this->targetFile = config('cruder.api_route');
         $this->templatePath = __DIR__ . '/../../templates/routes/api_routes.stub';
         $this->fileChangeType = "put";
-        $this->generate();
+
+        parent::__construct();
     }
 }

@@ -2,16 +2,12 @@
 
 namespace Encodeurs\Cruder\Generator\Main;
 
-use Encodeurs\Cruder\Generator\Controller\ApiControllerGenerator;
+use Encodeurs\Cruder\Generator\Controller\{ApiControllerGenerator, CmsControllerGenerator};
 use Encodeurs\Cruder\Generator\Routes\ApiRouteGenerator;
-use Encodeurs\Cruder\Generator\Controller\CmsControllerGenerator;
 use Encodeurs\Cruder\Generator\Schema\SchemaJsonGenerator;
 use Encodeurs\Cruder\Generator\Routes\CmsRouteGenerator;
-use Encodeurs\Cruder\Generator\DataServiceAbstractGenerator;
-use Encodeurs\Cruder\Generator\DataServiceConcreteGenerator;
-use Encodeurs\Cruder\Generator\DataServiceProviderGenerator;
-use Encodeurs\Cruder\Generator\TestGenerator;
-use Encodeurs\Cruder\Generator\Database\FactoryGenerator;
+use Encodeurs\Cruder\Generator\DataService\{DataServiceAbstractGenerator, DataServiceConcreteGenerator, DataServiceProviderGenerator};
+use Encodeurs\Cruder\Generator\Test\TestGenerator;
 use Encodeurs\Cruder\Generator\HTML\CreatePageGenerator;
 use Encodeurs\Cruder\Generator\HTML\EditPageGenerator;
 use Encodeurs\Cruder\Generator\HTML\FieldsGenerator;
@@ -21,14 +17,10 @@ use Encodeurs\Cruder\Generator\HTML\ShowPageGenerator;
 use Encodeurs\Cruder\Generator\HTML\SidebarMenuItemGenerator;
 use Encodeurs\Cruder\Generator\HTML\TableTdsGenerator;
 use Encodeurs\Cruder\Generator\HTML\TableThsGenerator;
-use Encodeurs\Cruder\Generator\MigrationGenerator;
-use Encodeurs\Cruder\Generator\ModelGenerator;
-use Encodeurs\Cruder\Generator\Database\SeederGenerator;
-use Encodeurs\Cruder\Generator\ServiceAbstractGenerator;
-use Encodeurs\Cruder\Generator\ServiceConcreteGenerator;
-use Encodeurs\Cruder\Generator\ServiceProviderGenerator;
-use Encodeurs\Cruder\Generator\Request\StoreRequestGenerator;
-use Encodeurs\Cruder\Generator\Request\UpdateRequestGenerator;
+use Encodeurs\Cruder\Generator\Model\ModelGenerator;
+use Encodeurs\Cruder\Generator\Database\{SeederGenerator, MigrationGenerator, FactoryGenerator};
+use Encodeurs\Cruder\Generator\Service\{ServiceAbstractGenerator, ServiceConcreteGenerator, ServiceProviderGenerator};
+use Encodeurs\Cruder\Generator\Request\{StoreRequestGenerator, UpdateRequestGenerator};
 use Encodeurs\Cruder\Utils\DatabaseUtil;
 use Illuminate\Support\Facades\Artisan;
 
@@ -85,7 +77,7 @@ class MainGenerator
 
             // Generate Service
             new ServiceAbstractGenerator($this->modelName);
-            new ServiceConcreteGenerator($this->modelName, $this->fields);
+            new ServiceConcreteGenerator($this->modelName);
             new ServiceProviderGenerator($this->modelName);
 
             // DataService Generator

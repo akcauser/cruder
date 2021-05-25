@@ -3,7 +3,7 @@
 namespace Encodeurs\Cruder\Commands;
 
 use Encodeurs\Cruder\Generator\Main\MainGenerator;
-use Encodeurs\Cruder\Generator\MigrationGenerator;
+use Encodeurs\Cruder\Utils\DatabaseUtil;
 use Encodeurs\Cruder\Utils\FieldUtil;
 use Illuminate\Console\Command;
 
@@ -90,7 +90,7 @@ class GenerateCommand extends Command
         }
 
         // Ask For Custom Table Name 
-        $tableName = $this->ask("Do you want to custom table name?", MigrationGenerator::generateTableName($modelName));
+        $tableName = $this->ask("Do you want to custom table name?", DatabaseUtil::generateTableName($modelName));
 
         // Ask SoftDelete Use
         $softDelete = $this->confirm("Do you want to Softdelete Feature? [Y|n]", true) ? true : false;

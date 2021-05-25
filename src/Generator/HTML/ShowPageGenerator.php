@@ -10,9 +10,10 @@ class ShowPageGenerator extends Generator
     {
         $this->modelName = $modelName;
         $this->fileChangeType = "new";
-        $this->targetFolder = "resources/views/cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
+        $this->targetFolder = config('cruder.path.view') . "cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
         $this->targetFile = "show.blade.php";
         $this->templatePath = __DIR__ . '/../../templates/views/pages/show.stub';
-        $this->generate();
+
+        parent::__construct();
     }
 }

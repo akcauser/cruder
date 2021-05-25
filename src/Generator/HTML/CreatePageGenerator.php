@@ -10,9 +10,10 @@ class CreatePageGenerator extends Generator
     {
         $this->modelName = $modelName;
         $this->fileChangeType = "new";
-        $this->targetFolder = "resources/views/cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
+        $this->targetFolder = config('cruder.path.view') . "cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
         $this->targetFile = "create.blade.php";
         $this->templatePath = __DIR__ . '/../../templates/views/pages/create.stub';
-        $this->generate();
+
+        parent::__construct();
     }
 }

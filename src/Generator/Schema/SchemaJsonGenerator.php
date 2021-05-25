@@ -18,7 +18,7 @@ class SchemaJsonGenerator extends Generator
     public function __construct($modelName, $fields, $paginate, $softDelete, $forceMigrate, $timestamps, $tableName)
     {
         $this->modelName = $modelName;
-        $this->targetFolder = "resources/cruder_schemas/";
+        $this->targetFolder = config('cruder.path.schema');
         $this->templatePath = __DIR__ . '/../../templates/schema/json.stub';
         $this->targetFile = $modelName . '.json';
         $this->fileChangeType = "new";
@@ -29,20 +29,18 @@ class SchemaJsonGenerator extends Generator
         $this->timestamps = $timestamps;
         $this->tableName = $tableName;
 
-        $this->generate();
+        parent::__construct();
     }
 
     protected function generate()
     {
-        $this->getTemplate();
         $this->generateFields();
-        $this->customReplaceVariables();
-        $this->replaceVariables();
-        $this->store();
+        parent::generate();
     }
 
-    private function customReplaceVariables()
+    protected function replaceVariables()
     {
+        parent::replaceVariables();
         $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
         $this->template = str_replace('%PAGINATE%', $this->paginate, $this->template);
         $this->template = str_replace('%SOFT_DELETE%', $this->softDelete ? "true" : "false", $this->template);

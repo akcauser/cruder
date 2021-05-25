@@ -10,10 +10,11 @@ class SeederGenerator extends Generator
     public function __construct($modelName)
     {
         $this->modelName = $modelName;
-        $this->targetFolder = config('cruder.seeders_path');
+        $this->targetFolder = config('cruder.path.seeder');
         $this->targetFile = $this->modelName . 'Seeder.php';
         $this->fileChangeType = "new";
         $this->templatePath = __DIR__ . '/../../templates/models/seeder.stub';
-        $this->generate();
+
+        parent::__construct();
     }
 }

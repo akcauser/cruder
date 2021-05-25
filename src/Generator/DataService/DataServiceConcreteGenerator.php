@@ -1,15 +1,13 @@
 <?php
 
-namespace Encodeurs\Cruder\Generator;
+namespace Encodeurs\Cruder\Generator\DataService;
 
+use Encodeurs\Cruder\Generator\Abstract\Generator;
 use Encodeurs\Cruder\Utils\FileUtil;
 use Illuminate\Support\Str;
 
-class DataServiceConcreteGenerator
+class DataServiceConcreteGenerator extends Generator
 {
-    private $modelName;
-    private $template;
-    private $folderPath;
     private $fields;
     private $assignFields;
     private $subQueryFields;
@@ -18,40 +16,30 @@ class DataServiceConcreteGenerator
     public function __construct($modelName, $fields, $paginate)
     {
         $this->modelName = $modelName;
+        $this->targetFolder = config('cruder.path.data_service') . "Concrete/";
+        $this->targetFile = $this->modelName . 'DataService.php';
+        $this->fileChangeType = "new";
+        $this->templatePath = __DIR__ . '/../../templates/services/dataservice_concrete.stub';
+
         $this->fields = $fields;
         $this->paginate = $paginate;
-        $this->folderPath = config('cruder.dataservice_paths.concrete');
 
-        $this->generate();
+        parent::__construct();
     }
+
 
     protected function generate()
     {
-        $this->getTemplate();
         $this->generateFields();
-        $this->replaceVariables();
-        $this->store();
-    }
-
-    protected function getTemplate()
-    {
-        $this->template = file_get_contents(__DIR__ . '/../templates/services/dataservice_concrete.stub');
+        parent::generate();
     }
 
     protected function replaceVariables()
     {
-        $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
-        $this->template = str_replace('%MODEL_NAME_CAMEL_CASE%', Str::camel($this->modelName), $this->template);
+        parent::replaceVariables();
         $this->template = str_replace('%ASSIGN_FIELDS%', $this->assignFields, $this->template);
         $this->template = str_replace('%SUB_QUERY_FIELDS%', $this->subQueryFields, $this->template);
         $this->template = str_replace('%PAGINATE%', $this->paginate, $this->template);
-    }
-
-    protected function store()
-    {
-        $fileName = $this->modelName . 'DataService.php';
-
-        FileUtil::newFile($this->folderPath, $fileName, $this->template);
     }
 
     public function generateFields()

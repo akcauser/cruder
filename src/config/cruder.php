@@ -1,69 +1,59 @@
 <?php
 
 return [
-    /**
-     * Default Migrations files path
-     */
-    'migrations_path' => 'database/migrations/',
-    'factories_path' => 'database/factories/',
-    'seeders_path' => 'database/seeders/',
-    'tests_path' => 'tests/Feature/',
 
-    /**
-     * Controllers default path
-     */
-    'controllers_path' => [
-        'api' => 'app/Http/Controllers/API/',
-        'cms' => 'app/Http/Controllers/CMS/'
+    'api_prefix' => 'API',
+    'cms_prefix' => 'CMS',
+
+    'api_route' => 'api.php',
+    'web_route' => 'web.php',
+
+    'path' => [
+        'migration' => database_path('migrations/'),
+        'factory' => database_path('factories/'),
+        'seeder' => database_path('seeders/'),
+        'test' => base_path('tests/Feature/'),
+        'controller' => app_path('Http/Controllers/'),
+        'request' => app_path('Http/Requests/'),
+        'model' => app_path('Models/'),
+        'provider' => app_path('Providers/'),
+        'route' => base_path('routes/'),
+        /** 2 Tier Layered Architecture Paths - Dependency Injection*/
+        'service' => app_path('Cruder/Service/'),
+        'data_service' => app_path('Cruder/DataService/'),
+        'schema' => resource_path('cruder_schemas/'),
+        'view' => resource_path('views/'),
     ],
 
-    /**
-     * Model Default Path
-     */
-    'models_path' => 'app/Models/',
-
-    /** 2 Tier Layered Architecture */
-    'service_paths' => [
-        'abstract' => 'app/Cruder/Service/Abstract/',
-        'concrete' => 'app/Cruder/Service/Concrete/',
-    ],
-    'dataservice_paths' => [
-        'abstract' => 'app/Cruder/DataService/Abstract/',
-        'concrete' => 'app/Cruder/DataService/Concrete/',
-    ],
-    'requests_path' => 'app/Http/Requests/',
-    /**
-     * Route Filed 
-     */
-    'routes' => [
-        'folder' => 'routes/',
-        'api_file' => 'api.php',
-        'cms_file' => 'web.php',
+    'namespace' => [
+        'factory' => 'Database\Factories',
+        'seeder' => 'Database\Seeders',
+        'tests' => 'Tests\Feature',
+        'controller' => 'App\Http\Controller',
+        'request' => 'App\Http\Requests',
+        'model' => 'App\Models',
+        'provider' => 'App\Providers',
+        /** 2 Tier Layered Architecture Paths - Dependency Injection*/
+        'service' => 'App\Cruder\Service',
+        'data_service' => 'App\Cruder\DataService',
     ],
 
-    'providers_path' => 'app/Providers/',
-
-    /**
-     * Primary Key Field Feature Default Settings
-     * You can change default primary key field.
-     */
-    'pk_field' => "id",
-
-    /**
-     * Default Timestamps Fields
-     * If true, timestamp fields adding as default
-     * Options: true|false
-     */
-    'timestamps' => true,
-
-    /**
-     * Softdelete is not exist when default config. 
-     * You can change through this config. True Or False
-     */
-    'softdelete' => false,
-
-    'prefix' => [
-        'api' => 'API',
-        'cms' => 'CMS',
-    ]
+    'database' => [
+        /**
+         * Primary Key Field Feature Default Settings
+         * You can change default primary key field.
+         */
+        'default_primary_key' => 'id',
+        /**
+         * Default Timestamps Fields
+         * If true, timestamp fields adding as default
+         * Options: true|false
+         */
+        'timestamps' => true,
+        /**
+         * Softdelete is not exist when default config. 
+         * You can change. True Or False
+         */
+        'softdelete' => false,
+    ],
 ];

@@ -16,9 +16,10 @@ class TableThsGenerator extends Generator
         $this->modelName = $modelName;
         $this->fields = $fields;
         $this->fileChangeType = "new";
-        $this->targetFolder = "resources/views/cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
+        $this->targetFolder = config('cruder.path.view') . "cms/" . $this->convertPlural($this->getModelNameSnakeCase()) . "/";
         $this->targetFile = "table_th.blade.php";
-        $this->generate();
+
+        parent::__construct();
     }
 
     protected function getTemplate()

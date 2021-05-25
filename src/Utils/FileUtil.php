@@ -11,7 +11,7 @@ class FileUtil
      */
     public static function newFile($path, $fileName, $contents)
     {
-        $path = base_path($path);
+        $path = $path;
         if (!file_exists($path)) {
             mkdir($path, 0755, true);
         }
@@ -25,7 +25,7 @@ class FileUtil
      */
     public static function deleteFile($path, $fileName)
     {
-        $file = base_path($path . $fileName);
+        $file = $path . $fileName;
         if (file_exists($file)) {
             return unlink($file);
         }
@@ -35,12 +35,12 @@ class FileUtil
 
     public static function putContent($file, $content)
     {
-        file_put_contents(base_path($file), $content, FILE_APPEND);
+        file_put_contents($file, $content, FILE_APPEND);
     }
 
     public static function getContent($file)
     {
-        $file = base_path($file);
+        $file = $file;
         if (!file_exists($file)) {
             return false;
         }

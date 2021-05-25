@@ -14,13 +14,13 @@ class FactoryGenerator extends Generator
     public function __construct($modelName, $fields)
     {
         $this->modelName = $modelName;
-        $this->targetFolder = config('cruder.factories_path');
+        $this->targetFolder = config('cruder.path.factory');
         $this->templatePath = __DIR__ . '/../../templates/models/factory.stub';
         $this->targetFile = $this->modelName . 'Factory.php';
         $this->fileChangeType = "new";
         $this->fields = $fields;
 
-        $this->generate();
+        parent::__construct();
     }
 
     protected function generate()

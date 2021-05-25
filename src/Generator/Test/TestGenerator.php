@@ -1,16 +1,13 @@
 <?php
 
-namespace Encodeurs\Cruder\Generator;
+namespace Encodeurs\Cruder\Generator\Test;
 
-use Encodeurs\Cruder\Utils\FileUtil;
+use Encodeurs\Cruder\Generator\Abstract\Generator;
 use Illuminate\Support\Str;
 
 
-class TestGenerator
+class TestGenerator extends Generator
 {
-    private $modelName;
-    private $template;
-    private $folderPath;
     private $fields;
     private $tableName;
     private $assignFields;
@@ -22,13 +19,16 @@ class TestGenerator
     public function __construct($modelName, $fields, $tableName, $softDelete)
     {
         $this->modelName = $modelName;
-        $this->fields = $fields;
-        $this->tableName = $tableName;
-        $this->folderPath = config('cruder.tests_path');
-        $this->prefix = config('cruder.prefix.api');
-        $this->softDelete = $softDelete;
+        $this->targetFolder = config('cruder.path.test');
+        $this->targetFile = config('cruder.api_prefix') . $this->modelName . 'Test.php';
+        $this->fileChangeType = "new";
+        $this->templatePath = __DIR__ . '/../../templates/tests/api_tests.stub';
 
-        $this->generate();
+        $this->fields = $fields;
+        $this->softDelete = $softDelete;
+        $this->tableName = $tableName;
+
+        parent::__construct();
     }
 
     protected function generate()
@@ -37,32 +37,16 @@ class TestGenerator
         $this->generateUpdateAssertFields();
         $this->generateAssertDeleted();
 
-        $this->getTemplate();
-        $this->replaceVariables();
-        $this->store();
-    }
-
-    protected function getTemplate()
-    {
-        $this->template = file_get_contents(__DIR__ . '/../templates/tests/api_tests.stub');
+        parent::generate();
     }
 
     protected function replaceVariables()
     {
         $this->template = str_replace('%ASSERT_DELETED%', $this->assertDeleted, $this->template);
-        $this->template = str_replace('%MODEL_NAME%', $this->modelName, $this->template);
-        $this->template = str_replace('%MODEL_NAME_CAMEL_CASE%', Str::camel($this->modelName), $this->template);
-        $this->template = str_replace('%MODEL_NAME_SNAKE%', Str::snake($this->modelName, "_"), $this->template);
         $this->template = str_replace('%ASSERT_FIELDS%', $this->assignFields, $this->template);
         $this->template = str_replace('%UPDATE_ASSERT_FIELDS%', $this->updateAssignFields, $this->template);
         $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
-    }
-
-    protected function store()
-    {
-        $fileName = $this->prefix . $this->modelName . 'Test.php';
-
-        FileUtil::newFile($this->folderPath, $fileName, $this->template);
+        parent::replaceVariables();
     }
 
     public function generateAssertFields()
