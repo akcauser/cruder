@@ -23,6 +23,7 @@ class %MODEL_NAME%Factory extends Factory
     {
         return [
             %FIELDS%
+            %RELATION_FIELDS%
         ];
     }
 }

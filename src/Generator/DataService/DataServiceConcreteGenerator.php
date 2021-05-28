@@ -12,8 +12,9 @@ class DataServiceConcreteGenerator extends Generator
     private $assignFields;
     private $subQueryFields;
     private $paginate;
+    private $relationFields;
 
-    public function __construct($modelName, $fields, $paginate)
+    public function __construct($modelName, $fields, $paginate, $relationFields)
     {
         $this->modelName = $modelName;
         $this->targetFolder = config('cruder.path.data_service') . "Concrete/";
@@ -23,6 +24,7 @@ class DataServiceConcreteGenerator extends Generator
 
         $this->fields = $fields;
         $this->paginate = $paginate;
+        $this->relationFields = $relationFields;
 
         parent::__construct();
     }
@@ -49,6 +51,10 @@ class DataServiceConcreteGenerator extends Generator
 
             if ($field["searchable"])
                 $this->subQueryFields .= '$sQuery->orWhere(\'' . $field['name'] . '\', \'like\', "%$word%");' . "\n\t\t\t\t\t\t";
+        }
+
+        foreach ($this->relationFields as $field) {
+            $this->assignFields .= '$' . Str::camel($this->modelName) . '->' . $field['fieldName'] . ' = $data["' . $field['fieldName'] . '"];' . "\n\t\t";
         }
     }
 }

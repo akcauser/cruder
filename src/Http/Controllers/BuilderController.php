@@ -21,6 +21,7 @@ class BuilderController extends Controller
             timestamps: $request->options["timestamps"],
             forceMigrate: $request->options["forceMigrate"],
             paginate: $request->options["paginate"] ?? 15,
+            relationFields: $request->relationFields,
         );
 
         $response = $mainGenerator->call();

@@ -17,6 +17,8 @@ class Create%TABLE_NAME_CAPITALCASE%Table extends Migration
             $table->id('%PRIMARY_KEY%');
 
             %FIELDS%
+
+            %RELATION_FIELDS%
             
             %INDEX_FIELDS%
         });

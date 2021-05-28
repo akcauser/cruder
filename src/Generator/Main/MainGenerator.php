@@ -34,8 +34,9 @@ class MainGenerator
     private $timestamps;
     private $forceMigrate;
     private $paginate;
+    private $relationFields;
 
-    public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate, $paginate = 15)
+    public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate, $paginate = 15, $relationFields = [])
     {
         $this->modelName = $modelName;
 
@@ -52,19 +53,20 @@ class MainGenerator
         $this->timestamps = $timestamps;
         $this->forceMigrate = $forceMigrate;
         $this->paginate = $paginate;
+        $this->relationFields = $relationFields;
     }
 
     public function call()
     {
         try {
             // Generate Migration 
-            new MigrationGenerator($this->modelName, $this->tableName, $this->fields, $this->softDelete, $this->primaryKey, $this->timestamps);
+            new MigrationGenerator($this->modelName, $this->tableName, $this->fields, $this->softDelete, $this->primaryKey, $this->timestamps, $this->relationFields);
 
             // Generate Model 
-            new ModelGenerator($this->modelName, $this->fields, $this->softDelete, $this->tableName);
+            new ModelGenerator($this->modelName, $this->fields, $this->softDelete, $this->tableName, $this->relationFields);
 
             // Generate Factory
-            new FactoryGenerator($this->modelName, $this->fields);
+            new FactoryGenerator($this->modelName, $this->fields, $this->relationFields);
 
             // Generate Seeder
             new SeederGenerator($this->modelName);
@@ -82,7 +84,7 @@ class MainGenerator
 
             // DataService Generator
             new DataServiceAbstractGenerator($this->modelName);
-            new DataServiceConcreteGenerator($this->modelName, $this->fields, $this->paginate);
+            new DataServiceConcreteGenerator($this->modelName, $this->fields, $this->paginate, $this->relationFields);
             new DataServiceProviderGenerator($this->modelName);
 
             // Generate Test
@@ -102,16 +104,15 @@ class MainGenerator
             new CreatePageGenerator($this->modelName);
             new EditPageGenerator($this->modelName);
             new SidebarMenuItemGenerator($this->modelName);
-            new FieldsGenerator($this->modelName, $this->fields);
+            new FieldsGenerator($this->modelName, $this->fields, $this->relationFields);
             new ShowFieldsGenerator($this->modelName, $this->fields);
             new TableThsGenerator($this->modelName, $this->fields);
             new TableTdsGenerator($this->modelName, $this->fields, $this->primaryKey);
             new SchemaJsonGenerator($this->modelName, $this->fields, $this->paginate, $this->softDelete, $this->forceMigrate, $this->timestamps, $this->tableName);
             // Store to File
 
-            // pagination
             // swagger 
-            // Datatables
+            // Datatables ??
 
             if ($this->forceMigrate) {
                 Artisan::call('migrate:fresh --seed');

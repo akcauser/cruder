@@ -121,18 +121,19 @@
                         <table class="table table-striped table-md" id="relationShipTable">
                             <thead>
                                 <tr>
-                                    <th>Relation Type</th>
-                                    <th>Foreign Model <span class="required">*</span></th>
-                                    <th>Foreign Key</th>
-                                    <th>Local Key</th>
+                                    <th>Field Name <span class="required">*</span></th>
+                                    <th>Relation Type <span class="required">*</span></th>
+                                    <th>Foreign Model<span class="required">*</span></th>
+                                    <th>Foreign Table<span class="required">*</span></th>
+                                    <th>Foreign Field<span class="required">*</span></th>
+                                    <th>Show Field<span class="required">*</span></th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
-
                         <button type="button" class="btn btn-icon btn-success mt-4" id="addRelationshipButton"><i
-                                class="fas fa-plus"></i> Add relationship</button>
+                                class="fas fa-plus"></i> Add relationship field</button>
                     </div>
                 </div>
 

@@ -3,6 +3,7 @@
 namespace Encodeurs\Cruder\Utils;
 
 use Encodeurs\Cruder\Utils\DB\DBIntegerField;
+use Encodeurs\Cruder\Utils\DB\DBRelationField;
 use Encodeurs\Cruder\Utils\DB\DBStringField;
 use Encodeurs\Cruder\Utils\DB\DBTextField;
 use Encodeurs\Cruder\Utils\Factory\FactoryIntegerField;
@@ -86,6 +87,18 @@ class FieldUtil
         } else {
             $fieldContent = str_replace("%REQUIRED%", "required", $fieldContent);
         }
+        return $fieldContent;
+    }
+
+    public static function generateHTMLRelationField($relationField)
+    {
+        $fieldContent = FileUtil::getContentByPath(__DIR__ . '/../templates/views/html_fields/1tm_relation.stub');
+        $fieldContent = str_replace('%FIELD_NAME%', $relationField["fieldName"], $fieldContent);
+        $fieldContent = str_replace('%FOREIGN_MODEL%', $relationField["foreignModel"], $fieldContent);
+        $fieldContent = str_replace('%FOREIGN_MODEL_CAMEL_CASE%', StringUtil::camelCase($relationField["foreignModel"]), $fieldContent);
+        $fieldContent = str_replace('%FIELD_NAME%', $relationField["fieldName"], $fieldContent);
+        $fieldContent = str_replace('%FOREIGN_SHOW_FIELD%', $relationField["foreignShowField"], $fieldContent);
+
         return $fieldContent;
     }
 

@@ -4,6 +4,7 @@ namespace Encodeurs\Cruder\Generator\Database;
 
 use Encodeurs\Cruder\Generator\Abstract\Generator;
 use Encodeurs\Cruder\Utils\DatabaseUtil;
+use Encodeurs\Cruder\Utils\DB\DBRelationField;
 use Encodeurs\Cruder\Utils\FieldUtil;
 
 
@@ -16,8 +17,10 @@ class MigrationGenerator extends Generator
     private $timestamps;
     private $fieldContent = "";
     private $indexFieldsContent = "";
+    private $relationFields;
+    private $relationFieldsContent = "";
 
-    public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps)
+    public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $relationFields)
     {
         $this->tableName = $tableName;
 
@@ -31,6 +34,7 @@ class MigrationGenerator extends Generator
         $this->softDelete = $softDelete;
         $this->primaryKey = $primaryKey;
         $this->timestamps = $timestamps;
+        $this->relationFields = $relationFields;
 
         parent::__construct();
     }
@@ -38,6 +42,7 @@ class MigrationGenerator extends Generator
     protected function generate()
     {
         $this->generateFieldContent();
+        $this->generateRelationFieldContent();
         parent::generate();
     }
 
@@ -48,6 +53,7 @@ class MigrationGenerator extends Generator
         $this->template = str_replace('%FIELDS%', $this->fieldContent, $this->template);
         $this->template = str_replace('%TABLE_NAME_CAPITALCASE%', $this->modelName . 's', $this->template); //todo: hata var
         $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
+        $this->template = str_replace('%RELATION_FIELDS%', $this->relationFieldsContent, $this->template);
         $this->template = str_replace('%INDEX_FIELDS%', $this->indexFieldsContent, $this->template);
     }
 
@@ -67,5 +73,13 @@ class MigrationGenerator extends Generator
         }
 
         $this->indexFieldsContent = DatabaseUtil::generateIndexFields($this->fields);
+    }
+
+    protected function generateRelationFieldContent()
+    {
+        foreach ($this->relationFields as $relationField) {
+            $code = DBRelationField::create($relationField);
+            $this->relationFieldsContent  .= $code . "\n\t\t\t";
+        }
     }
 }

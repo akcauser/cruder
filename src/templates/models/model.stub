@@ -20,4 +20,6 @@ class %MODEL_NAME% extends Model
     public static $validationRules = [
         %VALIDATION_RULES%
     ];
+
+    %RELATION_FUNCTIONS%
 }

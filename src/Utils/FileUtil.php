@@ -40,7 +40,6 @@ class FileUtil
 
     public static function getContent($file)
     {
-        $file = $file;
         if (!file_exists($file)) {
             return false;
         }

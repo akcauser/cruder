@@ -1,0 +1,4 @@
+public function %RELATION_MODEL_CAMEL_CASE%()
+{
+    return $this->belongsTo(%RELATION_MODEL%::class, '%FOREIGN_KEY%', '%OWNER_KEY%');
+}
