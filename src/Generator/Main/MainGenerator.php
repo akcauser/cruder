@@ -63,7 +63,7 @@ class MainGenerator
             new MigrationGenerator($this->modelName, $this->tableName, $this->fields, $this->softDelete, $this->primaryKey, $this->timestamps, $this->relationFields);
 
             // Generate Model 
-            new ModelGenerator($this->modelName, $this->fields, $this->softDelete, $this->tableName, $this->relationFields);
+            new ModelGenerator($this->modelName, $this->fields, $this->softDelete, $this->tableName, $this->relationFields, $this->timestamps);
 
             // Generate Factory
             new FactoryGenerator($this->modelName, $this->fields, $this->relationFields);

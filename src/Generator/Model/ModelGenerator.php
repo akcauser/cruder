@@ -17,8 +17,9 @@ class ModelGenerator extends Generator
     private $validationRules = "";
     private $relationFields;
     private $relationFieldsContent;
+    private $timestamps;
 
-    public function __construct($modelName, $fields, $softDelete, $tableName, $relationFields)
+    public function __construct($modelName, $fields, $softDelete, $tableName, $relationFields, $timestamps)
     {
         $this->modelName = $modelName;
         $this->targetFolder = config('cruder.path.model');
@@ -30,6 +31,7 @@ class ModelGenerator extends Generator
         $this->softDelete = $softDelete;
         $this->tableName = $tableName;
         $this->relationFields = $relationFields;
+        $this->timestamps = $timestamps;
 
         parent::__construct();
     }
@@ -49,6 +51,7 @@ class ModelGenerator extends Generator
         $this->template = str_replace('%USE_PART%', $this->usePart, $this->template);
         $this->template = str_replace('%TRAITS%', $this->traits, $this->template);
         $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
+        $this->template = str_replace('%TIMESTAMPS%', $this->timestamps ? "true" : "false", $this->template);
         $this->template = str_replace('%FILLABLE_FIELDS_ARRAY%', $this->fillableFields, $this->template);
         $this->template = str_replace('%VALIDATION_RULES%', $this->validationRules, $this->template);
         $this->template = str_replace('%RELATION_FUNCTIONS%', $this->relationFieldsContent, $this->template);

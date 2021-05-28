@@ -30,7 +30,7 @@
                         <div class="custom-switches-stacked mt-2">
                             <label class="custom-switch">
                                 <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
-                                    id="chkTimestamps">
+                                    id="chkTimestamps" checked>
                                 <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description">Timestamp Fields</span>
                             </label>

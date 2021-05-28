@@ -13,6 +13,8 @@ class %MODEL_NAME% extends Model
 
     protected $table = "%TABLE_NAME%";
 
+    public $timestamps = %TIMESTAMPS%;
+
     protected $fillable = [
         %FILLABLE_FIELDS_ARRAY%
     ];
