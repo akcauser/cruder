@@ -21,7 +21,7 @@ Then you will be able to see your APIs:
 - https://your-domain-address/cruder
 
 
-# Creators
+# Contributors
 
 <a href="https://github.com/akcauser">
  <img src="https://avatars.githubusercontent.com/u/26525468?v=4" width="64" height="64">
