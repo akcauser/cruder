@@ -24,10 +24,10 @@ Then you will be able to see your APIs:
 # Creators
 
 <a href="https://github.com/akcauser">
- <img src="https://avatars.githubusercontent.com/u/26525468?v=4" width="100" height="100">
+ <img src="https://avatars.githubusercontent.com/u/26525468?v=4" width="64" height="64">
 </a>
 
 <a href="https://github.com/mrvyldr">
- <img src="https://avatars.githubusercontent.com/u/46646075" width="100" height="100">
+ <img src="https://avatars.githubusercontent.com/u/46646075" width="64" height="64">
 </a>
 
