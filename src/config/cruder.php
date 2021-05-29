@@ -29,7 +29,7 @@ return [
         'factory' => 'Database\Factories',
         'seeder' => 'Database\Seeders',
         'tests' => 'Tests\Feature',
-        'controller' => 'App\Http\Controller',
+        'controller' => 'App\Http\Controllers',
         'request' => 'App\Http\Requests',
         'model' => 'App\Models',
         'provider' => 'App\Providers',

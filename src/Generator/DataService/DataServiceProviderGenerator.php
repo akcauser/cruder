@@ -19,17 +19,15 @@ class DataServiceProviderGenerator extends Generator
         parent::__construct();
     }
 
-    protected function generate()
-    {
-        parent::generate();
-    }
-
     protected function store()
     {
         // get service provider file
         $content = FileUtil::getContent($this->targetFolder . $this->targetFile);
         if (!$content) {
             $emptyTemplate = file_get_contents(__DIR__ . '/../../templates/providers/data_service_provider.stub');
+
+            $emptyTemplate = str_replace('%PROVIDER_NAMESPACE%', config('cruder.namespace.provider'), $emptyTemplate);
+
             // if not exist create with template
             FileUtil::newFile($this->targetFolder, $this->targetFile, $emptyTemplate);
             // register app.php providers
