@@ -3,7 +3,7 @@
 namespace Encodeurs\Cruder\Generator\Abstract;
 
 use Encodeurs\Cruder\Utils\FileUtil;
-use Illuminate\Support\Str;
+use Encodeurs\Cruder\Utils\StringUtil;
 
 abstract class Generator
 {
@@ -22,12 +22,12 @@ abstract class Generator
 
     protected function getModelNameSnakeCase()
     {
-        return Str::snake($this->modelName);
+        return StringUtil::snakeCase($this->modelName);
     }
 
     protected function getModelNameCamelCase()
     {
-        return Str::snake($this->modelName);
+        return StringUtil::camelCase($this->modelName);
     }
 
     protected function getModelName()
@@ -37,7 +37,7 @@ abstract class Generator
 
     protected function convertPlural($string)
     {
-        return $string . "s";
+        return StringUtil::convertPlural($string);
     }
 
     protected function generate()

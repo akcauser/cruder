@@ -1,6 +1,7 @@
 <?php
 
 use Encodeurs\Cruder\Http\Controllers\BuilderController;
+use Encodeurs\Cruder\Utils\CruderUtil;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +32,6 @@ Route::get('cruder/github', function () {
 })->name('cruder.github');
 
 Route::get('cruder', function () {
-    return view('cms.index');
+    $cruders = CruderUtil::getAllCruder();
+    return view('cms.index', compact('cruders'));
 })->name('cms.index');

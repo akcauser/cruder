@@ -16,7 +16,7 @@
             <p class="section-lead">Listed api's you create before.</p>
 
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-6">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Api List Table</h4>
@@ -27,33 +27,22 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>Table</th>
                                         <th>Created At</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
-                                    @include('cms.api_rows')
+                                    @foreach($cruders as $item)
+                                        <tr>
+                                            <td>{{ $item->modelName }}</td>
+                                            <td>{{ $item->tableName }}</td>
+                                            <td>2017-01-09</td>
+                                            <td><a href="{{ route('cms.'.Encodeurs\Cruder\Utils\StringUtil::convertPlural(Encodeurs\Cruder\Utils\StringUtil::snakeCase($item->modelName)).'.index') }}" class="btn btn-primary">Go</a></td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <nav class="d-inline-block">
-                                <ul class="pagination mb-0">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1"><i
-                                                class="fas fa-chevron-left"></i></a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                class="sr-only">(current)</span></a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>

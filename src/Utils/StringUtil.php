@@ -10,4 +10,14 @@ class StringUtil
     {
         return Str::camel($string);
     }
+
+    public static function snakeCase($string)
+    {
+        return Str::snake($string);
+    }
+
+    public static function convertPlural($string)
+    {
+        return $string . "s";
+    }
 }
