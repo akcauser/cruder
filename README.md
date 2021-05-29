@@ -5,10 +5,20 @@ This package allows you to create API and perform CRUD Scaffolding. It helps you
 
 # Installation
 
-Include the package in your project with the command:
+1- Include the package in your project with the command:
 
 `composer require encodeurs/cruder`
 
+2- Publish Vendor
+
+php artisan vendor:publish
+
+3- Add this lines to providers array in app.php
+
+Encodeurs\Cruder\CruderServiceProvider::class,
+App\Providers\BusinessServiceProvider::class,
+App\Providers\DataServiceProvider::class,
+        
 # Usage
 
 When create new API with command line:
