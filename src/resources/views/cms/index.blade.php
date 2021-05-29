@@ -13,7 +13,7 @@
 
         <div class="section-body">
             <h2 class="section-title">API List</h2>
-            <p class="section-lead">Example of some Bootstrap table components.</p>
+            <p class="section-lead">Listed api's you create before.</p>
 
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6">
