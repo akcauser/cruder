@@ -13,7 +13,7 @@
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="{{ asset('stisla') }}/lib/select2/select2.min.css" />
+  <link rel="stylesheet" href="{{ asset('stisla') }}/library/select2/select2.min.css" />
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('stisla') }}/css/style.css">
@@ -155,7 +155,7 @@
 
   <!-- JS Libraies -->
   <script src="{{ asset('stisla') }}/js/stisla.js"></script>
-  <script src="{{ asset('stisla') }}/lib/select2/select2.full.min.js"></script>
+  <script src="{{ asset('stisla') }}/library/select2/select2.full.min.js"></script>
   <!-- Page Specific JS File -->
 
   <!-- Template JS File -->
