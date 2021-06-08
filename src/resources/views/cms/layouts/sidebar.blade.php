@@ -1,14 +1,14 @@
 <div class="main-sidebar">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href="{{route('cms.index')}}">Cruder</a>
+      <a href="{{route('cms.api_list')}}">Cruder</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
       <a href="index.html">CR</a>
     </div>
     <ul class="sidebar-menu">
       <li class="nav-item dropdown">
-          <a href="{{route('cms.index')}}" class="nav-link">
+          <a href="{{route('cms.api_list')}}" class="nav-link">
               <i class="fas fa-square"></i>
               <span>Home</span>
           </a>

@@ -35,7 +35,7 @@
                                         <tr>
                                             <td>{{ $item->modelName }}</td>
                                             <td>{{ $item->tableName }}</td>
-                                            <td>2017-01-09</td>
+                                            <td>{{ $item->createdAt }}</td>
                                             <td><a href="{{ route('cms.'.Encodeurs\Cruder\Utils\StringUtil::convertPlural(Encodeurs\Cruder\Utils\StringUtil::snakeCase($item->modelName)).'.index') }}" class="btn btn-primary">Go</a></td>
                                         </tr>
                                     @endforeach
