@@ -52,7 +52,13 @@ class BuilderController extends Controller
 
     public function tables()
     {
-        $tables = DB::select('SHOW TABLES');
+        $tables = [];
+        foreach (DB::select('SHOW TABLES') as $table) {
+            foreach ($table as $tableName) {
+                array_push($tables, $tableName);
+            }
+        }
+
         return response()->json($tables);
     }
 
