@@ -33,5 +33,5 @@ Route::get('cruder/github', function () {
 
 Route::get('cruder', function () {
     $cruders = CruderUtil::getAllCruder();
-    return view('cms.index', compact('cruders'));
-})->name('cms.index');
+    return view('cms.layouts.api_list', compact('cruders'));
+})->name('cms.api_list');

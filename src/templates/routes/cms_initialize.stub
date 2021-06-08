@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('', function () {
-    return view('cms.index');
-})->name('cms.index');
+    return view('cms.api_list');
+})->name('cms.api_list');
 
 
