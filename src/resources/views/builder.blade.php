@@ -21,6 +21,13 @@
 
 
   <style>
+
+    /* .validation-input{
+        display: none;
+    } */
+    .validationrows{
+        display: none;
+    }
     #table th:last-child,
     #table td:last-child {
       padding-left: 0px;
@@ -168,13 +175,15 @@
 
 <script>
   $(document).ready(function () {
-    var clicks = 0;
+    var clicks = 1;
 
     $("#form").on("submit", function (e) {
       e.preventDefault();
       var fieldArr = [];
       var relationFieldArr = [];
-      console.log("item->", $('.item'))
+      var validationsArr = getValidationInputs()
+      var i=0;
+
       $('.item').each(function () {
         var htmlType = $(this).find('.htmlType-select2');
         var htmlValue = "";
@@ -187,15 +196,18 @@
           name: $(this).find('.fieldNameInput').val(),
           dbtype: $(this).find('.dbType-select2').val(),
           htmltype: htmlValue,
-          validations: $(this).find('.validationInput').val(),
+          //validations: $(this).find('.validationInput').val(),
+          validations: validationsArr[i],
           foreignTable: $(this).find('.txtForeignTable').val(),
           nullable: $(this).find('.chkNullable').prop('checked'),
           searchable: $(this).find('.chkSearchable').prop('checked'),
           fillable: $(this).find('.chkFillable').prop('checked'),
           inIndex: $(this).find('.chkInIndex').prop('checked')
         });
+        i++
       });
-
+      
+      console.log("fieldArr ",fieldArr)
       $('.relationItem').each(function () {
         relationFieldArr.push({
           fieldName: $(this).find('.foreignFieldName').val(),
@@ -206,7 +218,7 @@
           foreignShowField: $(this).find('.foreignShowField').val(),
         });
       });
-      console.log("fieldArr: ", fieldArr)
+   
       var data = {
         modelName: $('#modelNameInput').val(),
         tableName: $('#customTableNameInput').val(),
@@ -222,7 +234,7 @@
         fields: fieldArr,
         relationFields: relationFieldArr
       };
-      console.log("data , ", data)
+    
       data['_token'] = $('#token').val();
 
       $("#info").html("");
@@ -238,49 +250,120 @@
         //location.reload();
       }, 1501);
 
-      $.ajax({
-        type: "POST",
-        url: "{!! route('cruder.generate') !!}",
-        method: "POST",
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        success: function (result) {
-          $("#info").html("");
-          $("#info").append('<div class="alert alert-success">Successfully created.</div>');
-          $("#info").show();
-          var $container = $("html,body");
-          var $scrollTo = $('#info');
-          $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
-          setTimeout(function () {
-            $('#info').fadeOut('slow');
-          }, 1500);
-          setTimeout(function () {
-            //location.reload();
-          }, 1501);
-        },
-        error: function (result) {
-          var result = JSON.parse(JSON.stringify(result));
-          var errorMessage = '';
-          if (result.hasOwnProperty('responseJSON') && result.responseJSON.hasOwnProperty('message')) {
-            errorMessage = result.responseJSON.message;
-          }
-          $("#info").html("");
-          $("#info").append('<div class="alert alert-success">Successfully created.</div>');
-          $("#info").show();
-          var $container = $("html,body");
-          var $scrollTo = $('#info');
-          $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
-          setTimeout(function () {
-            $('#info').fadeOut('slow');
-          }, 1500);
-          setTimeout(function () {
-            //location.reload();
-          }, 1501);
-        }
-      });
+      //$.ajax({
+      //  type: "POST",
+      //  url: "{!! route('cruder.generate') !!}",
+      //  method: "POST",
+      //  dataType: 'json',
+      //  contentType: 'application/json',
+      //  data: JSON.stringify(data),
+      //  success: function (result) {
+      //    $("#info").html("");
+      //    $("#info").append('<div class="alert alert-success">Successfully created.</div>');
+      //    $("#info").show();
+      //    var $container = $("html,body");
+      //    var $scrollTo = $('#info');
+      //    $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
+      //    setTimeout(function () {
+      //      $('#info').fadeOut('slow');
+      //    }, 1500);
+      //    setTimeout(function () {
+      //      //location.reload();
+      //    }, 1501);
+      //  },
+      //  error: function (result) {
+      //    var result = JSON.parse(JSON.stringify(result));
+      //    var errorMessage = '';
+      //    if (result.hasOwnProperty('responseJSON') && result.responseJSON.hasOwnProperty('message')) {
+      //      errorMessage = result.responseJSON.message;
+      //    }
+      //    $("#info").html("");
+      //    $("#info").append('<div class="alert alert-success">Successfully created.</div>');
+      //    $("#info").show();
+      //    var $container = $("html,body");
+      //    var $scrollTo = $('#info');
+      //    $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
+      //    setTimeout(function () {
+      //      $('#info').fadeOut('slow');
+      //    }, 1500);
+      //    setTimeout(function () {
+      //      //location.reload();
+      //    }, 1501);
+      //  }
+      //});
       return false;
     });
+
+    function getValidationInputs(){
+        var validationsArr = []
+        var validation_card = $(".validation-card")
+
+        for(var i=0; i<validation_card.length; i++){
+            var validation_string = ""
+            var validations = $(validation_card[i]).find(".validation-row")
+           
+            for(var y=0; y<validations.length; y++){
+
+                var data=validations[y]
+                var childLength = $(data)[0].children.length
+                console.log("$(data)[0].children ",$(data)[0].children)
+                
+                if(childLength == 2){
+                   
+                    var select_data = $(data).find("select").val()
+                    validation_string += select_data + "|"
+
+                }else if(childLength == 3){
+                   
+                    //if($(data)[0].children.length == 2){
+
+                        if($(data)[0].children[1].children[0].children[0].nodeName === "SELECT" &&
+                            $(data)[0].children[2].children[0].children[0].nodeName === "INPUT"){
+
+                            var select_data = $(data).find("select").val()
+                            var input_data = $(data).find("input").val()
+
+                            validation_string += select_data + input_data + "|"
+
+                        }else if($(data)[0].children[1].children[0].children[0].nodeName === "SELECT" &&
+                        $(data)[0].children[2].children[0].children[0].nodeName === "SELECT"){
+
+                            var select_data1 = $(data)[0].children[1].children[0].children[0].value
+                            var select_data2 = $(data)[0].children[2].children[0].children[0].value
+
+                            validation_string += select_data1 + select_data2 + "|"
+                        }
+                    //}
+                    
+                }else{
+                        
+                    if($(data)[0].children[1].children[0].children[0].nodeName === "SELECT" &&
+                        $(data)[0].children[2].children[0].children[0].nodeName === "SELECT" &&
+                        $(data)[0].children[3].children[0].children[0].nodeName === "INPUT"){
+
+                        var select_data1 = $(data)[0].children[1].children[0].children[0].value
+                        var select_data2 = $(data)[0].children[2].children[0].children[0].value
+                        var input_data =  $(data)[0].children[3].children[0].children[0].value
+                        validation_string += select_data1 + select_data2 + "," + input_data + "|"
+
+                    }else if($(data)[0].children[1].children[0].children[0].nodeName === "SELECT" &&
+                        $(data)[0].children[2].children[0].children[0].nodeName === "SELECT" &&
+                        $(data)[0].children[3].children[0].children[0].nodeName === "SELECT"){
+
+                        var select_data1 = $(data)[0].children[1].children[0].children[0].value
+                        var select_data2 = $(data)[0].children[2].children[0].children[0].value
+                        var select_data3 =  $(data)[0].children[3].children[0].children[0].value
+                        validation_string += select_data1 + select_data2 + "," + select_data3 + "|"
+                    }
+                }
+            }
+            if(validation_string.slice(-1) === "|"){
+                validation_string = validation_string.slice(0,-1)
+            }
+            validationsArr.push(validation_string)
+        }
+        return validationsArr
+    }
 
     $("#btnReset").fireModal({
       title: 'Are you sure?',
@@ -303,7 +386,6 @@
     });
 
     $("#addFieldButton").click(function () {
-      clicks = 1;
       if (clicks >= 1) {
         var tr_element = '<tr class="item">' +
           '<td>' +
@@ -319,7 +401,7 @@
           '</td>' +
           '<td>' +
           '<div class="form-group">' +
-          '<input type="text" class="form-control validationInput">' +
+          '<button class="btn btn-secondary" type="button" id="addMoreValidation-'+clicks+'" ><i class="fa fa-plus" aria-hidden="true"></i></button>' +
           '</div>' +
           '</td>' +
           '<td>' +
@@ -339,21 +421,532 @@
           '</td>' +
           '<td><i class="remove fas fa-trash" style="cursor: pointer;color: red"></i></td>' +
           '</div>' +
-          '</td>' + '</tr>'
+          '</td>' + '</tr>'+
+          '<tr class="validationrows" id="validationrow-'+clicks+'">'+'<td colspan="9">'+
+            '<div class="card card-warning validation-card">'+
+            '<div class="card-body" id="validationarea-'+clicks+'">'+
+            '</div>'+
+            '</div>'+
+          '</td>'+'</tr>'
+          //create_validation_accordion(clicks);
 
         $('#table tbody').append(tr_element)
+        
       } else if (clicks == 0) {
 
         var created_at_field = create_default_fields("created_at")
         var updated_at_field = create_default_fields("updated_at")
         var default_rows = created_at_field + updated_at_field
 
-
-        $('#table tbody').append(default_rows)
+        $('#table tbody').append(default_rows)  
       }
+      
+      $("#addMoreValidation-"+clicks).on('click', function (e){
+
+        var button_id = this.id
+        var row_id = button_id.split("-")[1]
+
+        var formElements = create_validation_fields()
+        $('#validationarea-'+row_id ).append(formElements)
+        
+        $('.validation-select2').on('select2:select', function (e) {
+            var data = e.params.data;
+            
+            if(data.text === "Max"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="number" class="form-control validation-input" placeholder="Please enter a number" min="0" />'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "Min"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="number" class="form-control validation-input" placeholder="Please enter a number" min="0"/>'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "After"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="text" class="form-control validation-input" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "Before"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="text" class="form-control validation-input" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "Between"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="text" class="form-control validation-input" placeholder="min,max" pattern="[0-9]+,[0-9]+"/>'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "Date Format"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="text" class="form-control validation-input" placeholder="Please enter a date format" />'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "Different"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldNameInputs = $(".fieldNameInput")
+                var options=""
+                
+                for(var i=0; i<fieldNameInputs.length ; i++){
+                    var data = fieldNameInputs[i].value
+                    options += '<option value="'+data+'">'+data+'</option>'
+                }
+                
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<select class="form-control select2" placeholder="Choose field">' +
+                            options +
+                        '</select>'
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+                $('select').select2();
+            }else if(data.text === "Digits"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="text" class="form-control validation-input" placeholder="Please enter a value" pattern="[0-9]+"/>'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "Digits Between"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="text" class="form-control validation-input" placeholder="min,max" pattern="[0-9]+,[0-9]+"/>'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "Regex"){
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="text" class="form-control validation-input" placeholder="Please enter a regex pattern" />'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "Same"){
+                
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+                var fieldNameInputs = $(".fieldNameInput")
+                var options=""
+                
+                for(var i=0; i<fieldNameInputs.length ; i++){
+                    var data = fieldNameInputs[i].value
+                    options += '<option value="'+data+'">'+data+'</option>'
+                }
+                
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<select class="form-control select2" placeholder="Choose field">' +
+                            options +
+                        '</select>'
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+                $('select').select2();
+            }else if(data.text === "Size"){
+              
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<input type="number" class="form-control validation-input" placeholder="Please enter a size" pattern="[0-9]+"/>'+
+                    '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+            }else if(data.text === "In"){
+              
+              if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                  $(this).closest("div.validation-row")[0].childNodes[2].remove()
+              }
+
+              var fieldToBeAdd = 
+              '<div class="col-sm-3">'+
+                  '<div class="form-group">' +
+                      '<input type="text" class="form-control validation-input" placeholder="Please enter an array"/>'+
+                  '</div>'+
+              '</div>'
+              //$(this).closest("div.validation-row").find("input").css("display", "block")
+              
+              $(this).closest("div.validation-row").append(fieldToBeAdd)
+       
+            }else if(data.text === "Mimes"){
+              
+              if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                  $(this).closest("div.validation-row")[0].childNodes[2].remove()
+              }
+
+              var fieldToBeAdd = 
+              '<div class="col-sm-3">'+
+                  '<div class="form-group">' +
+                      '<input type="text" class="form-control validation-input" placeholder="Please enter an array" />'+
+                  '</div>'+
+              '</div>'
+              //$(this).closest("div.validation-row").find("input").css("display", "block")
+              
+              $(this).closest("div.validation-row").append(fieldToBeAdd)
+       
+            }else if(data.text === "Not In"){
+              
+              if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                  $(this).closest("div.validation-row")[0].childNodes[2].remove()
+              }
+
+              var fieldToBeAdd = 
+              '<div class="col-sm-3">'+
+                  '<div class="form-group">' +
+                      '<input type="text" class="form-control validation-input" placeholder="Please enter an array"/>'+
+                  '</div>'+
+              '</div>'
+              //$(this).closest("div.validation-row").find("input").css("display", "block")
+              
+              $(this).closest("div.validation-row").append(fieldToBeAdd)
+       
+            }else if(data.text === "Required If"){
+              
+              if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                  $(this).closest("div.validation-row")[0].childNodes[2].remove()
+              }
+
+              var fieldToBeAdd = 
+              '<div class="col-sm-3">'+
+                  '<div class="form-group">' +
+                      '<input type="text" class="form-control validation-input" placeholder="Please enter an array"/>'+
+                  '</div>'+
+              '</div>'
+              //$(this).closest("div.validation-row").find("input").css("display", "block")
+              
+              $(this).closest("div.validation-row").append(fieldToBeAdd)
+            }else if(data.text === "Required With"){
+              
+              if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                  $(this).closest("div.validation-row")[0].childNodes[2].remove()
+              }
+
+              var fieldToBeAdd = 
+              '<div class="col-sm-3">'+
+                  '<div class="form-group">' +
+                      '<input type="text" class="form-control validation-input" placeholder="Please enter an array"/>'+
+                  '</div>'+
+              '</div>'
+              //$(this).closest("div.validation-row").find("input").css("display", "block")
+              
+              $(this).closest("div.validation-row").append(fieldToBeAdd)
+       
+            }else if(data.text === "Required With All"){
+              
+              if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                  $(this).closest("div.validation-row")[0].childNodes[2].remove()
+              }
+
+              var fieldToBeAdd = 
+              '<div class="col-sm-3">'+
+                  '<div class="form-group">' +
+                      '<input type="text" class="form-control validation-input" placeholder="Please enter an array"/>'+
+                  '</div>'+
+              '</div>'
+              //$(this).closest("div.validation-row").find("input").css("display", "block")
+              
+              $(this).closest("div.validation-row").append(fieldToBeAdd)
+       
+            }else if(data.text === "Required Without"){
+              
+              if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                  $(this).closest("div.validation-row")[0].childNodes[2].remove()
+              }
+
+              var fieldToBeAdd = 
+              '<div class="col-sm-3">'+
+                  '<div class="form-group">' +
+                      '<input type="text" class="form-control validation-input" placeholder="Please enter an array"/>'+
+                  '</div>'+
+              '</div>'
+              //$(this).closest("div.validation-row").find("input").css("display", "block")
+              
+              $(this).closest("div.validation-row").append(fieldToBeAdd)
+       
+            }else if(data.text === "Required Without All"){
+              
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+                var fieldToBeAdd = 
+                '<div class="col-sm-3">'+
+                  '<div class="form-group">' +
+                      '<input type="text" class="form-control validation-input" placeholder="Please enter an array"/>'+
+                  '</div>'+
+                '</div>'
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+                    
+                $(this).closest("div.validation-row").append(fieldToBeAdd)
+       
+            }else if(data.text === "Exists"){
+                
+                if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                    $(this).closest("div.validation-row")[0].childNodes[2].remove()
+                }
+                //ajax at table listesini al
+                var tableSelect = ["table1","table2","table3"]
+
+                //herbir table için ajax at ve {table:"table1", columns:["column1","column2"]} oluştur
+                var table_column_json_arr = [{table:"table1", columns:["column1.1","column1.2"]},{table:"table2", columns:["column2.1","column2.2"]}]
+                var table_select_options = ""
+
+                for(let i=0; i<table_column_json_arr.length ; i++){
+                    let data = table_column_json_arr[i].table
+                    table_select_options += '<option value="'+data+'">'+data+'</option>'
+                }
+
+                var table_select = 
+                '<div class="col-sm-3">'+
+                    '<div class="form-group">' +
+                        '<select class="form-control select2 exists-table-select2" data-placeholder="Choose table">' +
+                            '<option></option>'+
+                            table_select_options +
+                        '</select>'
+                    '</div>'+
+                '</div>'
+                        
+                //$(this).closest("div.validation-row").find("input").css("display", "block")
+            
+                $(this).closest("div.validation-row").append(table_select)
+                $('select').select2();
+
+                $('.exists-table-select2').on('select2:select', function (e) {
+
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 3){
+                        $(this).closest("div.validation-row")[0].childNodes[3].remove()
+                    }
+                    var selectedTable = e.params.data.text;
+
+                    //ajax at table listesini al
+                    var tableSelect = ["table1","table2","table3"]
+
+                    //herbir table için ajax at ve {table:"table1", columns:["column1","column2"]} oluştur
+
+                    var table_column_json_arr = [
+                        {table:"table1", columns:["column1.1","column1.2"]}
+                        ,{table:"table2", columns:["column2.1","column2.2"]}
+                        ]
+
+                    var columns_select_options = ""
+
+                    for(let i=0; i<table_column_json_arr.length ; i++){
+                        if(selectedTable === table_column_json_arr[i].table){
+                            let columns_arr = table_column_json_arr[i].columns
+                            for (let y = 0; y < columns_arr.length; y++) {
+                                var element = columns_arr[y];
+                                columns_select_options += '<option value="'+element+'">'+element+'</option>'
+                            }
+                        }
+                    }
+
+                    var columns_select = 
+                    '<div class="col-sm-3">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2"  data-placeholder="Choose column">' +
+                                '<option></option>'+
+                                columns_select_options +
+                            '</select>'
+                        '</div>'+
+                    '</div>'
+                            
+                    $(this).closest("div.validation-row").append(columns_select)
+                    $('select').select2();
+                })
+            }else{
+
+            }
+        });
+
+
+
+        $(".removeValidation").on('click', function (e){
+
+            if($(this).closest('.card-body')[0] != undefined){
+                if($(this).closest('.card-body')[0].childNodes.length == 1){
+                    $(this).closest('.validationrows').css("display","none")
+                }
+            }
+            
+
+            $(this).closest('.validation-row').remove();
+        })
+
+        var allValidations = $('.validation-row')
+
+        $('#validationrow-'+row_id).css("display","table-row")
+        $('select').select2();
+    
+      
+    })
+
       $('select').select2();
+
       clicks = clicks + 1;
     })
+    
+    function create_validation_fields(){
+
+        var formElement =
+        '<div class="row mt-4 validation-row">'+
+            '<div>'+
+                '<button class="btn btn-icon btn-danger removeValidation" type="button"><i class="fas fa-times" aria-hidden="true"></i></button>'+
+            '</div>'+
+            '<div class="col-sm-3">'+
+                '<div class="form-group">' +
+                    '<select class="form-control select2 validation-select2" placeholder="Choose validation">' +
+                    '<option value="required">Required</option>' +
+                    '<option value="required_if">Required If</option>' +
+                    '<option value="required_with">Required With</option>' +
+                    '<option value="required_with_all">Required With All</option>' +
+                    '<option value="required_without:">Required Without</option>' +
+                    '<option value="required_without_all:">Required Without All</option>' +
+                    '<option value="integer">Integer</option>' +
+                    '<option value="string">String</option>' +
+                    '<option value="timezone">Timezone</option>' +
+                    '<option value="unique:">Unique</option>' +
+                    '<option value="max:">Max</option>' +
+                    '<option value="min:">Min</option>' +
+                    '<option value="accepted">Accepted</option>' +
+                    '<option value="active_url">Active URL</option>' +
+                    '<option value="after:">After</option>' +
+                    '<option value="before:">Before</option>' +
+                    '<option value="alpha">Alpha</option>' +
+                    '<option value="alpha_dash">Alpha Dash</option>' +
+                    '<option value="alpha_num">Alpha Num</option>' +
+                    '<option value="array">Array</option>' +
+                    '<option value="between:">Between</option>' +
+                    '<option value="boolean">Boolean</option>' +
+                    '<option value="confirmed">Confirmed</option>' +
+                    '<option value="date">Date</option>' +
+                    '<option value="date_format">Date Format</option>' +
+                    '<option value="different:">Different</option>' +
+                    '<option value="digits:">Digits</option>' +
+                    '<option value="digits_between:">Digits Between</option>' +
+                    '<option value="email">Email</option>' +
+                    '<option value="exists:">Exists</option>' +
+                    '<option value="image">Image</option>' +
+                    '<option value="in:">In</option>' +
+                    '<option value="not_in:">Not In</option>' +
+                    '<option value="ip">Ip</option>' +
+                    '<option value="mimes:">Mimes</option>' +
+                    '<option value="numeric">Numeric</option>' +
+                    '<option value="regex:">Regex</option>' +
+                    '<option value="same:">Same</option>' +
+                    '<option value="size:">Size</option>' +
+                    '<option value="url">URL</option>' +
+                    '</select>' +
+                '</div>'+
+            '</div>'+
+            //'<div class="col-sm-6">'+
+            //    '<div class="form-group">' +
+            //        '<input type="text" class="form-control validation-input">'+
+            //    '</div>'+
+            //'</div>' +
+        '</div>'
+
+        return formElement;
+    }
 
     $("#addRelationshipButton").on('click', function (e) {
 
@@ -438,7 +1031,7 @@
         '</td>' +
         '<td>' +
         '<div class="form-group">' +
-        '<input type="text" class="form-control validationInput">' +
+        '<button class="btn btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i></button>' +
         '</div>' +
         '</td>' +
         '<td>' +
@@ -539,7 +1132,6 @@
 
       return field;
     }
-
     function addRelationSelectToRelationshipTable() {
       var selectString = '<div class="form-group">' +
         '<select class="form-control select2 relationshipType-select2" >' +
