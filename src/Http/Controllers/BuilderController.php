@@ -6,6 +6,9 @@ use Encodeurs\Cruder\Generator\Main\MainGenerator;
 use Encodeurs\Cruder\Http\Requests\BuilderGenerateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Encodeurs\Cruder\Utils\CruderUtil;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class BuilderController extends Controller
 {
@@ -39,5 +42,40 @@ class BuilderController extends Controller
     public function schema(Request $request)
     {
         dd($request);
+    }
+
+    public function models()
+    {
+        $models = CruderUtil::getAllModels();
+        return response()->json($models);
+    }
+
+    public function tables()
+    {
+        $tables = [];
+        foreach (DB::select('SHOW TABLES') as $table) {
+            foreach ($table as $tableName) {
+                array_push($tables, $tableName);
+            }
+        }
+
+        return response()->json($tables);
+    }
+
+    public function columnsByTable($table)
+    {
+        $columns = Schema::getColumnListing($table);
+
+        return response()->json($columns);
+    }
+
+    public function columnsByModel($model)
+    {
+        $model = 'App\Models\\' . $model;
+        $modelObject = new $model();
+
+        $columns = Schema::getColumnListing($modelObject->getTable());
+
+        return response()->json($columns);
     }
 }

@@ -85,7 +85,7 @@
             <i class="fas fa-ellipsis-v"></i>
           </a>
           <ul class="navbar-nav">
-            <li class="nav-item active"><a href="{{route('cms.index')}}" class="nav-link">Go to CMS</a></li>
+            <li class="nav-item active"><a href="{{route('cms.api_list')}}" class="nav-link">Go to CMS</a></li>
           </ul>
         </div>
         <form class="form-inline ml-auto">
@@ -97,7 +97,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Cruder</div>
-              <a href="{{ route('cms.index') }}" class="dropdown-item has-icon">
+              <a href="{{ route('cms.api_list') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> CMS
               </a>
               <a href="{{ route('cruder.builder') }}" class="dropdown-item has-icon">

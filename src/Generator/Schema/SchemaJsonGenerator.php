@@ -4,6 +4,7 @@ namespace Encodeurs\Cruder\Generator\Schema;
 
 use Encodeurs\Cruder\Generator\Abstract\Generator;
 use Encodeurs\Cruder\Utils\FieldUtil;
+use Illuminate\Support\Facades\Date;
 
 class SchemaJsonGenerator extends Generator
 {
@@ -48,6 +49,7 @@ class SchemaJsonGenerator extends Generator
         $this->template = str_replace('%TIMESTAMPS%', $this->timestamps ? "true" : "false", $this->template);
         $this->template = str_replace('%SWAGGER%', "false", $this->template);
         $this->template = str_replace('%FIELDS%', $this->jsonFields, $this->template);
+        $this->template = str_replace('%CREATED_AT%', Date::now(), $this->template);
     }
 
     private function generateFields()

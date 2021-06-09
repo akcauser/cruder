@@ -15,7 +15,7 @@
         <a href="{{ route('cruder.builder') }}" class="dropdown-item has-icon">
           <i class="fas fa-bolt"></i> Builder
         </a>
-        <a href="{{ route('cms.index') }}" class="dropdown-item has-icon">
+        <a href="{{ route('cms.api_list') }}" class="dropdown-item has-icon">
           <i class="fas fa-bolt"></i> CMS
         </a>
         <a href="#swagger" class="dropdown-item has-icon">

@@ -25,6 +25,10 @@ if (env('APP_ENV') == 'local') {
     })->name("cruder.builder");
 
     Route::post('cruder/generator', [BuilderController::class, 'generate'])->name('cruder.generate');
+    Route::get('cruder/tables', [BuilderController::class, 'tables'])->name('cruder.tables');
+    Route::get('cruder/models', [BuilderController::class, 'models'])->name('cruder.models');
+    Route::get('cruder/tables/{table}/columns', [BuilderController::class, 'columnsByTable'])->name('cruder.columnsByTable');
+    Route::get('cruder/models/{model}/columns', [BuilderController::class, 'columnsByModel'])->name('cruder.columnsByModel');
 }
 
 Route::get('cruder/github', function () {
@@ -33,5 +37,5 @@ Route::get('cruder/github', function () {
 
 Route::get('cruder', function () {
     $cruders = CruderUtil::getAllCruder();
-    return view('cms.index', compact('cruders'));
-})->name('cms.index');
+    return view('cms.layouts.api_list', compact('cruders'));
+})->name('cms.api_list');
