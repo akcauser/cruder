@@ -35,8 +35,9 @@ class MainGenerator
     private $forceMigrate;
     private $paginate;
     private $relationFields;
+    private $swagger;
 
-    public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate, $paginate = 15, $relationFields = [])
+    public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate, $paginate = 15, $relationFields = [], $swagger = true)
     {
         $this->modelName = $modelName;
 
@@ -54,6 +55,7 @@ class MainGenerator
         $this->forceMigrate = $forceMigrate;
         $this->paginate = $paginate;
         $this->relationFields = $relationFields;
+        $this->swagger = $swagger;
     }
 
     public function call()
@@ -63,7 +65,7 @@ class MainGenerator
             new MigrationGenerator($this->modelName, $this->tableName, $this->fields, $this->softDelete, $this->primaryKey, $this->timestamps, $this->relationFields);
 
             // Generate Model 
-            new ModelGenerator($this->modelName, $this->fields, $this->softDelete, $this->tableName, $this->relationFields, $this->timestamps);
+            new ModelGenerator($this->modelName, $this->fields, $this->softDelete, $this->tableName, $this->relationFields, $this->timestamps, $this->swagger);
 
             // Generate Factory
             new FactoryGenerator($this->modelName, $this->fields, $this->relationFields);
@@ -72,7 +74,7 @@ class MainGenerator
             new SeederGenerator($this->modelName);
 
             // Generate Api Controller
-            new ApiControllerGenerator($this->modelName);
+            new ApiControllerGenerator($this->modelName, $this->swagger);
 
             // Generate Web Controller
             new CmsControllerGenerator($this->modelName);

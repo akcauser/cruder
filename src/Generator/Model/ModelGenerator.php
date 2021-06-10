@@ -18,8 +18,10 @@ class ModelGenerator extends Generator
     private $relationFields;
     private $relationFieldsContent;
     private $timestamps;
+    private $swagger;
+    private $swaggerTemplate = "";
 
-    public function __construct($modelName, $fields, $softDelete, $tableName, $relationFields, $timestamps)
+    public function __construct($modelName, $fields, $softDelete, $tableName, $relationFields, $timestamps, $swagger)
     {
         $this->modelName = $modelName;
         $this->targetFolder = config('cruder.path.model');
@@ -32,6 +34,7 @@ class ModelGenerator extends Generator
         $this->tableName = $tableName;
         $this->relationFields = $relationFields;
         $this->timestamps = $timestamps;
+        $this->swagger = $swagger;
 
         parent::__construct();
     }
@@ -42,12 +45,12 @@ class ModelGenerator extends Generator
         $this->generateFillableFields();
         $this->generateValidationRules();
         $this->generateRelationFunctions();
+        $this->generateSwagger();
         parent::generate();
     }
 
     protected function replaceVariables()
     {
-        parent::replaceVariables();
         $this->template = str_replace('%USE_PART%', $this->usePart, $this->template);
         $this->template = str_replace('%TRAITS%', $this->traits, $this->template);
         $this->template = str_replace('%TABLE_NAME%', $this->tableName, $this->template);
@@ -55,6 +58,9 @@ class ModelGenerator extends Generator
         $this->template = str_replace('%FILLABLE_FIELDS_ARRAY%', $this->fillableFields, $this->template);
         $this->template = str_replace('%VALIDATION_RULES%', $this->validationRules, $this->template);
         $this->template = str_replace('%RELATION_FUNCTIONS%', $this->relationFieldsContent, $this->template);
+        $this->template = str_replace('%SWAGGER_PROPERTIES%', $this->swaggerTemplate, $this->template);
+
+        parent::replaceVariables();
     }
 
     public function generateFillableFields()
@@ -89,6 +95,23 @@ class ModelGenerator extends Generator
         foreach ($this->relationFields as $relationField) {
             $code = ModelUtil::generateRelationFunction($relationField);
             $this->relationFieldsContent  .= $code . "\n\t\t\t";
+        }
+    }
+
+    public function generateSwagger()
+    {
+        if ($this->swagger) {
+            // swagger template change here
+            // foreach generate properties 
+            foreach ($this->fields as $field) {
+                // get property template
+                $template = FileUtil::getContent(__DIR__ . '/../../templates/swagger/property.stub');
+                // replace fields
+                $template = str_replace('%FIELD_NAME%', $field["name"], $template);
+
+                // add swagger template
+                $this->swaggerTemplate .= $template;
+            }
         }
     }
 }

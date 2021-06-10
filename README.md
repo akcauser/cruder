@@ -18,6 +18,26 @@ php artisan vendor:publish
 Encodeurs\Cruder\CruderServiceProvider::class,
 App\Providers\BusinessServiceProvider::class,
 App\Providers\DataServiceProvider::class,
+
+4- Add Swagger Configurations to App\Http\Controllers\Controller.php
+
+```
+/**
+ * @OA\Info(
+ *      version="1.0.0",
+ *      title="API Documentation",
+ *      description="Swagger OpenApi description",
+ *      @OA\Contact(
+ *          email="example@example.com"
+ *      ),
+ * ),
+ * @OA\Server(
+ *      url="http://localhost:8000/api",
+ *      description="API Server"
+ * )
+ *
+ */
+```
         
 # Usage
 
