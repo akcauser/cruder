@@ -46,10 +46,6 @@ class BuilderGenerateRequest extends FormRequest
                 "nullable",
                 "boolean",
             ],
-            "options.save" => [
-                "required",
-                "boolean",
-            ],
             "options.softDelete" => [
                 "required",
                 "boolean",

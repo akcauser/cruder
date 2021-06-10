@@ -117,7 +117,11 @@ class MainGenerator
             // Datatables ??
 
             if ($this->forceMigrate) {
-                Artisan::call('migrate:fresh --seed');
+                Artisan::call('migrate');
+            }
+
+            if ($this->swagger) {
+                Artisan::call('l5-swagger:generate');
             }
 
             return true;

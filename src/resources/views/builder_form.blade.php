@@ -40,12 +40,14 @@
                                 <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description">Soft delete</span>
                             </label>
+                            <!--
                             <label class="custom-switch">
                                 <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
                                     id="chkSave">
                                 <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description">Save schema</span>
                             </label>
+                            -->
                             <label class="custom-switch">
                                 <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
                                     id="chkSwagger">
