@@ -6,12 +6,19 @@ use Encodeurs\Cruder\Generator\Main\MainGenerator;
 use Encodeurs\Cruder\Http\Requests\BuilderGenerateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Encodeurs\Cruder\Generator\Main\Rollback;
 use Encodeurs\Cruder\Utils\CruderUtil;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class BuilderController extends Controller
 {
+    public function index()
+    {
+        $models = CruderUtil::getAllCruder();
+        return view('cruder::builder', compact('models'));
+    }
+
     public function generate(BuilderGenerateRequest $request)
     {
         // primary key generator
@@ -37,12 +44,23 @@ class BuilderController extends Controller
 
     public function rollback(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'modelName' => [
+                'required',
+            ],
+        ]);
+        $rollback = new Rollback($request->modelName);
+
+        $response = $rollback->call();
+        if (!$response)
+            return back()->with('error');
+
+        return back()->with('success');
     }
 
     public function schema(Request $request)
     {
-        dd($request);
+        # code
     }
 
     public function models()

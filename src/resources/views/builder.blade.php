@@ -134,11 +134,17 @@
         <section class="section">
           <div id="info" style="display: none"></div>
 
-          @include('cruder::builder_form')
-          <!--
-          @include('cruder::builder_rollback')
-          -->
-          @include('cruder::builder_from_schema')
+          @include('cruder::builder_form')          
+          <div class="row">
+              <div class="col-md-6">
+                @include('cruder::builder_from_schema')
+              </div>
+              <div class="col-md-6">
+                @include('cruder::builder_rollback')
+              </div>
+          </div>
+          
+          
 
         </section>
       </div>

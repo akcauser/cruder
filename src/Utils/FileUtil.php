@@ -23,9 +23,8 @@ class FileUtil
     /**
      * If file exist, delete file
      */
-    public static function deleteFile($path, $fileName)
+    public static function deleteFile($file)
     {
-        $file = $path . $fileName;
         if (file_exists($file)) {
             return unlink($file);
         }

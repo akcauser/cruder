@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Route;
  */
 
 if (env('APP_ENV') == 'local') {
-    Route::get('cruder/builder', function () {
-        return view('cruder::builder');
-    })->name("cruder.builder");
+    Route::get('cruder/builder', [BuilderController::class, 'index'])->name("cruder.builder");
+
+    Route::post('cruder/rollback', [BuilderController::class, 'rollback'])->name('cruder.rollback');
 
     Route::post('cruder/generator', [BuilderController::class, 'generate'])->name('cruder.generate');
     Route::get('cruder/tables', [BuilderController::class, 'tables'])->name('cruder.tables');
