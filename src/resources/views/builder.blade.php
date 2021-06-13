@@ -237,8 +237,6 @@
         options: {
           softDelete: $('#chkDelete').prop('checked'),
           timestamps: $('#chkTimestamps').prop('checked'),
-          save: $('#chkSave').prop('checked'),
-          //prefix: $('#prefixInput').val(),
           paginate: $('#paginateInput').val(),
           forceMigrate: $('#chkForceMigrate').prop('checked'),
           swagger: $('#chkSwagger').prop('checked'),

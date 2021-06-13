@@ -4,7 +4,6 @@ namespace Encodeurs\Cruder\Generator\HTML;
 
 use Encodeurs\Cruder\Generator\Abstract\Generator;
 use Encodeurs\Cruder\Utils\FileUtil;
-use Illuminate\Support\Str;
 
 class SidebarMenuItemGenerator extends Generator
 {
@@ -18,5 +17,17 @@ class SidebarMenuItemGenerator extends Generator
         $this->templatePath = __DIR__ . '/../../templates/views/layouts/menu_item.stub';
 
         parent::__construct();
+    }
+
+    protected function store()
+    {
+        // $this->targetFolder, 
+        // $this->targetFile, 
+        // $this->template
+
+        // bu template in aynısı bu dosyada var ise, dosyaya ekleme yapma
+        if (!FileUtil::inExist($this->targetFolder . $this->targetFile, $this->template)) {
+            parent::store();
+        }
     }
 }

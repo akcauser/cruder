@@ -16,6 +16,7 @@ class API%MODEL_NAME%Controller extends Controller
         $this->%MODEL_NAME_CAMEL_CASE%Service = $%MODEL_NAME_CAMEL_CASE%Service;
     }
 
+    %SWAGGER_LIST%
     public function index()
     {
         $%MODEL_NAME_CAMEL_CASE_PLURAL% = $this->%MODEL_NAME_CAMEL_CASE%Service->get_all();
@@ -23,7 +24,7 @@ class API%MODEL_NAME%Controller extends Controller
         return response()->json($%MODEL_NAME_CAMEL_CASE_PLURAL%);
     }
 
-
+    %SWAGGER_SHOW%
     public function show($id)
     {
         $response = $this->%MODEL_NAME_CAMEL_CASE%Service->get($id);
@@ -33,6 +34,7 @@ class API%MODEL_NAME%Controller extends Controller
         return response()->json($response);
     }
 
+    %SWAGGER_STORE%
     public function store(%MODEL_NAME%StoreRequest $request)
     {
         $response = $this->%MODEL_NAME_CAMEL_CASE%Service->store($request);
@@ -44,6 +46,7 @@ class API%MODEL_NAME%Controller extends Controller
         return response()->json($response);
     }
 
+    %SWAGGER_UPDATE%
     public function update(%MODEL_NAME%UpdateRequest $request, $id)
     {
         $response = $this->%MODEL_NAME_CAMEL_CASE%Service->update($request, $id);
@@ -55,6 +58,7 @@ class API%MODEL_NAME%Controller extends Controller
         return response()->json($response);
     }
 
+    %SWAGGER_DESTROY%
     public function destroy($id)
     {
         $response = $this->%MODEL_NAME_CAMEL_CASE%Service->delete($id);

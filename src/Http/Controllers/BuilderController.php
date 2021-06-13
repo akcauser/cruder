@@ -25,6 +25,7 @@ class BuilderController extends Controller
             forceMigrate: $request->options["forceMigrate"],
             paginate: $request->options["paginate"] ?? 15,
             relationFields: $request->relationFields,
+            swagger: $request->options["swagger"],
         );
 
         $response = $mainGenerator->call();

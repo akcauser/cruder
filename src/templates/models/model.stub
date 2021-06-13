@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 %USE_PART%
 
+/**
+ * @OA\Schema()
+ */
 class %MODEL_NAME% extends Model
 {
     use HasFactory;
@@ -24,4 +27,6 @@ class %MODEL_NAME% extends Model
     ];
 
     %RELATION_FUNCTIONS%
+
+    %SWAGGER_PROPERTIES%
 }

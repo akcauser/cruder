@@ -55,4 +55,18 @@ class FileUtil
 
         return file_get_contents($file);
     }
+
+    public static function inExist($file, $needle)
+    {
+        if (!file_exists($file)) {
+            return false;
+        }
+        $content = file_get_contents($file);
+
+        if (str_contains($content, $needle)) {
+            return true;
+        }
+
+        return false;
+    }
 }

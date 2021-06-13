@@ -33,6 +33,11 @@ class DataServiceProviderGenerator extends Generator
             // register app.php providers
         }
 
+        // bu template in aynısı bu dosyada var ise, dosyaya ekleme yapma
+        if (FileUtil::inExist($this->targetFolder . $this->targetFile, $this->template)) {
+            return;
+        }
+
         $content = FileUtil::getContent($this->targetFolder . $this->targetFile);
 
         $search = "#repository-injection-part";
