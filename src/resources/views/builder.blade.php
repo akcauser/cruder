@@ -132,8 +132,9 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
+            
           <div id="info" style="display: none"></div>
-
+          
           @include('cruder::builder_form')          
           <div class="row">
               <div class="col-md-6">

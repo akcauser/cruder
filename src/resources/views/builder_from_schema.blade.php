@@ -4,7 +4,7 @@
       <h4>Generate From Schema</h4>
     </div>
     <div class="card-body">
-      <form role="form" id="schemaForm">
+      <form role="form" action="{{ route('cruder.generate_from_schema') }}" method="post" enctype="multipart/form-data">
         @method('post')
         @csrf
 
@@ -13,15 +13,15 @@
             <div class="form-group">
               <label>Schema Json File <span class="required">*</span></label>
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="schemaFile">
-                <label class="custom-file-label" for="schemaFile">Choose file</label>
+                <input name="schema" type="file" class="custom-file-input" id="schema">
+                <label class="custom-file-label" for="schema">Choose file</label>
               </div>
             </div>
           </div>
         </div>
         <div class="row justify-content-end mt-4">
           <div class="btn-group">
-            <button type="submit" class="btn btn-block btn-primary" id="btnSmGenerate">Generate</button>
+            <button type="submit" class="btn btn-block btn-primary">Generate</button>
           </div>
         </div>
       </form>

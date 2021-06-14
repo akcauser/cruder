@@ -23,6 +23,7 @@ if (env('APP_ENV') == 'local') {
     Route::get('cruder/builder', [BuilderController::class, 'index'])->name("cruder.builder");
 
     Route::post('cruder/rollback', [BuilderController::class, 'rollback'])->name('cruder.rollback');
+    Route::post('cruder/generate_from_schema', [BuilderController::class, 'schema'])->name('cruder.generate_from_schema');
 
     Route::post('cruder/generator', [BuilderController::class, 'generate'])->name('cruder.generate');
     Route::get('cruder/tables', [BuilderController::class, 'tables'])->name('cruder.tables');

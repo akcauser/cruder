@@ -7,6 +7,7 @@ use Encodeurs\Cruder\Http\Requests\BuilderGenerateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Encodeurs\Cruder\Generator\Main\Rollback;
+use Encodeurs\Cruder\Http\Requests\GenerateFromSchemaRequest;
 use Encodeurs\Cruder\Utils\CruderUtil;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -58,9 +59,12 @@ class BuilderController extends Controller
         return back()->with('success');
     }
 
-    public function schema(Request $request)
+    public function schema(GenerateFromSchemaRequest $request)
     {
-        # code
+        $schema = $request->file('schema')->getContent();
+        $schema = json_decode($schema);
+        dd($schema);
+        // todo: MainGenerator->call and give parameters. 
     }
 
     public function models()
