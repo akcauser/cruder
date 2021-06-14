@@ -26,6 +26,7 @@ class GenerateFromSchemaRequest extends FormRequest
         return [
             'schema' => [
                 'required',
+                'mimes:json'
             ],
         ];
     }

@@ -66,17 +66,33 @@ class BuilderController extends Controller
 
         $response = $rollback->call();
         if (!$response)
-            return back()->with('error');
+            return back()->with('error', 'Rollback Error!');
 
-        return back()->with('success');
+        return back()->with('success', 'Success');
     }
 
     public function schema(GenerateFromSchemaRequest $request)
     {
         $schema = $request->file('schema')->getContent();
         $schema = json_decode($schema);
-        // todo: MainGenerator->call and give parameters. 
 
+        // schema content validation 
+        if (!isset($schema->modelName))
+            return back()->with('error', 'modelName is required');
+        if (!isset($schema->tableName))
+            return back()->with('error', 'tableName is required');
+        if (!isset($schema->fields))
+            return back()->with('error', 'fields is required');
+        if (!isset($schema->relationFields))
+            return back()->with('error', 'relationFields is required');
+        if (!isset($schema->options->softDelete))
+            return back()->with('error', 'options->softDelete is required');
+        if (!isset($schema->options->timestamps))
+            return back()->with('error', 'options->timestamps is required');
+        if (!isset($schema->options->forceMigrate))
+            return back()->with('error', 'options->forceMigrate is required');
+
+        // MainGenerator->call and give parameters. 
         $fields = [];
         foreach ($schema->fields as $field) {
             array_push($fields, json_decode(json_encode($field), true));
@@ -97,14 +113,14 @@ class BuilderController extends Controller
             forceMigrate: $schema->options->forceMigrate,
             paginate: $schema->options->paginate ?? 15,
             relationFields: $relationFields,
-            swagger: $schema->options->swagger,
+            swagger: $schema->options->swagger ?? true,
         );
 
         $response = $mainGenerator->call();
-        if ($response)
-            return response()->json(["message" => "Success"]);
+        if (!$response)
+            return back()->with('error', 'Error Occured');
 
-        return response()->json("Error", 500);
+        return back()->with('success', 'Success');
     }
 
     public function models()

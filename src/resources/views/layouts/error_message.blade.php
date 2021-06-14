@@ -4,13 +4,13 @@
 </div>
 @endif
 
-@if(session()->has('Success'))
+@if(session()->has('success'))
 <div class="alert alert-success">
-    {{ session()->get('Success') }}
+    {{ session()->get('success') }}
 </div>
 @endif
 
-@if(count($errors) > 0)
+@if(isset($errors) AND count($errors) > 0)
 <div class="alert alert-danger">
     @foreach($errors->all() as $error)
     * {{ $error }} <br>
