@@ -2,6 +2,7 @@
 
 namespace Encodeurs\Cruder\Generator\Main;
 
+use Encodeurs\Cruder\Generator\HTML\SidebarMenuItemGenerator;
 use Encodeurs\Cruder\Utils\FileUtil;
 use Encodeurs\Cruder\Utils\TargetFile\TargetFileUtil;
 
@@ -50,7 +51,10 @@ class Rollback
             // Schema
             FileUtil::deleteFile(TargetFileUtil::schema($this->modelName));
 
-            // todo: rollback menu item
+            // rollback menu item
+            $sidebarMenuItemGenerator = new SidebarMenuItemGenerator($this->modelName);
+            $sidebarMenuItemGenerator->rollback();
+
             // todo: rollback views
             // todo: rollback api routes
             // todo: rollback providers

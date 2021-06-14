@@ -82,7 +82,7 @@ abstract class Generator
         if ($this->fileChangeType == 'new') {
             FileUtil::newFile($this->targetFolder, $this->targetFile, $this->template);
         } elseif ($this->fileChangeType == 'put') {
-            FileUtil::putContent($this->targetFolder . $this->targetFile, $this->template);
+            FileUtil::putContent($this->targetFolder . $this->targetFile, $this->template . "\n");
         }
     }
 }
