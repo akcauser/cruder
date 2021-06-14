@@ -107,8 +107,14 @@
               <a href="{{ route('cruder.builder') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Builder
               </a>
-              <a href="#swagger" class="dropdown-item has-icon">
+              <a href="{{ route('l5-swagger.default.api') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Swagger
+              </a>
+              <a href="{{ route('cruder.rollback_form') }}" class="dropdown-item has-icon">
+                <i class="fas fa-bolt"></i> Rollback
+              </a>
+              <a href="{{ route('cruder.schema_form') }}" class="dropdown-item has-icon">
+                <i class="fas fa-bolt"></i> Generate From Schema
               </a>
             </div>
           </li>
@@ -132,20 +138,9 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-            
           <div id="info" style="display: none"></div>
-          
-          @include('cruder::builder_form')          
-          <div class="row">
-              <div class="col-md-6">
-                @include('cruder::builder_from_schema')
-              </div>
-              <div class="col-md-6">
-                @include('cruder::builder_rollback')
-              </div>
-          </div>
-          
-          
+
+          @yield('content')
 
         </section>
       </div>

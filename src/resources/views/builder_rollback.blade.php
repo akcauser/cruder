@@ -1,3 +1,5 @@
+@extends('cruder::builder')
+@section('content')
 <div class="section-body">
   <div class="card">
     <div class="card-header">
@@ -43,3 +45,4 @@
     } 
   });
 </script>
+@endsection

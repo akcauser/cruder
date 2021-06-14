@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 if (env('APP_ENV') == 'local') {
     Route::get('cruder/builder', [BuilderController::class, 'index'])->name("cruder.builder");
+    Route::get('cruder/schema_form', [BuilderController::class, 'schema_form'])->name("cruder.schema_form");
+    Route::get('cruder/rollback_form', [BuilderController::class, 'rollback_form'])->name("cruder.rollback_form");
 
     Route::post('cruder/rollback', [BuilderController::class, 'rollback'])->name('cruder.rollback');
     Route::post('cruder/generate_from_schema', [BuilderController::class, 'schema'])->name('cruder.generate_from_schema');
@@ -38,5 +40,5 @@ Route::get('cruder/github', function () {
 
 Route::get('cruder', function () {
     $cruders = CruderUtil::getAllCruder();
-    return view('cms.layouts.api_list', compact('cruders'));
+    return view('cruder::home', compact('cruders'));
 })->name('cms.api_list');

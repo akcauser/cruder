@@ -21,6 +21,8 @@
                         <div class="card-header">
                             <h4>Api List Table</h4>
                             <a href="{{ route('cruder.builder') }}" class="btn btn-primary">New Api</a>
+                            <a href="{{ route('cruder.schema_form') }}" class="btn btn-primary">Generate From Schema</a>
+                            <a href="{{ route('cruder.rollback_form') }}" class="btn btn-primary">Rollback</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

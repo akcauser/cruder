@@ -17,7 +17,19 @@ class BuilderController extends Controller
     public function index()
     {
         $models = CruderUtil::getAllCruder();
-        return view('cruder::builder', compact('models'));
+        return view('cruder::builder_form', compact('models'));
+    }
+
+    public function rollback_form()
+    {
+        $models = CruderUtil::getAllCruder();
+        return view('cruder::builder_rollback', compact('models'));
+    }
+
+    public function schema_form()
+    {
+        $models = CruderUtil::getAllCruder();
+        return view('cruder::builder_from_schema', compact('models'));
     }
 
     public function generate(BuilderGenerateRequest $request)
@@ -63,8 +75,26 @@ class BuilderController extends Controller
     {
         $schema = $request->file('schema')->getContent();
         $schema = json_decode($schema);
-        dd($schema);
         // todo: MainGenerator->call and give parameters. 
+
+        $mainGenerator = new MainGenerator(
+            modelName: $schema->modelName,
+            tableName: $schema->tableName ?? null,
+            fields: $schema->fields,
+            softDelete: $schema->options->softDelete,
+            primaryKey: "id",
+            timestamps: $schema->options->timestamps,
+            forceMigrate: $schema->options->forceMigrate,
+            paginate: $schema->options->paginate ?? 15,
+            relationFields: [],
+            swagger: $schema->options->swagger,
+        );
+
+        $response = $mainGenerator->call();
+        if ($response)
+            return response()->json(["message" => "Success"]);
+
+        return response()->json("Error", 500);
     }
 
     public function models()
