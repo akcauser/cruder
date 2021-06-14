@@ -77,16 +77,26 @@ class BuilderController extends Controller
         $schema = json_decode($schema);
         // todo: MainGenerator->call and give parameters. 
 
+        $fields = [];
+        foreach ($schema->fields as $field) {
+            array_push($fields, json_decode(json_encode($field), true));
+        }
+
+        $relationFields = [];
+        foreach ($schema->relationFields as $field) {
+            array_push($relationFields, json_decode(json_encode($field), true));
+        }
+
         $mainGenerator = new MainGenerator(
             modelName: $schema->modelName,
             tableName: $schema->tableName ?? null,
-            fields: $schema->fields,
+            fields: $fields,
             softDelete: $schema->options->softDelete,
             primaryKey: "id",
             timestamps: $schema->options->timestamps,
             forceMigrate: $schema->options->forceMigrate,
             paginate: $schema->options->paginate ?? 15,
-            relationFields: [],
+            relationFields: $relationFields,
             swagger: $schema->options->swagger,
         );
 

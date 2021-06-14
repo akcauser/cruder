@@ -11,5 +11,8 @@
     },
     "fields": [
         %FIELDS%
+    ],
+    "relationFields": [
+        %RELATION_FIELDS%
     ]
 }

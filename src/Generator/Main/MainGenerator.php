@@ -110,7 +110,7 @@ class MainGenerator
             new ShowFieldsGenerator($this->modelName, $this->fields);
             new TableThsGenerator($this->modelName, $this->fields);
             new TableTdsGenerator($this->modelName, $this->fields, $this->primaryKey);
-            new SchemaJsonGenerator($this->modelName, $this->fields, $this->paginate, $this->softDelete, $this->forceMigrate, $this->timestamps, $this->tableName);
+            new SchemaJsonGenerator($this->modelName, $this->fields, $this->paginate, $this->softDelete, $this->forceMigrate, $this->timestamps, $this->tableName, $this->relationFields);
             // Store to File
 
             // swagger 

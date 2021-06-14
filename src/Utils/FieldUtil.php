@@ -118,4 +118,19 @@ class FieldUtil
 
         return $jsonField;
     }
+
+    public static function generateJsonSchemaRelationField($field)
+    {
+        $path = __DIR__ . '/../templates/schema/json_relation_field.stub';
+        $jsonField = FileUtil::getContentByPath($path);
+
+        $jsonField = str_replace("%FIELD_NAME%", $field["fieldName"], $jsonField);
+        $jsonField = str_replace("%FOREIGN_FIELD%", $field["foreignField"], $jsonField);
+        $jsonField = str_replace("%FOREIGN_MODEL%", $field["foreignModel"], $jsonField);
+        $jsonField = str_replace("%FOREIGN_SHOW_FIELD%", $field["foreignShowField"], $jsonField);
+        $jsonField = str_replace("%FOREIGN_TABLE%", $field["foreignTable"], $jsonField);
+        $jsonField = str_replace("%RELATION_TYPE%", $field["relationType"], $jsonField);
+
+        return $jsonField;
+    }
 }

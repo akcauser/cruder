@@ -1,0 +1,8 @@
+{
+    "fieldName": "%FIELD_NAME%",
+    "foreignField": "%FOREIGN_FIELD%",
+    "foreignModel": "%FOREIGN_MODEL%",
+    "foreignShowField": "%FOREIGN_SHOW_FIELD%",
+    "foreignTable": "%FOREIGN_TABLE%",
+    "relationType": "%RELATION_TYPE%"
+}

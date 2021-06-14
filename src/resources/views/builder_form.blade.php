@@ -54,7 +54,7 @@
                             -->
                             <label class="custom-switch">
                                 <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
-                                    id="chkSwagger">
+                                    id="chkSwagger" checked>
                                 <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description">Swagger</span>
                             </label>
