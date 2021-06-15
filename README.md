@@ -70,6 +70,7 @@ Then you will be able to see your APIs:
 ## Source
 
 Theme: https://getstisla.com (v2)
+
 Swagger: https://github.com/DarkaOnLine/L5-Swagger
 
 ## License
