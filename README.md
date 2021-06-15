@@ -51,7 +51,7 @@ When create new API with command line:
 `php artisan cruder:new {MODEL_NAME}`
 
 Also you can use the builder interface:
-- https://your-domain-address/builder
+- https://your-domain-address/cruder/builder
 
 Then you will be able to see your APIs:
 - https://your-domain-address/cruder
@@ -67,3 +67,11 @@ Then you will be able to see your APIs:
  <img src="https://avatars.githubusercontent.com/u/46646075" width="64" height="64">
 </a>
 
+## Source
+
+Theme: https://getstisla.com (v2)
+Swagger: https://github.com/DarkaOnLine/L5-Swagger
+
+## License
+
+MIT LICENSE @2021 Encodeurs
