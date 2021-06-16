@@ -34,6 +34,14 @@ class BuilderController extends Controller
 
     public function generate(BuilderGenerateRequest $request)
     {
+        $relationFields = [];
+        foreach ($request->relationFields as $field) {
+            $modelStr = "App\\Models\\" . $field['foreignModel'];
+            $model = new $modelStr;
+            $field["foreignTable"] = $model->getTable();
+            array_push($relationFields, $field);
+        }
+
         // primary key generator
         $mainGenerator = new MainGenerator(
             modelName: $request->modelName,
@@ -44,7 +52,7 @@ class BuilderController extends Controller
             timestamps: $request->options["timestamps"],
             forceMigrate: $request->options["forceMigrate"],
             paginate: $request->options["paginate"] ?? 15,
-            relationFields: $request->relationFields,
+            relationFields: $relationFields,
             swagger: $request->options["swagger"],
         );
 
