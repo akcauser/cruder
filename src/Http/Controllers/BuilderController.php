@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Encodeurs\Cruder\Generator\Main\Rollback;
 use Encodeurs\Cruder\Http\Requests\GenerateFromSchemaRequest;
 use Encodeurs\Cruder\Utils\CruderUtil;
+use Encodeurs\Cruder\Utils\FieldUtil;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -42,11 +43,13 @@ class BuilderController extends Controller
             array_push($relationFields, $field);
         }
 
+        $fields = FieldUtil::addDefaultValidations($request->fields);
+
         // primary key generator
         $mainGenerator = new MainGenerator(
             modelName: $request->modelName,
             tableName: $request->tableName ?? null,
-            fields: $request->fields,
+            fields: $fields,
             softDelete: $request->options["softDelete"],
             primaryKey: "id",
             timestamps: $request->options["timestamps"],

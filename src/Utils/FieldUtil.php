@@ -4,9 +4,11 @@ namespace Encodeurs\Cruder\Utils;
 
 use Encodeurs\Cruder\Utils\DB\DBIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBRelationField;
+use Encodeurs\Cruder\Utils\DB\DBSmallIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBStringField;
 use Encodeurs\Cruder\Utils\DB\DBTextField;
 use Encodeurs\Cruder\Utils\Factory\FactoryIntegerField;
+use Encodeurs\Cruder\Utils\Factory\FactorySmallIntegerField;
 use Encodeurs\Cruder\Utils\Factory\FactoryStringField;
 use Encodeurs\Cruder\Utils\Factory\FactoryTextField;
 
@@ -34,6 +36,9 @@ class FieldUtil
             case 'integer':
                 $dbField = DBIntegerField::create($field["name"]);
                 break;
+            case 'smallInteger':
+                $dbField = DBSmallIntegerField::create($field["name"]);
+                break;
             case 'text':
                 $dbField = DBTextField::create($field["name"]);
                 break;
@@ -57,6 +62,9 @@ class FieldUtil
                 break;
             case 'integer':
                 return FactoryIntegerField::create($field["name"]);
+                break;
+            case 'smallInteger':
+                return FactorySmallIntegerField::create($field["name"]);
                 break;
             case 'text':
                 return FactoryTextField::create($field["name"]);
@@ -132,5 +140,45 @@ class FieldUtil
         $jsonField = str_replace("%RELATION_TYPE%", $field["relationType"], $jsonField);
 
         return $jsonField;
+    }
+
+    public static function addDefaultValidations($requestFields)
+    {
+        $fields = [];
+        foreach ($requestFields as $field) {
+            if ($field['dbtype'] == "smallInteger") {
+                // check integer and, min, max
+                // add integer, min, max validation
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "integer", "integer");
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "min:-32768", "min");
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "max:32768", "max");
+            }
+
+            array_push($fields, $field);
+        }
+
+        return $fields;
+        // DB Field Validation add to validation as default
+        // integer -> integer
+        // smallInteger -> integer, max, min
+        // bigInteger -> integer
+    }
+
+    private static function addValidationIfNotExist($validations, $validation, $check)
+    {
+        if (!str_contains($validations, $check)) {
+            $validations = self::addPipe($validations);
+            $validations .= $validation;
+        }
+
+        return $validations;
+    }
+
+    private static function addPipe($validations)
+    {
+        if ($validations != "")
+            $validations .= "|";
+
+        return $validations;
     }
 }
