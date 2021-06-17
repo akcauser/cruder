@@ -102,6 +102,14 @@ class FieldUtil
                 $field["validations"] = self::addValidationIfNotExist($field["validations"], "date", "date");
             }
 
+            if ($field['dbtype'] == "text") {
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "string", "string");
+            }
+
+            if ($field['dbtype'] == "longText") {
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "string", "string");
+            }
+
             array_push($fields, $field);
         }
 

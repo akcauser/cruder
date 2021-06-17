@@ -24,6 +24,9 @@ class FactoryFieldUtil
             case 'text':
                 return FactoryTextField::create($field["name"]);
                 break;
+            case 'longText':
+                return FactoryTextField::create($field["name"]);
+                break;
             case 'dateTime':
                 return FactoryDateTimeField::create($field["name"]);
                 break;
