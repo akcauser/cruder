@@ -29,6 +29,9 @@ class FieldUtil
             case 'textarea':
                 $htmlField = __DIR__ . '/../templates/views/html_fields/textarea.stub';
                 break;
+            case 'datetime-local':
+                $htmlField = __DIR__ . '/../templates/views/html_fields/datetime-local.stub';
+                break;
             default:
                 return false;
         }
