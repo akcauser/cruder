@@ -3,8 +3,8 @@
 namespace Encodeurs\Cruder\Generator\Database;
 
 use Encodeurs\Cruder\Generator\Abstract\Generator;
+use Encodeurs\Cruder\Utils\Factory\FactoryFieldUtil;
 use Encodeurs\Cruder\Utils\Factory\FactoryRelationField;
-use Encodeurs\Cruder\Utils\FieldUtil;
 
 
 class FactoryGenerator extends Generator
@@ -44,7 +44,7 @@ class FactoryGenerator extends Generator
     protected function generateFieldContent()
     {
         foreach ($this->fields as $field) {
-            $code = FieldUtil::generateFactoryField($field);
+            $code = FactoryFieldUtil::generateFactoryField($field);
             $this->fieldContent  .= $code . "\n\t\t\t";
         }
     }

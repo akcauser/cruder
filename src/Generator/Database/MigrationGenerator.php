@@ -5,7 +5,7 @@ namespace Encodeurs\Cruder\Generator\Database;
 use Encodeurs\Cruder\Generator\Abstract\Generator;
 use Encodeurs\Cruder\Utils\DatabaseUtil;
 use Encodeurs\Cruder\Utils\DB\DBRelationField;
-use Encodeurs\Cruder\Utils\FieldUtil;
+use Encodeurs\Cruder\Utils\DB\DBFieldUtil;
 
 
 class MigrationGenerator extends Generator
@@ -60,7 +60,7 @@ class MigrationGenerator extends Generator
     protected function generateFieldContent()
     {
         foreach ($this->fields as $field) {
-            $code = FieldUtil::generateDBField($field);
+            $code = DBFieldUtil::generateDBField($field);
             $this->fieldContent  .= $code . "\n\t\t\t";
         }
 

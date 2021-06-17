@@ -3,9 +3,9 @@
 namespace Encodeurs\Cruder\Utils\Factory;
 
 
-class FactorySmallIntegerField
+class FactoryDateTimeField
 {
-    private static $template = '"½FIELD_NAME½" => random_int(-32768, 32768),';
+    private static $template = '"½FIELD_NAME½" => $this->faker->dateTime(),';
 
     public static function create($fieldName)
     {

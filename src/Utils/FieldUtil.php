@@ -2,16 +2,6 @@
 
 namespace Encodeurs\Cruder\Utils;
 
-use Encodeurs\Cruder\Utils\DB\DBIntegerField;
-use Encodeurs\Cruder\Utils\DB\DBRelationField;
-use Encodeurs\Cruder\Utils\DB\DBSmallIntegerField;
-use Encodeurs\Cruder\Utils\DB\DBStringField;
-use Encodeurs\Cruder\Utils\DB\DBTextField;
-use Encodeurs\Cruder\Utils\Factory\FactoryIntegerField;
-use Encodeurs\Cruder\Utils\Factory\FactorySmallIntegerField;
-use Encodeurs\Cruder\Utils\Factory\FactoryStringField;
-use Encodeurs\Cruder\Utils\Factory\FactoryTextField;
-
 class FieldUtil
 {
     public static $dbtypes = [
@@ -25,52 +15,6 @@ class FieldUtil
         "number",
         "textarea",
     ];
-
-    public static function generateDBField($field)
-    {
-        $dbField = "";
-        switch ($field["dbtype"]) {
-            case 'string':
-                $dbField = DBStringField::create($field["name"]);
-                break;
-            case 'integer':
-                $dbField = DBIntegerField::create($field["name"]);
-                break;
-            case 'smallInteger':
-                $dbField = DBSmallIntegerField::create($field["name"]);
-                break;
-            case 'text':
-                $dbField = DBTextField::create($field["name"]);
-                break;
-            default:
-                return false;
-        }
-
-        if ($field["nullable"]) {
-            $dbField = str_replace("%NULLABLE%", "->nullable()", $dbField);
-        } else {
-            $dbField = str_replace("%NULLABLE%", "", $dbField);
-        }
-        return $dbField;
-    }
-
-    public static function generateFactoryField($field)
-    {
-        switch ($field["dbtype"]) {
-            case 'string':
-                return FactoryStringField::create($field["name"]);
-                break;
-            case 'integer':
-                return FactoryIntegerField::create($field["name"]);
-                break;
-            case 'smallInteger':
-                return FactorySmallIntegerField::create($field["name"]);
-                break;
-            case 'text':
-                return FactoryTextField::create($field["name"]);
-                break;
-        }
-    }
 
     public static function generateHTMLField($field)
     {
@@ -152,6 +96,10 @@ class FieldUtil
                 $field["validations"] = self::addValidationIfNotExist($field["validations"], "integer", "integer");
                 $field["validations"] = self::addValidationIfNotExist($field["validations"], "min:-32768", "min");
                 $field["validations"] = self::addValidationIfNotExist($field["validations"], "max:32768", "max");
+            }
+
+            if ($field['dbtype'] == "dateTime") {
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "date", "date");
             }
 
             array_push($fields, $field);
