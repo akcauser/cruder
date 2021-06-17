@@ -1,10 +1,11 @@
 <?php
 
-namespace Encodeurs\Cruder\Utils\DB;
+namespace Encodeurs\Cruder\Utils;
 
 use Encodeurs\Cruder\Utils\DB\DBDateTimeField;
 use Encodeurs\Cruder\Utils\DB\DBIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBSmallIntegerField;
+use Encodeurs\Cruder\Utils\DB\DBBigIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBStringField;
 use Encodeurs\Cruder\Utils\DB\DBTextField;
 use Encodeurs\Cruder\Utils\DB\DBLongTextField;
@@ -23,6 +24,9 @@ class DBFieldUtil
                 break;
             case 'smallInteger':
                 $dbField = DBSmallIntegerField::create($field["name"]);
+                break;
+            case 'bigInteger':
+                $dbField = DBBigIntegerField::create($field["name"]);
                 break;
             case 'text':
                 $dbField = DBTextField::create($field["name"]);

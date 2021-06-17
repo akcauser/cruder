@@ -98,6 +98,10 @@ class FieldUtil
                 $field["validations"] = self::addValidationIfNotExist($field["validations"], "max:32768", "max");
             }
 
+            if ($field['dbtype'] == "bigInteger") {
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "integer", "integer");
+            }
+
             if ($field['dbtype'] == "dateTime") {
                 $field["validations"] = self::addValidationIfNotExist($field["validations"], "date", "date");
             }

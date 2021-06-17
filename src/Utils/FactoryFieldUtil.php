@@ -1,9 +1,12 @@
 <?php
 
-namespace Encodeurs\Cruder\Utils\Factory;
+namespace Encodeurs\Cruder\Utils;
 
 use Encodeurs\Cruder\Utils\Factory\FactoryIntegerField;
 use Encodeurs\Cruder\Utils\Factory\FactorySmallIntegerField;
+use Encodeurs\Cruder\Utils\Factory\FactoryBigIntegerField;
+use Encodeurs\Cruder\Utils\Factory\FactoryDateTimeField;
+use Encodeurs\Cruder\Utils\Factory\FactoryLongTextField;
 use Encodeurs\Cruder\Utils\Factory\FactoryStringField;
 use Encodeurs\Cruder\Utils\Factory\FactoryTextField;
 
@@ -21,11 +24,14 @@ class FactoryFieldUtil
             case 'smallInteger':
                 return FactorySmallIntegerField::create($field["name"]);
                 break;
+            case 'bigInteger':
+                return FactoryBigIntegerField::create($field["name"]);
+                break;
             case 'text':
                 return FactoryTextField::create($field["name"]);
                 break;
             case 'longText':
-                return FactoryTextField::create($field["name"]);
+                return FactoryLongTextField::create($field["name"]);
                 break;
             case 'dateTime':
                 return FactoryDateTimeField::create($field["name"]);

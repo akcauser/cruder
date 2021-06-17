@@ -3,7 +3,7 @@
 namespace Encodeurs\Cruder\Generator\Database;
 
 use Encodeurs\Cruder\Generator\Abstract\Generator;
-use Encodeurs\Cruder\Utils\Factory\FactoryFieldUtil;
+use Encodeurs\Cruder\Utils\FactoryFieldUtil;
 use Encodeurs\Cruder\Utils\Factory\FactoryRelationField;
 
 

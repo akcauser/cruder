@@ -5,7 +5,7 @@ namespace Encodeurs\Cruder\Generator\Database;
 use Encodeurs\Cruder\Generator\Abstract\Generator;
 use Encodeurs\Cruder\Utils\DatabaseUtil;
 use Encodeurs\Cruder\Utils\DB\DBRelationField;
-use Encodeurs\Cruder\Utils\DB\DBFieldUtil;
+use Encodeurs\Cruder\Utils\DBFieldUtil;
 
 
 class MigrationGenerator extends Generator
