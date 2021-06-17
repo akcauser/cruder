@@ -6,6 +6,7 @@ use Encodeurs\Cruder\Utils\DB\DBDateTimeField;
 use Encodeurs\Cruder\Utils\DB\DBIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBSmallIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBBigIntegerField;
+use Encodeurs\Cruder\Utils\DB\DBDoubleField;
 use Encodeurs\Cruder\Utils\DB\DBStringField;
 use Encodeurs\Cruder\Utils\DB\DBTextField;
 use Encodeurs\Cruder\Utils\DB\DBLongTextField;
@@ -27,6 +28,9 @@ class DBFieldUtil
                 break;
             case 'bigInteger':
                 $dbField = DBBigIntegerField::create($field["name"]);
+                break;
+            case 'double':
+                $dbField = DBDoubleField::create($field["name"]);
                 break;
             case 'text':
                 $dbField = DBTextField::create($field["name"]);
