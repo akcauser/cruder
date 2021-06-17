@@ -5,6 +5,7 @@ namespace Encodeurs\Cruder\Utils;
 use Encodeurs\Cruder\Utils\Factory\FactoryIntegerField;
 use Encodeurs\Cruder\Utils\Factory\FactorySmallIntegerField;
 use Encodeurs\Cruder\Utils\Factory\FactoryBigIntegerField;
+use Encodeurs\Cruder\Utils\Factory\FactoryBooleanField;
 use Encodeurs\Cruder\Utils\Factory\FactoryDateTimeField;
 use Encodeurs\Cruder\Utils\Factory\FactoryDoubleField;
 use Encodeurs\Cruder\Utils\Factory\FactoryLongTextField;
@@ -39,6 +40,9 @@ class FactoryFieldUtil
                 break;
             case 'dateTime':
                 return FactoryDateTimeField::create($field["name"]);
+                break;
+            case 'boolean':
+                return FactoryBooleanField::create($field["name"]);
                 break;
         }
     }

@@ -114,6 +114,10 @@ class FieldUtil
                 $field["validations"] = self::addValidationIfNotExist($field["validations"], "string", "string");
             }
 
+            if ($field['dbtype'] == "boolean") {
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "boolean", "boolean");
+            }
+
             array_push($fields, $field);
         }
 
