@@ -1629,7 +1629,7 @@
     function create_select_dbtype() {
       var field = '<div class="form-group" style="width: 130px;">' +
         '<select class="form-control select2 dbType-select2">' +
-        '<option value="increments">Increments</option>' +
+        '<option value="increments" disabled>Increments</option>' +
         '<option value="integer">Integer</option>' +
         '<option value="smallInteger">SmallInteger</option>' +
         '<option value="longText">LongText</option>' +
@@ -1639,11 +1639,11 @@
         '<option value="decimal">Decimal</option>' +
         '<option value="boolean">Boolean</option>' +
         '<option value="string">String</option>' +
-        '<option value="char">Char</option>' +
+        '<option value="char" disabled>Char</option>' +
         '<option value="text">Text</option>' +
         '<option value="mediumText">MediumText</option>' +
         '<option value="longText">LongText</option>' +
-        '<option value="enum">Enum</option>' +
+        '<option value="enum" disabled>Enum</option>' +
         '<option value="binary">Binary</option>' +
         '<option value="dateTime">DateTime</option>' +
         '<option value="date">Date</option>' +
