@@ -15,8 +15,10 @@ class SchemaJsonGenerator extends Generator
     private $forceMigrate;
     private $timestamps;
     private $tableName;
+    private $relationFields;
+    private $relationFieldsJson = "";
 
-    public function __construct($modelName, $fields, $paginate, $softDelete, $forceMigrate, $timestamps, $tableName)
+    public function __construct($modelName, $fields, $paginate, $softDelete, $forceMigrate, $timestamps, $tableName, $relationFields)
     {
         $this->modelName = $modelName;
         $this->targetFolder = config('cruder.path.schema');
@@ -29,6 +31,7 @@ class SchemaJsonGenerator extends Generator
         $this->forceMigrate = $forceMigrate;
         $this->timestamps = $timestamps;
         $this->tableName = $tableName;
+        $this->relationFields = $relationFields;
 
         parent::__construct();
     }
@@ -36,6 +39,7 @@ class SchemaJsonGenerator extends Generator
     protected function generate()
     {
         $this->generateFields();
+        $this->generateRelationFields();
         parent::generate();
     }
 
@@ -50,6 +54,7 @@ class SchemaJsonGenerator extends Generator
         $this->template = str_replace('%SWAGGER%', "false", $this->template);
         $this->template = str_replace('%FIELDS%', $this->jsonFields, $this->template);
         $this->template = str_replace('%CREATED_AT%', Date::now(), $this->template);
+        $this->template = str_replace('%RELATION_FIELDS%', $this->relationFieldsJson, $this->template);
     }
 
     private function generateFields()
@@ -59,6 +64,16 @@ class SchemaJsonGenerator extends Generator
             $this->jsonFields .= $jsonField;
             if ($key != count($this->fields) - 1)
                 $this->jsonFields .= ",";
+        }
+    }
+
+    private function generateRelationFields()
+    {
+        foreach ($this->relationFields as $key => $field) {
+            $jsonField = FieldUtil::generateJsonSchemaRelationField($field);
+            $this->relationFieldsJson .= $jsonField;
+            if ($key != count($this->fields) - 1)
+                $this->relationFieldsJson .= ",";
         }
     }
 }

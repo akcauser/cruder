@@ -107,8 +107,14 @@
               <a href="{{ route('cruder.builder') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Builder
               </a>
-              <a href="#swagger" class="dropdown-item has-icon">
+              <a href="{{ route('l5-swagger.default.api') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Swagger
+              </a>
+              <a href="{{ route('cruder.rollback_form') }}" class="dropdown-item has-icon">
+                <i class="fas fa-bolt"></i> Rollback
+              </a>
+              <a href="{{ route('cruder.schema_form') }}" class="dropdown-item has-icon">
+                <i class="fas fa-bolt"></i> Generate From Schema
               </a>
             </div>
           </li>
@@ -134,11 +140,7 @@
         <section class="section">
           <div id="info" style="display: none"></div>
 
-          @include('cruder::builder_form')
-          <!--
-          @include('cruder::builder_rollback')
-          -->
-          @include('cruder::builder_from_schema')
+          @yield('content')
 
         </section>
       </div>
@@ -2134,7 +2136,7 @@
     function create_select_dbtype() {
       var field = '<div class="form-group" style="width: 130px;">' +
         '<select class="form-control select2 dbType-select2">' +
-        '<option value="increments">Increments</option>' +
+        '<option value="increments" disabled>Increments</option>' +
         '<option value="integer">Integer</option>' +
         '<option value="smallInteger">SmallInteger</option>' +
         '<option value="longText">LongText</option>' +
@@ -2144,11 +2146,11 @@
         '<option value="decimal">Decimal</option>' +
         '<option value="boolean">Boolean</option>' +
         '<option value="string">String</option>' +
-        '<option value="char">Char</option>' +
+        '<option value="char" disabled>Char</option>' +
         '<option value="text">Text</option>' +
         '<option value="mediumText">MediumText</option>' +
         '<option value="longText">LongText</option>' +
-        '<option value="enum">Enum</option>' +
+        '<option value="enum" disabled>Enum</option>' +
         '<option value="binary">Binary</option>' +
         '<option value="dateTime">DateTime</option>' +
         '<option value="date">Date</option>' +
@@ -2164,14 +2166,17 @@
         '<option value="text">Text</option>' +
         '<option value="email">Email</option>' +
         '<option value="number">Number</option>' +
+        '<option value="float">Float(step=0.01)</option>' +
         '<option value="date">Date</option>' +
-        '<option value="file">File</option>' +
+        '<option value="datetime-local">Datetime</option>' +
+        '<option value="file" disabled>File</option>' +
         '<option value="password">Password</option>' +
-        '<option value="select">Select</option>' +
-        '<option value="radio">Radio</option>' +
-        '<option value="checkbox">Checkbox</option>' +
+        '<option value="select" disabled>Select</option>' +
+        '<option value="radio" disabled>Radio</option>' +
+        '<option value="checkbox" disabled>Checkbox</option>' +
+        '<option value="boolean">Boolean</option>' +
         '<option value="textarea">TextArea</option>' +
-        '<option value="toggle-switch">Toggle</option>' +
+        '<option value="color">Color Picker</option>' +
         '</select>' +
         '</div>'
 

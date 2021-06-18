@@ -1,3 +1,7 @@
+@extends('cruder::builder')
+
+@section('content')
+
 <div class="section-body">
     <div class="card">
         <div class="card-header">
@@ -8,23 +12,22 @@
                 @method('post')
                 @csrf
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col">
                         <div class="form-group">
                             <label>Model Name <span class="required">*</span></label>
                             <input type="text" class="form-control" id="modelNameInput" placeholder="Enter model name"
                                 required>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
                         <div class="form-group">
                             <label>Custom Table Name</label>
                             <input type="text" class="form-control" id="customTableNameInput"
                                 placeholder="Enter custom table name">
                         </div>
+                        <div class="form-group">
+                            <label>Paginate</label>
+                            <input type="text" class="form-control" id="paginateInput" placeholder="Enter page data count">
+                        </div>
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="form-group col-md-6">
                         <div class="control-label">Options</div>
                         <div class="custom-switches-stacked mt-2">
@@ -50,7 +53,7 @@
                             -->
                             <label class="custom-switch">
                                 <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
-                                    id="chkSwagger">
+                                    id="chkSwagger" checked>
                                 <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description">Swagger</span>
                             </label>
@@ -60,20 +63,6 @@
                                 <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description">Force migrate</span>
                             </label>
-                        </div>
-                    </div>
-                    <!--
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Prefix</label>
-                            <input type="text" class="form-control" id="prefixInput" placeholder="Enter prefix">
-                        </div>
-                    </div>
-                -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Paginate</label>
-                            <input type="text" class="form-control" id="paginateInput" placeholder="Enter page data count">
                         </div>
                     </div>
                 </div>
@@ -154,3 +143,5 @@
         </div>
     </div>
 </div>
+
+@endsection

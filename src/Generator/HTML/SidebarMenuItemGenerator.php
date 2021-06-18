@@ -30,4 +30,14 @@ class SidebarMenuItemGenerator extends Generator
             parent::store();
         }
     }
+
+    public function rollback()
+    {
+        if (FileUtil::inExist($this->targetFolder . $this->targetFile, $this->template)) {
+            // delete template
+            $content = FileUtil::getContent($this->targetFolder . $this->targetFile);
+            $content = str_replace($this->template, "", $content);
+            FileUtil::newFile($this->targetFolder, $this->targetFile, $content);
+        }
+    }
 }

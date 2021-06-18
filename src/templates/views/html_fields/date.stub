@@ -1,0 +1,18 @@
+<?php 
+$%FIELD_NAME% = null;
+if(isset($%MODEL_NAME_CAMEL_CASE%->%FIELD_NAME%)){
+    $%FIELD_NAME% = $%MODEL_NAME_CAMEL_CASE%->%FIELD_NAME%;
+    $%FIELD_NAME% = date("Y-m-d", strtotime($%FIELD_NAME%));
+    $%FIELD_NAME% = str_replace(" ", "T", $%FIELD_NAME%);
+}elseif(old('%FIELD_NAME%')) {
+    $%FIELD_NAME% = old('%FIELD_NAME%');
+    $%FIELD_NAME% = date("Y-m-d", strtotime($%FIELD_NAME%));
+    $%FIELD_NAME% = str_replace(" ", "T", $%FIELD_NAME%);
+}
+?>
+<div class="form-group row mb-4">
+    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">%FIELD_NAME%</label>
+    <div class="col-sm-12 col-md-7">
+        <input type="date" class="form-control" name="%FIELD_NAME%" value="{{ $%FIELD_NAME% }}">
+    </div>
+</div>
