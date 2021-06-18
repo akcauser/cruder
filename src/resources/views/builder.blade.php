@@ -1659,6 +1659,7 @@
         '<option value="text">Text</option>' +
         '<option value="email">Email</option>' +
         '<option value="number">Number</option>' +
+        '<option value="float">Float(step=0.01)</option>' +
         '<option value="date">Date</option>' +
         '<option value="datetime-local">Datetime</option>' +
         '<option value="file" disabled>File</option>' +

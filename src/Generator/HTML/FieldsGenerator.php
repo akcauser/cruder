@@ -3,8 +3,7 @@
 namespace Encodeurs\Cruder\Generator\HTML;
 
 use Encodeurs\Cruder\Generator\Abstract\Generator;
-use Encodeurs\Cruder\Utils\FieldUtil;
-use Encodeurs\Cruder\Utils\FileUtil;
+use Encodeurs\Cruder\Utils\HTMLFieldUtil;
 
 class FieldsGenerator extends Generator
 {
@@ -30,12 +29,12 @@ class FieldsGenerator extends Generator
     protected function getTemplate()
     {
         foreach ($this->fields as $field) {
-            $fieldContent = FieldUtil::generateHTMLField($field);
+            $fieldContent = HTMLFieldUtil::generateHTMLField($field);
             $this->template .= $fieldContent . "\n";
         }
 
         foreach ($this->relationFields as $relationField) {
-            $fieldContent = FieldUtil::generateHTMLRelationField($relationField);
+            $fieldContent = HTMLFieldUtil::generateHTMLRelationField($relationField);
             $this->template .= $fieldContent . "\n";
         }
     }
