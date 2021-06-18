@@ -1657,17 +1657,17 @@
       var field = '<div class="form-group" style="width: 130px;">' +
         '<select class="form-control select2 htmlType-select2">' +
         '<option value="text">Text</option>' +
-        '<option value="email">Email</option>' +
+        '<option value="email" disabled>Email</option>' +
         '<option value="number">Number</option>' +
         '<option value="date">Date</option>' +
         '<option value="datetime-local">Datetime</option>' +
-        '<option value="file">File</option>' +
-        '<option value="password">Password</option>' +
-        '<option value="select">Select</option>' +
-        '<option value="radio">Radio</option>' +
-        '<option value="checkbox">Checkbox</option>' +
+        '<option value="file" disabled>File</option>' +
+        '<option value="password" disabled>Password</option>' +
+        '<option value="select" disabled>Select</option>' +
+        '<option value="radio" disabled>Radio</option>' +
+        '<option value="checkbox" disabled>Checkbox</option>' +
+        '<option value="boolean">Boolean</option>' +
         '<option value="textarea">TextArea</option>' +
-        '<option value="toggle-switch">Toggle</option>' +
         '</select>' +
         '</div>'
 

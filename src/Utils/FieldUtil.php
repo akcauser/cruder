@@ -35,6 +35,9 @@ class FieldUtil
             case 'date':
                 $htmlField = __DIR__ . '/../templates/views/html_fields/date.stub';
                 break;
+            case 'boolean':
+                $htmlField = __DIR__ . '/../templates/views/html_fields/boolean.stub';
+                break;
             default:
                 return false;
         }
