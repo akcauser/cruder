@@ -107,9 +107,10 @@
               <a href="{{ route('cruder.builder') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Builder
               </a>
-              <a href="{{ route('l5-swagger.default.api') }}" class="dropdown-item has-icon">
+              
+              {{-- <a href="{{ route('l5-swagger.default.api') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Swagger
-              </a>
+              </a> --}}
               <a href="{{ route('cruder.rollback_form') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Rollback
               </a>
