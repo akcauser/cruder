@@ -5,13 +5,18 @@ namespace Encodeurs\Cruder\Utils;
 use Encodeurs\Cruder\Utils\Factory\FactoryIntegerField;
 use Encodeurs\Cruder\Utils\Factory\FactorySmallIntegerField;
 use Encodeurs\Cruder\Utils\Factory\FactoryBigIntegerField;
+use Encodeurs\Cruder\Utils\Factory\FactoryBinaryField;
 use Encodeurs\Cruder\Utils\Factory\FactoryBooleanField;
 use Encodeurs\Cruder\Utils\Factory\FactoryDateField;
 use Encodeurs\Cruder\Utils\Factory\FactoryDateTimeField;
+use Encodeurs\Cruder\Utils\Factory\FactoryDecimalField;
 use Encodeurs\Cruder\Utils\Factory\FactoryDoubleField;
+use Encodeurs\Cruder\Utils\Factory\FactoryFloatField;
 use Encodeurs\Cruder\Utils\Factory\FactoryLongTextField;
+use Encodeurs\Cruder\Utils\Factory\FactoryMediumTextField;
 use Encodeurs\Cruder\Utils\Factory\FactoryStringField;
 use Encodeurs\Cruder\Utils\Factory\FactoryTextField;
+use Encodeurs\Cruder\Utils\Factory\FactoryTimestampField;
 
 class FactoryFieldUtil
 {
@@ -47,6 +52,21 @@ class FactoryFieldUtil
                 break;
             case 'date':
                 return FactoryDateField::create($field["name"]);
+                break;
+            case 'float':
+                return FactoryFloatField::create($field["name"]);
+                break;
+            case 'decimal':
+                return FactoryDecimalField::create($field["name"]);
+                break;
+            case 'mediumText':
+                return FactoryMediumTextField::create($field["name"]);
+                break;
+            case 'binary':
+                return FactoryBinaryField::create($field["name"]);
+                break;
+            case 'timestamp':
+                return FactoryTimestampField::create($field["name"]);
                 break;
         }
     }

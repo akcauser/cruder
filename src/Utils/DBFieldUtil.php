@@ -6,12 +6,17 @@ use Encodeurs\Cruder\Utils\DB\DBDateTimeField;
 use Encodeurs\Cruder\Utils\DB\DBIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBSmallIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBBigIntegerField;
+use Encodeurs\Cruder\Utils\DB\DBBinaryField;
 use Encodeurs\Cruder\Utils\DB\DBBooleanField;
 use Encodeurs\Cruder\Utils\DB\DBDateField;
+use Encodeurs\Cruder\Utils\DB\DBDecimalField;
 use Encodeurs\Cruder\Utils\DB\DBDoubleField;
+use Encodeurs\Cruder\Utils\DB\DBFloatField;
 use Encodeurs\Cruder\Utils\DB\DBStringField;
 use Encodeurs\Cruder\Utils\DB\DBTextField;
 use Encodeurs\Cruder\Utils\DB\DBLongTextField;
+use Encodeurs\Cruder\Utils\DB\DBMediumTextField;
+use Encodeurs\Cruder\Utils\DB\DBTimestampField;
 
 class DBFieldUtil
 {
@@ -48,6 +53,21 @@ class DBFieldUtil
                 break;
             case 'date':
                 $dbField = DBDateField::create($field["name"]);
+                break;
+            case 'float':
+                $dbField = DBFloatField::create($field["name"]);
+                break;
+            case 'decimal':
+                $dbField = DBDecimalField::create($field["name"]);
+                break;
+            case 'mediumText':
+                $dbField = DBMediumTextField::create($field["name"]);
+                break;
+            case 'binary':
+                $dbField = DBBinaryField::create($field["name"]);
+                break;
+            case 'timestamp':
+                $dbField = DBTimestampField::create($field["name"]);
                 break;
             default:
                 return false;
