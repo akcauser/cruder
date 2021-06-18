@@ -32,6 +32,9 @@ class FieldUtil
             case 'datetime-local':
                 $htmlField = __DIR__ . '/../templates/views/html_fields/datetime-local.stub';
                 break;
+            case 'date':
+                $htmlField = __DIR__ . '/../templates/views/html_fields/date.stub';
+                break;
             default:
                 return false;
         }
