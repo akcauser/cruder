@@ -7,6 +7,7 @@ use Encodeurs\Cruder\Utils\DB\DBIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBSmallIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBBigIntegerField;
 use Encodeurs\Cruder\Utils\DB\DBBooleanField;
+use Encodeurs\Cruder\Utils\DB\DBDateField;
 use Encodeurs\Cruder\Utils\DB\DBDoubleField;
 use Encodeurs\Cruder\Utils\DB\DBStringField;
 use Encodeurs\Cruder\Utils\DB\DBTextField;
@@ -44,6 +45,9 @@ class DBFieldUtil
                 break;
             case 'boolean':
                 $dbField = DBBooleanField::create($field["name"]);
+                break;
+            case 'date':
+                $dbField = DBDateField::create($field["name"]);
                 break;
             default:
                 return false;
