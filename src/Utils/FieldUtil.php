@@ -26,6 +26,15 @@ class FieldUtil
             case 'number':
                 $htmlField = __DIR__ . '/../templates/views/html_fields/number.stub';
                 break;
+            case 'email':
+                $htmlField = __DIR__ . '/../templates/views/html_fields/email.stub';
+                break;
+            case 'password':
+                $htmlField = __DIR__ . '/../templates/views/html_fields/password.stub';
+                break;
+            case 'color':
+                $htmlField = __DIR__ . '/../templates/views/html_fields/color.stub';
+                break;
             case 'textarea':
                 $htmlField = __DIR__ . '/../templates/views/html_fields/textarea.stub';
                 break;
