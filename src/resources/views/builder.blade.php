@@ -190,7 +190,7 @@
         table_column_json_arr = createTableColumnJsonArr(response)
     )
     var models
-    var modelss = getModels().then( response =>
+    var modelss = getModels().then( response3 =>
         
         models = createModelColumnJsonArr(response3)
     )
@@ -230,10 +230,11 @@
           fieldName: $(this).find('.foreignFieldName').val(),
           relationType: $(this).find('.relationshipType-select2').val(),
           foreignModel: $(this).find('.foreignModel').val(),
-          foreignTable: $(this).find('.foreignTableName').val(),
+          //foreignTable: $(this).find('.foreignTableName').val(),
           foreignField: $(this).find('.foreignField').val(),
           foreignShowField: $(this).find('.foreignShowField').val(),
         });
+
       });
    
       var data = {
@@ -251,7 +252,7 @@
         fields: fieldArr,
         relationFields: relationFieldArr
       };
-    
+      console.log("relationFieldArr -> ",relationFieldArr)
       data['_token'] = $('#token').val();
 
       $("#info").html("");
@@ -1999,24 +2000,27 @@
         addRelationSelectToRelationshipTable() +
         '</td>' +
         '<td>' +
-        '<div class="form-group">' +
-        '<input type="text" class="form-control foreignModel" required>' +
-        '</div>' +
+        createModelSelectForRelation()+
+        // '<div class="form-group">' +
+        // '<input type="text" class="form-control foreignModel" required>' +
+        // '</div>' +
+        '</td>' +
+        //'<td>' +
+        //'<div class="form-group">' +
+        //'<input type="text" class="form-control foreignTableName" required>' +
+        //'</div>' +
+        //'</td>' +
+        '<td>' +
+        createRelationForeignField('')+
+        //'<div class="form-group">' +
+        //'<input type="text" class="form-control foreignField">' +
+        //'</div>' +
         '</td>' +
         '<td>' +
-        '<div class="form-group">' +
-        '<input type="text" class="form-control foreignTableName" required>' +
-        '</div>' +
-        '</td>' +
-        '<td>' +
-        '<div class="form-group">' +
-        '<input type="text" class="form-control foreignField">' +
-        '</div>' +
-        '</td>' +
-        '<td>' +
-        '<div class="form-group">' +
-        '<input type="text" class="form-control foreignShowField">' +
-        '</div>' +
+        createRelationShowField()
+        //'<div class="form-group">' +
+        //'<input type="text" class="form-control foreignShowField">' +
+        //'</div>' +
         '</td>' +
         '<td><i class="remove fas fa-trash" style="cursor: pointer;color: red"></i></td>' +
         '</div>' +
@@ -2027,30 +2031,118 @@
 
       $('#relationShipTable tbody').append(tr_element);
       $('select').select2();
+
+      $('.foreignModel').on('select2:select', function (e) {
+        var data = e.params.data;
+        var trIndex = $(this).closest('tr')[0].rowIndex
+
+        //$(this).closest('tr').find("td:eq(4)").empty()
+  
+        var options = ""
+
+        for (let index = 0; index < models.length; index++) {
+   
+            if(data.text === models[index].model){
+                const columns_arr = models[index].columns;
+
+                for (let i = 0; i < columns_arr.length; i++) {
+                    const element = columns_arr[i];
+                    options += "<option value='"+element+"'>"+element+"<option>"
+                }
+            }
+        }
+
+        //var foreignFieldSelect = $($($(this).closest('tr'))[0].children[4].children[0].children[0])[0]
+        //var showFieldSelect = $($($(this).closest('tr'))[0].children[5].children[0].children[0])[0]
+       
+        
+        for (let i = 0; i < $(".foreignField").length; i++) {
+            const element =$($(".foreignField")[i]).closest('tr')[0].rowIndex;
+            const selectForeignField = $(".foreignField")[i]
+
+            if(element === trIndex){
+                $($(".foreignField")[i])[0].append(options)
+                $(selectForeignField).empty().append(options)
+            }  
+        }
+        for (let i = 0; i < $(".foreignShowField").length; i++) {
+            const element =$($(".foreignShowField")[i]).closest('tr')[0].rowIndex;
+            const selectForeignShowField = $(".foreignShowField")[i]
+
+            if(element === trIndex){
+                $($(".foreignShowField")[i])[0].append(options)
+                $(selectForeignShowField).empty().append(options)
+            }  
+        }  
+      })
+
     })
 
     $(document).on('click', '.remove', function (e) {
       $(this).parents('tr').remove();
     });
 
-    function createRelationForeignModel(){
-        //var table_select_options = ""
-//
-        //for(let i=0; i<models.length ; i++){
-        //    let data = table_column_json_arr[i].table
-        //    table_select_options += '<option value="'+data+'">'+data+'</option>'
-        //}
-//
-        //var fieldToBeAdd = '<div class="form-group">' +
-        //'<select class="form-control select2" data-placeholder="Choose model">' +
-        //options+
-        //'<option></option>' +
-        //'</select>' +
-        //'</div>' +
+    function createModelSelectForRelation(){
+        var options = ""
+        console.log("models -> ",models)
+        for (let index = 0; index < models.length; index++) {
+            const element = models[index].model;
+            options += "<option value='"+element+"'>"+element+"<option>"
+            
+        
+        }
+        var fieldToBeAdd = '<div class="form-group">' +
+                '<select class="form-control select2 foreignModel" data-placeholder="Choose model">' +
+                    '<option></option>' +
+                    options+    
+                '</select>' +
+            '</div>' 
+
+        return fieldToBeAdd
+
     }
-    function createRelationForeignTable(){}
-    function createRelationForeignField(){}
-    function createRelationShowField(){}
+
+    function createRelationForeignField(options){
+        //var options = ""
+        //console.log("models -> ",models)
+        //for (let index = 0; index < models.length; index++) {
+        //    const columns_arr = models[index].columns;
+        //    for (let i = 0; i < columns_arr.length; i++) {
+        //        const element = columns_arr[i];
+        //        options += "<option value='"+element+"'>"+element+"<option>"
+        //    }
+        //
+        //}
+        var fieldToBeAdd = '<div class="form-group">' +
+                '<select class="form-control select2 foreignField" data-placeholder="Choose field">' +
+                    '<option></option>' +
+                    options+    
+                '</select>' +
+            '</div>' 
+
+        return fieldToBeAdd
+    }
+
+    function createRelationShowField(){
+        //var options = ""
+        //console.log("models -> ",models)
+        //for (let index = 0; index < models.length; index++) {
+        //    const columns_arr = models[index].columns;
+        //    for (let i = 0; i < columns_arr.length; i++) {
+        //        const element = columns_arr[i];
+        //        options += "<option value='"+element+"'>"+element+"<option>"
+        //    }
+        //
+        //}
+        var fieldToBeAdd = '<div class="form-group">' +
+                '<select class="form-control select2 foreignShowField" data-placeholder="Choose field">' +
+                    '<option></option>' +
+                    //options+    
+                '</select>' +
+            '</div>' 
+
+        return fieldToBeAdd
+    }
 
     function create_default_fields(value) {
       var field = '<tr class="item">' +

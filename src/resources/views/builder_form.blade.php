@@ -115,7 +115,7 @@
                                     <th>Field Name <span class="required">*</span></th>
                                     <th>Relation Type <span class="required">*</span></th>
                                     <th>Foreign Model<span class="required">*</span></th>
-                                    <th>Foreign Table<span class="required">*</span></th>
+                                    {{-- <th>Foreign Table<span class="required">*</span></th> --}}
                                     <th>Foreign Field<span class="required">*</span></th>
                                     <th>Show Field<span class="required">*</span></th>
                                     <th></th>
