@@ -81,7 +81,7 @@ class MainGenerator
 
             // Generate Service
             new ServiceAbstractGenerator($this->modelName);
-            new ServiceConcreteGenerator($this->modelName);
+            new ServiceConcreteGenerator($this->modelName, $this->fields);
             new ServiceProviderGenerator($this->modelName);
 
             // DataService Generator
