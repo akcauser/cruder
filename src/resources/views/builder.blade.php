@@ -108,9 +108,9 @@
                 <i class="fas fa-bolt"></i> Builder
               </a>
               
-              {{-- <a href="{{ route('l5-swagger.default.api') }}" class="dropdown-item has-icon">
+              <a href="{{ route('l5-swagger.default.api') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Swagger
-              </a> --}}
+              </a>
               <a href="{{ route('cruder.rollback_form') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Rollback
               </a>
@@ -269,47 +269,47 @@
       }, 1501);
       console.log("fieldArr ",fieldArr)
 
-      //$.ajax({
-      //  type: "POST",
-      //  url: "{!! route('cruder.generate') !!}",
-      //  method: "POST",
-      //  dataType: 'json',
-      //  contentType: 'application/json',
-      //  data: JSON.stringify(data),
-      //  success: function (result) {
-      //    $("#info").html("");
-      //    $("#info").append('<div class="alert alert-success">Successfully created.</div>');
-      //    $("#info").show();
-      //    var $container = $("html,body");
-      //    var $scrollTo = $('#info');
-      //    $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
-      //    setTimeout(function () {
-      //      $('#info').fadeOut('slow');
-      //    }, 1500);
-      //    setTimeout(function () {
-      //      //location.reload();
-      //    }, 1501);
-      //  },
-      //  error: function (result) {
-      //    var result = JSON.parse(JSON.stringify(result));
-      //    var errorMessage = '';
-      //    if (result.hasOwnProperty('responseJSON') && result.responseJSON.hasOwnProperty('message')) {
-      //      errorMessage = result.responseJSON.message;
-      //    }
-      //    $("#info").html("");
-      //    $("#info").append('<div class="alert alert-success">Successfully created.</div>');
-      //    $("#info").show();
-      //    var $container = $("html,body");
-      //    var $scrollTo = $('#info');
-      //    $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
-      //    setTimeout(function () {
-      //      $('#info').fadeOut('slow');
-      //    }, 1500);
-      //    setTimeout(function () {
-      //      //location.reload();
-      //    }, 1501);
-      //  }
-      //});
+      $.ajax({
+        type: "POST",
+        url: "{!! route('cruder.generate') !!}",
+        method: "POST",
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function (result) {
+          $("#info").html("");
+          $("#info").append('<div class="alert alert-success">Successfully created.</div>');
+          $("#info").show();
+          var $container = $("html,body");
+          var $scrollTo = $('#info');
+          $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
+          setTimeout(function () {
+            $('#info').fadeOut('slow');
+          }, 1500);
+          setTimeout(function () {
+            //location.reload();
+          }, 1501);
+        },
+        error: function (result) {
+          var result = JSON.parse(JSON.stringify(result));
+          var errorMessage = '';
+          if (result.hasOwnProperty('responseJSON') && result.responseJSON.hasOwnProperty('message')) {
+            errorMessage = result.responseJSON.message;
+          }
+          $("#info").html("");
+          $("#info").append('<div class="alert alert-success">Successfully created.</div>');
+          $("#info").show();
+          var $container = $("html,body");
+          var $scrollTo = $('#info');
+          $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
+          setTimeout(function () {
+            $('#info').fadeOut('slow');
+          }, 1500);
+          setTimeout(function () {
+            //location.reload();
+          }, 1501);
+        }
+      });
       return false;
     });
 
