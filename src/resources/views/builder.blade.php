@@ -487,6 +487,138 @@
                         
                     $(this).closest("div.validation-row").append(fieldToBeAdd)
          
+                }else if(data.text === "After Or Equal (Date)"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Distinct"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="may be empty or strict/ignore_case" />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Multiple Of"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="value" />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Current Password"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="value" />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Date Equals"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Before Or Equal (Date)"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
                 }else if(data.text === "Between"){
                     if($(this).closest("div.validation-row")[0].childNodes.length > 2){
                         var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
@@ -608,6 +740,27 @@
                     $(this).closest("div.validation-row").append(fieldToBeAdd)
          
                 }else if(data.text === "Regex"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="pattern" />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Not Regex"){
                     if($(this).closest("div.validation-row")[0].childNodes.length > 2){
                         var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
 
@@ -1947,6 +2100,10 @@
                     '<option value="boolean" title="The field under validation must be able to be cast as a boolean.">Boolean</option>' +
                     '<option value="confirmed" title="The field under validation must have a matching field of foo_confirmation.">Confirmed</option>' +
                     '<option value="date" title="The field under validation must be a valid date according to the strtotime PHP function.">Date</option>' +
+                    '<option value="after_or_equal:" title="The field under validation must be a value after or equal to the given date.">After Or Equal (Date)</option>' +
+                    '<option value="current_password:" title="The field under validation must match the authenticated user\'s password. ">Current Password<option>'+
+                    '<option value="date_equals:" title="The field under validation must be equal to the given date. ">Date Equals</option>'+
+                    '<option value="before_or_equal:" title="The field under validation must be a value preceding the given date.">Before Or Equal (Date)</option>' +
                     '<option value="date_format" title="The field under validation must match the format defined according to the date_parse_from_format PHP function.">Date Format</option>' +
                     '<option value="different:" title="The given field must be different than the field under validation.">Different</option>' +
                     '<option value="digits:" title="The field under validation must be numeric and must have an exact length of value.">Digits</option>' +
@@ -1960,6 +2117,7 @@
                     '<option value="mimes:" title="The file under validation must have a MIME type corresponding to one of the listed extensions.">Mimes</option>' +
                     '<option value="numeric" title="The field under validation must have a numeric value.">Numeric</option>' +
                     '<option value="regex:" title="The field under validation must match the given regular expression.">Regex</option>' +
+                    '<option value="not_regex:" title="The field under validation must not match the given regular expression.">Not Regex</option>' +
                     '<option value="same:" title="The given field must match the field under validation.">Same</option>' +
                     '<option value="size:" title="The field under validation must have a size matching the given value.">Size</option>' +
                     '<option value="url" title="The field under validation must be formatted as an URL.">URL</option>' +
@@ -1974,6 +2132,19 @@
                     '<option value="gte:" title="The field under validation must be greater than or equal to the given field. ">Grater Than or Equal</option>' +
                     '<option value="lt:" title="The field under validation must be less than the given field. ">Less Than</option>' +
                     '<option value="lte:" title="The field under validation must be less than or equal to the given field. ">Less Than or Equal</option>' +
+                    '<option value="alpha_dash" title="The field under validation may have alpha-numeric characters, as well as dashes and underscores.">Alpha Dash</option>'+
+                    'option value="bail" title="Stop running validation rules for the field after the first validation failure.">Bail</option>'+
+                    'option value="distinct:" title="When validating arrays, the field under validation must not have any duplicate values.">Distinct</option>'+
+                    '<option value="file" title="The field under validation must be a successfully uploaded file.">File</option>'+
+                    '<option value="filled" title="The field under validation must not be empty when it is present.">Filled</option>'+
+                    '<option value="json" title="The field under validation must be a valid JSON string.">JSON</option>'+
+                    '<option value="nullable" title="The field under validation may be null.">Nullable</option>'+
+                    '<option value="uuid" title="The field under validation must be a valid RFC 4122 (version 1, 3, 4, or 5) universally unique identifier (UUID).">UUID</option>'+
+                    '<option value="sometimes" title="In some situations, you may wish to run validation checks against a field only if that field is present in the data being validated.">Sometimes</option>'+
+                    '<option value="prohibited" title="The field under validation must be empty or not present.">Prohibited</option>'+
+                    '<option value="present" title="The field under validation must be present in the input data but can be empty.">Present</option>'+
+                    '<option value="password" title="The field under validation must match the authenticated user\'s password.">Password</option>'+
+                    '<option value="multiple_of:" title="The field under validation must be a multiple of value.">Multiple Of</option>'+
                     '</select>' +
                     '<div id="tooltip_container"></div>'+
                 '</div>'+
