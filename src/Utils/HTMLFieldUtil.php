@@ -38,6 +38,9 @@ class HTMLFieldUtil
             case 'float':
                 $htmlField = __DIR__ . '/../templates/views/html_fields/float.stub';
                 break;
+            case 'image':
+                $htmlField = __DIR__ . '/../templates/views/html_fields/image.stub';
+                break;
             default:
                 return false;
         }

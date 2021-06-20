@@ -2177,6 +2177,7 @@
         '<option value="boolean">Boolean</option>' +
         '<option value="textarea">TextArea</option>' +
         '<option value="color">Color Picker</option>' +
+        '<option value="image">Image</option>' +
         '</select>' +
         '</div>'
 

@@ -28,7 +28,11 @@ class TableTdsGenerator extends Generator
     {
         $this->template .= '<td>{{$item->id}}</td>';
         foreach ($this->fields as $field) {
-            $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/table_td.stub');
+            if ($field["htmltype"] == "image") {
+                $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/custom_fields/image.stub');
+            } else {
+                $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/table_td.stub');
+            }
             $fieldContent = str_replace('%FIELD_NAME%', $field["name"], $fieldContent);
             $this->template .= $fieldContent . "\n";
         }
