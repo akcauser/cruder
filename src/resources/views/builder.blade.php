@@ -107,6 +107,7 @@
               <a href="{{ route('cruder.builder') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Builder
               </a>
+              
               <a href="{{ route('l5-swagger.default.api') }}" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Swagger
               </a>
@@ -185,11 +186,13 @@
 
     var table_column_json_arr
     var tableSelect = getTablesFromDatabase().then( response =>
+        
         table_column_json_arr = createTableColumnJsonArr(response)
     )
     var models
-    var modelss = getModels().then( response =>
-        models = response
+    var modelss = getModels().then( response3 =>
+        
+        models = createModelColumnJsonArr(response3)
     )
 
     $("#form").on("submit", function (e) {
@@ -227,10 +230,11 @@
           fieldName: $(this).find('.foreignFieldName').val(),
           relationType: $(this).find('.relationshipType-select2').val(),
           foreignModel: $(this).find('.foreignModel').val(),
-          foreignTable: $(this).find('.foreignTableName').val(),
+          //foreignTable: $(this).find('.foreignTableName').val(),
           foreignField: $(this).find('.foreignField').val(),
           foreignShowField: $(this).find('.foreignShowField').val(),
         });
+
       });
    
       var data = {
@@ -239,6 +243,8 @@
         options: {
           softDelete: $('#chkDelete').prop('checked'),
           timestamps: $('#chkTimestamps').prop('checked'),
+          save: $('#chkSave').prop('checked'),
+          //prefix: $('#prefixInput').val(),
           paginate: $('#paginateInput').val(),
           forceMigrate: $('#chkForceMigrate').prop('checked'),
           swagger: $('#chkSwagger').prop('checked'),
@@ -246,7 +252,7 @@
         fields: fieldArr,
         relationFields: relationFieldArr
       };
-    
+      console.log("relationFieldArr -> ",relationFieldArr)
       data['_token'] = $('#token').val();
 
       $("#info").html("");
@@ -261,6 +267,7 @@
       setTimeout(function () {
         //location.reload();
       }, 1501);
+      console.log("fieldArr ",fieldArr)
 
       $.ajax({
         type: "POST",
@@ -480,6 +487,138 @@
                         
                     $(this).closest("div.validation-row").append(fieldToBeAdd)
          
+                }else if(data.text === "After Or Equal (Date)"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Distinct"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="may be empty or strict/ignore_case" />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Multiple Of"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="value" />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Current Password"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="value" />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Date Equals"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
+                }else if(data.text === "Before Or Equal (Date)"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
                 }else if(data.text === "Between"){
                     if($(this).closest("div.validation-row")[0].childNodes.length > 2){
                         var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
@@ -621,6 +760,27 @@
                         
                     $(this).closest("div.validation-row").append(fieldToBeAdd)
          
+                }else if(data.text === "Not Regex"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="pattern" />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+         
                 }else if(data.text === "Same"){
                 
                     if($(this).closest("div.validation-row")[0].childNodes.length > 2){
@@ -689,38 +849,38 @@
                         }
 
                     }
-                    var fieldNameInputs = $(".fieldNameInput")
-                    var options=""
+                    //var fieldNameInputs = $(".fieldNameInput")
+                    //var options=""
 
-                    for(var i=0; i<fieldNameInputs.length ; i++){
-                        var data = fieldNameInputs[i].value
-                        options += '<option value="'+data+'">'+data+'</option>'
-                    }
-
-                    var fieldToBeAdd = 
-                    '<div class="col-sm-2">'+
-                        '<div class="form-group">' +
-                            '<select class="form-control select2" multiple data-placeholder="Choose field">' +
-                                '<option></option>'+
-                                options +
-                            '</select>'+
-                        '</div>'+
-                    '</div>'
-                    //$(this).closest("div.validation-row").find("input").css("display", "block")
-                            
-                    $(this).closest("div.validation-row").append(fieldToBeAdd)
-                    $('select').select2();
-                    
+                    //for(var i=0; i<fieldNameInputs.length ; i++){
+                    //    var data = fieldNameInputs[i].value
+                    //    options += '<option value="'+data+'">'+data+'</option>'
+                    //}
 
                     //var fieldToBeAdd = 
                     //'<div class="col-sm-2">'+
                     //    '<div class="form-group">' +
-                    //        '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                    //        '<select class="form-control select2" multiple data-placeholder="Choose field">' +
+                    //            '<option></option>'+
+                    //            options +
+                    //        '</select>'+
                     //    '</div>'+
                     //'</div>'
                     ////$(this).closest("div.validation-row").find("input").css("display", "block")
-                    //    
+                    //        
                     //$(this).closest("div.validation-row").append(fieldToBeAdd)
+                    //$('select').select2();
+                    
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
                     
                 }else if(data.text === "Mimes"){
               
@@ -734,37 +894,37 @@
                         }
 
                     }
-                    var fieldNameInputs = $(".fieldNameInput")
-                    var options=""
+                    //var fieldNameInputs = $(".fieldNameInput")
+                    //var options=""
 
-                    for(var i=0; i<fieldNameInputs.length ; i++){
-                        var data = fieldNameInputs[i].value
-                        options += '<option value="'+data+'">'+data+'</option>'
-                    }
-
-                    var fieldToBeAdd = 
-                    '<div class="col-sm-2">'+
-                        '<div class="form-group">' +
-                            '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
-                                '<option></option>'+
-                                options +
-                            '</select>'+
-                        '</div>'+
-                    '</div>'
-                    //$(this).closest("div.validation-row").find("input").css("display", "block")
-                            
-                    $(this).closest("div.validation-row").append(fieldToBeAdd)
-                    $('select').select2();
+                    //for(var i=0; i<fieldNameInputs.length ; i++){
+                    //    var data = fieldNameInputs[i].value
+                    //    options += '<option value="'+data+'">'+data+'</option>'
+                    //}
 
                     //var fieldToBeAdd = 
                     //'<div class="col-sm-2">'+
                     //    '<div class="form-group">' +
-                    //        '<input type="text" class="form-control validation-input" placeholder="foo,bar,..." />'+
+                    //        '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
+                    //            '<option></option>'+
+                    //            options +
+                    //        '</select>'+
                     //    '</div>'+
                     //'</div>'
                     ////$(this).closest("div.validation-row").find("input").css("display", "block")
-                    //    
+                    //        
                     //$(this).closest("div.validation-row").append(fieldToBeAdd)
+                    //$('select').select2();
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..." />'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
        
                 }else if(data.text === "Not In"){
               
@@ -779,37 +939,37 @@
 
                     }
 
-                    var fieldNameInputs = $(".fieldNameInput")
-                    var options=""
+                    //var fieldNameInputs = $(".fieldNameInput")
+                    //var options=""
 
-                    for(var i=0; i<fieldNameInputs.length ; i++){
-                        var data = fieldNameInputs[i].value
-                        options += '<option value="'+data+'">'+data+'</option>'
-                    }
-
-                    var fieldToBeAdd = 
-                    '<div class="col-sm-2">'+
-                        '<div class="form-group">' +
-                            '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
-                                '<option></option>'+
-                                options +
-                            '</select>'+
-                        '</div>'+
-                    '</div>'
-                    //$(this).closest("div.validation-row").find("input").css("display", "block")
-                            
-                    $(this).closest("div.validation-row").append(fieldToBeAdd)
-                    $('select').select2();
+                    //for(var i=0; i<fieldNameInputs.length ; i++){
+                    //    var data = fieldNameInputs[i].value
+                    //    options += '<option value="'+data+'">'+data+'</option>'
+                    //}
 
                     //var fieldToBeAdd = 
                     //'<div class="col-sm-2">'+
                     //    '<div class="form-group">' +
-                    //        '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                    //        '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
+                    //            '<option></option>'+
+                    //            options +
+                    //        '</select>'+
                     //    '</div>'+
                     //'</div>'
                     ////$(this).closest("div.validation-row").find("input").css("display", "block")
-                    //    
+                    //        
                     //$(this).closest("div.validation-row").append(fieldToBeAdd)
+                    //$('select').select2();
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
        
                 }else if(data.text === "Required If"){
               
@@ -846,35 +1006,36 @@
                     $(this).closest("div.validation-row").append(fieldToBeAdd)
                     $('select').select2();
 
-                    //var fieldToBeAdd = 
-                    //'<div class="col-sm-2">'+
-                    //    '<div class="form-group">' +
-                    //        '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
-                    //    '</div>'+
-                    //'</div>'
-                    ////$(this).closest("div.validation-row").find("input").css("display", "block")
-                    //    
-                    //$(this).closest("div.validation-row").append(fieldToBeAdd)
-                }else if(data.text === "Required With"){
+                    var fieldToBeAdd2 = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd2)
+                }else if(data.text === "Prohibited If"){
               
                     if($(this).closest("div.validation-row")[0].childNodes.length > 2){
                         var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
-
+                    
                         for (let index = number_of_elements-1; index >= 2; index--) {
-
+                        
                             $(this).closest("div.validation-row")[0].childNodes[index].remove()
-
+                        
                         }
-
+                    
                     }
+                
                     var fieldNameInputs = $(".fieldNameInput")
                     var options=""
-
+                
                     for(var i=0; i<fieldNameInputs.length ; i++){
                         var data = fieldNameInputs[i].value
                         options += '<option value="'+data+'">'+data+'</option>'
                     }
-
+                
                     var fieldToBeAdd = 
                     '<div class="col-sm-2">'+
                         '<div class="form-group">' +
@@ -888,16 +1049,147 @@
                             
                     $(this).closest("div.validation-row").append(fieldToBeAdd)
                     $('select').select2();
+                            
+                    var fieldToBeAdd2 = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd2)
+                }else if(data.text === "Prohibited Unless"){
+              
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+                    
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+                
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+                
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+                
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();
+                            
+                    var fieldToBeAdd2 = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd2)
+                }else if(data.text === "Required Unless"){
+              
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+                    
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+                
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+                
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+                
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();
+                            
+                    var fieldToBeAdd2 = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd2)
+                }else if(data.text === "Required With"){
+              
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+                    //var fieldNameInputs = $(".fieldNameInput")
+                    //var options=""
+
+                    //for(var i=0; i<fieldNameInputs.length ; i++){
+                    //    var data = fieldNameInputs[i].value
+                    //    options += '<option value="'+data+'">'+data+'</option>'
+                    //}
 
                     //var fieldToBeAdd = 
                     //'<div class="col-sm-2">'+
                     //    '<div class="form-group">' +
-                    //        '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                    //        '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
+                    //            '<option></option>'+
+                    //            options +
+                    //        '</select>'+
                     //    '</div>'+
                     //'</div>'
                     ////$(this).closest("div.validation-row").find("input").css("display", "block")
-                    //    
+                    //        
                     //$(this).closest("div.validation-row").append(fieldToBeAdd)
+                    //$('select').select2();
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
        
                 }else if(data.text === "Required With All"){
               
@@ -912,37 +1204,37 @@
 
                     }
 
-                    var fieldNameInputs = $(".fieldNameInput")
-                    var options=""
+                    //var fieldNameInputs = $(".fieldNameInput")
+                    //var options=""
 
-                    for(var i=0; i<fieldNameInputs.length ; i++){
-                        var data = fieldNameInputs[i].value
-                        options += '<option value="'+data+'">'+data+'</option>'
-                    }
-
-                    var fieldToBeAdd = 
-                    '<div class="col-sm-2">'+
-                        '<div class="form-group">' +
-                            '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
-                                '<option></option>'+
-                                options +
-                            '</select>'+
-                        '</div>'+
-                    '</div>'
-                    //$(this).closest("div.validation-row").find("input").css("display", "block")
-                            
-                    $(this).closest("div.validation-row").append(fieldToBeAdd)
-                    $('select').select2();
+                    //for(var i=0; i<fieldNameInputs.length ; i++){
+                    //    var data = fieldNameInputs[i].value
+                    //    options += '<option value="'+data+'">'+data+'</option>'
+                    //}
 
                     //var fieldToBeAdd = 
                     //'<div class="col-sm-2">'+
                     //    '<div class="form-group">' +
-                    //        '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                    //        '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
+                    //            '<option></option>'+
+                    //            options +
+                    //        '</select>'+
                     //    '</div>'+
                     //'</div>'
                     ////$(this).closest("div.validation-row").find("input").css("display", "block")
-                    //    
+                    //        
                     //$(this).closest("div.validation-row").append(fieldToBeAdd)
+                    //$('select').select2();
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
        
                 }else if(data.text === "Required Without"){
               
@@ -957,37 +1249,37 @@
 
                     }
 
-                    var fieldNameInputs = $(".fieldNameInput")
-                    var options=""
+                    //var fieldNameInputs = $(".fieldNameInput")
+                    //var options=""
 
-                    for(var i=0; i<fieldNameInputs.length ; i++){
-                        var data = fieldNameInputs[i].value
-                        options += '<option value="'+data+'">'+data+'</option>'
-                    }
-
-                    var fieldToBeAdd = 
-                    '<div class="col-sm-2">'+
-                        '<div class="form-group">' +
-                            '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
-                                '<option></option>'+
-                                options +
-                            '</select>'+
-                        '</div>'+
-                    '</div>'
-                    //$(this).closest("div.validation-row").find("input").css("display", "block")
-                            
-                    $(this).closest("div.validation-row").append(fieldToBeAdd)
-                    $('select').select2();
+                    //for(var i=0; i<fieldNameInputs.length ; i++){
+                    //    var data = fieldNameInputs[i].value
+                    //    options += '<option value="'+data+'">'+data+'</option>'
+                    //}
 
                     //var fieldToBeAdd = 
                     //'<div class="col-sm-2">'+
                     //    '<div class="form-group">' +
-                    //        '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                    //        '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
+                    //            '<option></option>'+
+                    //            options +
+                    //        '</select>'+
                     //    '</div>'+
                     //'</div>'
                     ////$(this).closest("div.validation-row").find("input").css("display", "block")
-//
+                    //        
                     //$(this).closest("div.validation-row").append(fieldToBeAdd)
+                    //$('select').select2();
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
 
                 }else if(data.text === "Required Without All"){
               
@@ -1001,38 +1293,86 @@
                         }
 
                     }
-                    var fieldNameInputs = $(".fieldNameInput")
-                    var options=""
+                    //var fieldNameInputs = $(".fieldNameInput")
+                    //var options=""
 
-                    for(var i=0; i<fieldNameInputs.length ; i++){
-                        var data = fieldNameInputs[i].value
-                        options += '<option value="'+data+'">'+data+'</option>'
-                    }
-
-                    var fieldToBeAdd = 
-                    '<div class="col-sm-2">'+
-                        '<div class="form-group">' +
-                            '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
-                                '<option></option>'+
-                                options +
-                            '</select>'+
-                        '</div>'+
-                    '</div>'
-                    //$(this).closest("div.validation-row").find("input").css("display", "block")
-                            
-                    $(this).closest("div.validation-row").append(fieldToBeAdd)
-                    $('select').select2();
+                    //for(var i=0; i<fieldNameInputs.length ; i++){
+                    //    var data = fieldNameInputs[i].value
+                    //    options += '<option value="'+data+'">'+data+'</option>'
+                    //}
 
                     //var fieldToBeAdd = 
                     //'<div class="col-sm-2">'+
                     //    '<div class="form-group">' +
-                    //        '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                    //        '<select class="form-control select2" multiple="" data-placeholder="Choose field">' +
+                    //            '<option></option>'+
+                    //            options +
+                    //        '</select>'+
                     //    '</div>'+
                     //'</div>'
                     ////$(this).closest("div.validation-row").find("input").css("display", "block")
-//
+                    //        
                     //$(this).closest("div.validation-row").append(fieldToBeAdd)
+                    //$('select').select2();
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+            
+                }else if(data.text === "Ends With"){
+              
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
                     
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                        
+                }else if(data.text === "Starts With"){
+
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="foo,bar,..."/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+
                 }else if(data.text === "Exists"){
                 
                     if($(this).closest("div.validation-row")[0].childNodes.length > 2){
@@ -1210,6 +1550,258 @@
                     })
 
 
+                }else if(data.text === "In Array"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+
+                        }
+
+                    }
+
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();
+                }else if(data.text === "Exclude If"){
+
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+                    
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+                
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+                
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+                
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();
+                            
+                    var fieldToBeAdd2 = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="value"/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd2)
+                }else if(data.text === "Exclude Unless"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+                    
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+                
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+                
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+                
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();
+                            
+                    var fieldToBeAdd2 = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<input type="text" class="form-control validation-input" placeholder="value"/>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                        
+                    $(this).closest("div.validation-row").append(fieldToBeAdd2)
+                }else if(data.text === "Grater Than"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+                    
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+                
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+                
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+                
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();                    
+                }else if(data.text === "Grater Than or Equal"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+                    
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+                
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+                
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+                
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();                    
+                }else if(data.text === "Less Than"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+                    
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+                
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+                
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+                
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();                    
+                }else if(data.text === "Less Than or Equal"){
+                    if($(this).closest("div.validation-row")[0].childNodes.length > 2){
+                        var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
+                    
+                        for (let index = number_of_elements-1; index >= 2; index--) {
+                        
+                            $(this).closest("div.validation-row")[0].childNodes[index].remove()
+                        
+                        }
+                    
+                    }
+                
+                    var fieldNameInputs = $(".fieldNameInput")
+                    var options=""
+                
+                    for(var i=0; i<fieldNameInputs.length ; i++){
+                        var data = fieldNameInputs[i].value
+                        options += '<option value="'+data+'">'+data+'</option>'
+                    }
+                
+                    var fieldToBeAdd = 
+                    '<div class="col-sm-2">'+
+                        '<div class="form-group">' +
+                            '<select class="form-control select2" data-placeholder="Choose field">' +
+                                '<option></option>'+
+                                options +
+                            '</select>'+
+                        '</div>'+
+                    '</div>'
+                    //$(this).closest("div.validation-row").find("input").css("display", "block")
+                            
+                    $(this).closest("div.validation-row").append(fieldToBeAdd)
+                    $('select').select2();                    
                 }else{
                     if($(this).closest("div.validation-row")[0].childNodes.length > 2){
                         var number_of_elements = $(this).closest("div.validation-row")[0].childNodes.length
@@ -1297,22 +1889,26 @@
                         $(data)[0].children[2].children[0].children[0].nodeName === "SELECT"){
 
                        
-                            if($(data)[0].children[1].children[0].children[0].value === "in:" || 
-                            $(data)[0].children[1].children[0].children[0].value === "mimes:" ||
-                            $(data)[0].children[1].children[0].children[0].value === "not_in:" ||
-                            $(data)[0].children[1].children[0].children[0].value === "required_with:" ||
-                            $(data)[0].children[1].children[0].children[0].value === "required_with_all:" ||
-                            $(data)[0].children[1].children[0].children[0].value === "required_without:" ||
-                            $(data)[0].children[1].children[0].children[0].value === "required_without_all:"
+                            if($(data)[0].children[1].children[0].children[0].value === "required_if:"||
+                            $(data)[0].children[1].children[0].children[0].value === "required_unless:"||
+                            $(data)[0].children[1].children[0].children[0].value === "prohibited_if:"||
+                            $(data)[0].children[1].children[0].children[0].value === "prohibited_unless:"
+                            //$(data)[0].children[1].children[0].children[0].value === "in:" || 
+                            //$(data)[0].children[1].children[0].children[0].value === "mimes:" ||
+                            //$(data)[0].children[1].children[0].children[0].value === "not_in:" ||
+                            //$(data)[0].children[1].children[0].children[0].value === "required_with:" ||
+                            //$(data)[0].children[1].children[0].children[0].value === "required_with_all:" ||
+                            //$(data)[0].children[1].children[0].children[0].value === "required_without:" ||
+                            //$(data)[0].children[1].children[0].children[0].value === "required_without_all:"
                             ){
                                 //burada select_data2 den gelen valueların array gelmesi lazım
                                 var select_data1 = $(data)[0].children[1].children[0].children[0].value
-
+//
                                 var optionList=$(data)[0].children[2].children[0].children[0].childNodes
                                 var selectedValues=""
                                 for (let index = 0; index < optionList.length; index++) {
                                     var element = optionList[index];
-                  
+                  //
                                     if(element.selected == true){
                                         selectedValues += element.text + ","
                                     }
@@ -1321,9 +1917,9 @@
                                 if(selectedValues.slice(-1) === ","){
                                     selectedValues = selectedValues.slice(0,-1)
                                 }
-
+//
                                 //var select_data2 = $(data)[0].children[2].children[0].children[0].value
-                      
+                      //
                                 validation_string += select_data1 + selectedValues + "|"
                             }else{
                                 var select_data1 = $(data)[0].children[1].children[0].children[0].value
@@ -1395,6 +1991,25 @@
             });
             
         }
+        console.log("tableSelect ->",arr)
+        return arr;
+    }
+    function createModelColumnJsonArr(response){
+        var arr = []
+        for (let i = 0; i < response.length; i++) {
+            let modelName = response[i];
+            getColumnsFromModels(modelName).then( response2 => {
+           
+                var jsonObj = {
+                    model: modelName,
+                    columns: response2
+                }
+
+                arr.push(jsonObj)
+            });
+            
+        }
+        console.log("model ->",arr)
         return arr;
     }
 
@@ -1410,6 +2025,22 @@
             },
             success: function (response, status, jqXHR) {
             
+                //return response;
+            }
+        
+        })
+    }
+    function getColumnsFromModels(modelName){
+        return $.ajax({
+            url: window.location.origin+"/cruder/models/"+modelName+"/columns",
+            type: 'GET',
+            beforeSend: function(){
+                
+            },
+            error: function (response){
+            
+            },
+            success: function (response, status, jqXHR) {
                 //return response;
             }
         
@@ -1445,9 +2076,10 @@
                     '<select class="form-control select2 validation-select2" data-placeholder="Choose validation">' +
                     '<option></option>'+
                     '<option value="required" title="The field under validation must be present in the input data.">Required</option>' +
-                    '<option value="required_if" title="The field under validation must be present if the field is equal to any value.">Required If</option>' +
-                    '<option value="required_with" title="The field under validation must be present only if any of the other specified fields are present.">Required With</option>' +
-                    '<option value="required_with_all" title="The field under validation must be present only if all of the other specified fields are present.">Required With All</option>' +
+                    '<option value="required_if:" title="The field under validation must be present if the field is equal to any value.">Required If</option>' +
+                    '<option value="required_unless:" title="The field under validation must be present and not empty unless the anotherfield field is equal to any value.">Required Unless</option>' +
+                    '<option value="required_with:" title="The field under validation must be present only if any of the other specified fields are present.">Required With</option>' +
+                    '<option value="required_with_all:" title="The field under validation must be present only if all of the other specified fields are present.">Required With All</option>' +
                     '<option value="required_without:" title="The field under validation must be present only when any of the other specified fields are not present.">Required Without</option>' +
                     '<option value="required_without_all:" title="The field under validation must be present only when all of the other specified fields are not present.">Required Without All</option>' +
                     '<option value="integer" title="The field under validation must have an integer value.">Integer</option>' +
@@ -1468,6 +2100,10 @@
                     '<option value="boolean" title="The field under validation must be able to be cast as a boolean.">Boolean</option>' +
                     '<option value="confirmed" title="The field under validation must have a matching field of foo_confirmation.">Confirmed</option>' +
                     '<option value="date" title="The field under validation must be a valid date according to the strtotime PHP function.">Date</option>' +
+                    '<option value="after_or_equal:" title="The field under validation must be a value after or equal to the given date.">After Or Equal (Date)</option>' +
+                    '<option value="current_password:" title="The field under validation must match the authenticated user\'s password. ">Current Password<option>'+
+                    '<option value="date_equals:" title="The field under validation must be equal to the given date. ">Date Equals</option>'+
+                    '<option value="before_or_equal:" title="The field under validation must be a value preceding the given date.">Before Or Equal (Date)</option>' +
                     '<option value="date_format" title="The field under validation must match the format defined according to the date_parse_from_format PHP function.">Date Format</option>' +
                     '<option value="different:" title="The given field must be different than the field under validation.">Different</option>' +
                     '<option value="digits:" title="The field under validation must be numeric and must have an exact length of value.">Digits</option>' +
@@ -1481,9 +2117,34 @@
                     '<option value="mimes:" title="The file under validation must have a MIME type corresponding to one of the listed extensions.">Mimes</option>' +
                     '<option value="numeric" title="The field under validation must have a numeric value.">Numeric</option>' +
                     '<option value="regex:" title="The field under validation must match the given regular expression.">Regex</option>' +
+                    '<option value="not_regex:" title="The field under validation must not match the given regular expression.">Not Regex</option>' +
                     '<option value="same:" title="The given field must match the field under validation.">Same</option>' +
                     '<option value="size:" title="The field under validation must have a size matching the given value.">Size</option>' +
                     '<option value="url" title="The field under validation must be formatted as an URL.">URL</option>' +
+                    '<option value="starts_with:" title="The field under validation must start with one of the given values.">Starts With</option>' +
+                    '<option value="ends_with:" title="The field under validation must end with one of the given values.">Ends With</option>' +
+                    '<option value="exclude_if:" title="The field under validation will be excluded from the request data returned by the validate and validated methods if the anotherfield field is equal to value.">Exclude If</option>' +
+                    '<option value="exclude_unless:" title="The field under validation will be excluded from the request data returned by the validate and validated methods unless anotherfield\'s field is equal to value.">Exclude Unless</option>' +
+                    '<option value="prohibited_if:" title="The field under validation must be empty or not present if the anotherfield field is equal to any value.">Prohibited If</option>' +
+                    '<option value="prohibited_unless:" title="The field under validation must be empty or not present unless the anotherfield field is equal to any value.">Prohibited If</option>' +
+                    '<option value="in_array:" title="The field under validation must exist in anotherfield\'s values.">In Array</option>' +
+                    '<option value="gt:" title="The field under validation must be greater than the given field. ">Grater Than</option>' +
+                    '<option value="gte:" title="The field under validation must be greater than or equal to the given field. ">Grater Than or Equal</option>' +
+                    '<option value="lt:" title="The field under validation must be less than the given field. ">Less Than</option>' +
+                    '<option value="lte:" title="The field under validation must be less than or equal to the given field. ">Less Than or Equal</option>' +
+                    '<option value="alpha_dash" title="The field under validation may have alpha-numeric characters, as well as dashes and underscores.">Alpha Dash</option>'+
+                    'option value="bail" title="Stop running validation rules for the field after the first validation failure.">Bail</option>'+
+                    'option value="distinct:" title="When validating arrays, the field under validation must not have any duplicate values.">Distinct</option>'+
+                    '<option value="file" title="The field under validation must be a successfully uploaded file.">File</option>'+
+                    '<option value="filled" title="The field under validation must not be empty when it is present.">Filled</option>'+
+                    '<option value="json" title="The field under validation must be a valid JSON string.">JSON</option>'+
+                    '<option value="nullable" title="The field under validation may be null.">Nullable</option>'+
+                    '<option value="uuid" title="The field under validation must be a valid RFC 4122 (version 1, 3, 4, or 5) universally unique identifier (UUID).">UUID</option>'+
+                    '<option value="sometimes" title="In some situations, you may wish to run validation checks against a field only if that field is present in the data being validated.">Sometimes</option>'+
+                    '<option value="prohibited" title="The field under validation must be empty or not present.">Prohibited</option>'+
+                    '<option value="present" title="The field under validation must be present in the input data but can be empty.">Present</option>'+
+                    '<option value="password" title="The field under validation must match the authenticated user\'s password.">Password</option>'+
+                    '<option value="multiple_of:" title="The field under validation must be a multiple of value.">Multiple Of</option>'+
                     '</select>' +
                     '<div id="tooltip_container"></div>'+
                 '</div>'+
@@ -1510,24 +2171,27 @@
         addRelationSelectToRelationshipTable() +
         '</td>' +
         '<td>' +
-        '<div class="form-group">' +
-        '<input type="text" class="form-control foreignModel" required>' +
-        '</div>' +
+        createModelSelectForRelation()+
+        // '<div class="form-group">' +
+        // '<input type="text" class="form-control foreignModel" required>' +
+        // '</div>' +
+        '</td>' +
+        //'<td>' +
+        //'<div class="form-group">' +
+        //'<input type="text" class="form-control foreignTableName" required>' +
+        //'</div>' +
+        //'</td>' +
+        '<td>' +
+        createRelationForeignField('')+
+        //'<div class="form-group">' +
+        //'<input type="text" class="form-control foreignField">' +
+        //'</div>' +
         '</td>' +
         '<td>' +
-        '<div class="form-group">' +
-        '<input type="text" class="form-control foreignTableName" required>' +
-        '</div>' +
-        '</td>' +
-        '<td>' +
-        '<div class="form-group">' +
-        '<input type="text" class="form-control foreignField">' +
-        '</div>' +
-        '</td>' +
-        '<td>' +
-        '<div class="form-group">' +
-        '<input type="text" class="form-control foreignShowField">' +
-        '</div>' +
+        createRelationShowField()
+        //'<div class="form-group">' +
+        //'<input type="text" class="form-control foreignShowField">' +
+        //'</div>' +
         '</td>' +
         '<td><i class="remove fas fa-trash" style="cursor: pointer;color: red"></i></td>' +
         '</div>' +
@@ -1538,11 +2202,118 @@
 
       $('#relationShipTable tbody').append(tr_element);
       $('select').select2();
+
+      $('.foreignModel').on('select2:select', function (e) {
+        var data = e.params.data;
+        var trIndex = $(this).closest('tr')[0].rowIndex
+
+        //$(this).closest('tr').find("td:eq(4)").empty()
+  
+        var options = ""
+
+        for (let index = 0; index < models.length; index++) {
+   
+            if(data.text === models[index].model){
+                const columns_arr = models[index].columns;
+
+                for (let i = 0; i < columns_arr.length; i++) {
+                    const element = columns_arr[i];
+                    options += "<option value='"+element+"'>"+element+"<option>"
+                }
+            }
+        }
+
+        //var foreignFieldSelect = $($($(this).closest('tr'))[0].children[4].children[0].children[0])[0]
+        //var showFieldSelect = $($($(this).closest('tr'))[0].children[5].children[0].children[0])[0]
+       
+        
+        for (let i = 0; i < $(".foreignField").length; i++) {
+            const element =$($(".foreignField")[i]).closest('tr')[0].rowIndex;
+            const selectForeignField = $(".foreignField")[i]
+
+            if(element === trIndex){
+                $($(".foreignField")[i])[0].append(options)
+                $(selectForeignField).empty().append(options)
+            }  
+        }
+        for (let i = 0; i < $(".foreignShowField").length; i++) {
+            const element =$($(".foreignShowField")[i]).closest('tr')[0].rowIndex;
+            const selectForeignShowField = $(".foreignShowField")[i]
+
+            if(element === trIndex){
+                $($(".foreignShowField")[i])[0].append(options)
+                $(selectForeignShowField).empty().append(options)
+            }  
+        }  
+      })
+
     })
 
     $(document).on('click', '.remove', function (e) {
       $(this).parents('tr').remove();
     });
+
+    function createModelSelectForRelation(){
+        var options = ""
+        console.log("models -> ",models)
+        for (let index = 0; index < models.length; index++) {
+            const element = models[index].model;
+            options += "<option value='"+element+"'>"+element+"<option>"
+            
+        
+        }
+        var fieldToBeAdd = '<div class="form-group">' +
+                '<select class="form-control select2 foreignModel" data-placeholder="Choose model">' +
+                    '<option></option>' +
+                    options+    
+                '</select>' +
+            '</div>' 
+
+        return fieldToBeAdd
+
+    }
+
+    function createRelationForeignField(options){
+        //var options = ""
+        //console.log("models -> ",models)
+        //for (let index = 0; index < models.length; index++) {
+        //    const columns_arr = models[index].columns;
+        //    for (let i = 0; i < columns_arr.length; i++) {
+        //        const element = columns_arr[i];
+        //        options += "<option value='"+element+"'>"+element+"<option>"
+        //    }
+        //
+        //}
+        var fieldToBeAdd = '<div class="form-group">' +
+                '<select class="form-control select2 foreignField" data-placeholder="Choose field">' +
+                    '<option></option>' +
+                    options+    
+                '</select>' +
+            '</div>' 
+
+        return fieldToBeAdd
+    }
+
+    function createRelationShowField(){
+        //var options = ""
+        //console.log("models -> ",models)
+        //for (let index = 0; index < models.length; index++) {
+        //    const columns_arr = models[index].columns;
+        //    for (let i = 0; i < columns_arr.length; i++) {
+        //        const element = columns_arr[i];
+        //        options += "<option value='"+element+"'>"+element+"<option>"
+        //    }
+        //
+        //}
+        var fieldToBeAdd = '<div class="form-group">' +
+                '<select class="form-control select2 foreignShowField" data-placeholder="Choose field">' +
+                    '<option></option>' +
+                    //options+    
+                '</select>' +
+            '</div>' 
+
+        return fieldToBeAdd
+    }
 
     function create_default_fields(value) {
       var field = '<tr class="item">' +
