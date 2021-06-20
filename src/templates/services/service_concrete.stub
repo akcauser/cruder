@@ -37,6 +37,8 @@ class %MODEL_NAME%Service implements I%MODEL_NAME%Service
 
     public function store(%MODEL_NAME%StoreRequest $request)
     {
+        %BUSINESS_RULES%
+
         $response = $this->%MODEL_NAME_CAMEL_CASE%DataService->store($request->all());
         if (!$response) {
             return 500;
@@ -46,12 +48,13 @@ class %MODEL_NAME%Service implements I%MODEL_NAME%Service
     }
 
     public function update(%MODEL_NAME%UpdateRequest $request, $id)
-    {
+    {   
         $%MODEL_NAME_CAMEL_CASE% = $this->%MODEL_NAME_CAMEL_CASE%DataService->get($id);
         if (!$%MODEL_NAME_CAMEL_CASE%) {
             return 404;
         }
 
+        %BUSINESS_RULES%
         $response = $this->%MODEL_NAME_CAMEL_CASE%DataService->update($%MODEL_NAME_CAMEL_CASE%, $request->all());
         if (!$response) {
             return 500;

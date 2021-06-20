@@ -1,0 +1,3 @@
+<td>
+<img src="{{$item->%FIELD_NAME%}}" width="64px"/>
+</td>

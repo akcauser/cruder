@@ -1,0 +1,5 @@
+$path = request()->file("%FIELD_NAME%")->path();
+$type = pathinfo($path, PATHINFO_EXTENSION);
+$data = file_get_contents($path);
+$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+$request->merge(["%FIELD_NAME%Base64" => $base64]);
