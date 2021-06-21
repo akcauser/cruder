@@ -28,7 +28,7 @@ return [
     'namespace' => [
         'factory' => 'Database\Factories',
         'seeder' => 'Database\Seeders',
-        'tests' => 'Tests\Feature',
+        'test' => 'Tests\Feature',
         'controller' => 'App\Http\Controllers',
         'request' => 'App\Http\Requests',
         'model' => 'App\Models',

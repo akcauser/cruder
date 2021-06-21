@@ -19,11 +19,11 @@ class API%MODEL_NAME%Test extends TestCase
     public function test_index()
     {
         // 5 record added to database
-        %MODEL_NAME%::factory()->count(5)->create();
+        %MODEL_NAME%::factory()->count(1)->create();
 
         $response = $this->get('api/%MODEL_NAME_SNAKE_CASE%s');
 
-        $response->assertJsonCount(5, 'data');
+        $response->assertJsonCount(1, 'data');
         $response->assertStatus(200);
     }
 

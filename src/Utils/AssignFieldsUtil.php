@@ -15,7 +15,10 @@ class AssignFieldsUtil
     public static function imageBase64($field)
     {
         if ($field["nullable"])
-            return '$%MODEL_NAME_CAMEL_CASE%->' . $field['name'] . ' = $data["' . $field['name'] . 'Base64"];' . "\n\t\t";
+            return '
+            if(isset($data["' . $field['name'] . 'Base64"]))
+                $%MODEL_NAME_CAMEL_CASE%->' . $field['name'] . ' = $data["' . $field['name'] . 'Base64"] ?? null;
+            ' . "\n\t\t";
 
         return '$%MODEL_NAME_CAMEL_CASE%->' . $field['name'] . ' = $data["' . $field['name'] . 'Base64"];' . "\n\t\t";
     }
