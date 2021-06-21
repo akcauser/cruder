@@ -2071,7 +2071,7 @@
                     '<option value="integer" title="The field under validation must have an integer value.">Integer</option>' +
                     '<option value="string" title="The field under validation must be a string type.">String</option>' +
                     '<option value="timezone" title="The field under validation must be a valid timezone identifier according to the timezone_identifiers_list PHP function.">Timezone</option>' +
-                    '<option value="unique:" title="The field under validation must be unique on a given database table. If the column option is not specified, the field name will be used.">Unique</option>' +
+                    '<option disabled value="unique:" title="The field under validation must be unique on a given database table. If the column option is not specified, the field name will be used.">Unique(Future)</option>' +
                     '<option value="max:" title="The field under validation must be less than or equal to a maximum value. ">Max</option>' +
                     '<option value="min:" title="The field under validation must have a minimum value. ">Min</option>' +
                     '<option value="accepted" title="The field under validation must be yes, on, 1, or true. ">Accepted</option>' +
