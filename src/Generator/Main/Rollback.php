@@ -5,6 +5,7 @@ namespace Encodeurs\Cruder\Generator\Main;
 use Encodeurs\Cruder\Generator\HTML\SidebarMenuItemGenerator;
 use Encodeurs\Cruder\Utils\FileUtil;
 use Encodeurs\Cruder\Utils\TargetFile\TargetFileUtil;
+use Illuminate\Support\Facades\Artisan;
 
 class Rollback
 {
@@ -59,6 +60,8 @@ class Rollback
             // todo: rollback api routes
             // todo: rollback providers
             // todo: rollback migration
+
+            Artisan::call('l5-swagger:generate');
 
             return true;
         } catch (\Throwable $th) {
