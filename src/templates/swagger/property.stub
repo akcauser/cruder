@@ -4,7 +4,8 @@
 *
 * @OA\Property(
 * property="%FIELD_NAME%",
-* type="string",
+* type="%TYPE%",
+* format="%FORMAT%",
 * description="%MODEL_NAME% %FIELD_NAME%"
 * )
 */

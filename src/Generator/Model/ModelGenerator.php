@@ -3,8 +3,8 @@
 namespace Encodeurs\Cruder\Generator\Model;
 
 use Encodeurs\Cruder\Generator\Abstract\Generator;
-use Encodeurs\Cruder\Utils\FileUtil;
 use Encodeurs\Cruder\Utils\ModelUtil;
+use Encodeurs\Cruder\Utils\SwaggerUtil;
 
 class ModelGenerator extends Generator
 {
@@ -104,13 +104,8 @@ class ModelGenerator extends Generator
             // swagger template change here
             // foreach generate properties 
             foreach ($this->fields as $field) {
-                // get property template
-                $template = FileUtil::getContent(__DIR__ . '/../../templates/swagger/property.stub');
-                // replace fields
-                $template = str_replace('%FIELD_NAME%', $field["name"], $template);
-
                 // add swagger template
-                $this->swaggerTemplate .= $template;
+                $this->swaggerTemplate .= SwaggerUtil::generateProperty($field);
             }
         }
     }

@@ -2403,7 +2403,6 @@
         '<option value="increments" disabled>Increments</option>' +
         '<option value="integer">Integer</option>' +
         '<option value="smallInteger">SmallInteger</option>' +
-        '<option value="longText">LongText</option>' +
         '<option value="bigInteger">BigInteger</option>' +
         '<option value="double">Double</option>' +
         '<option value="float">Float</option>' +
