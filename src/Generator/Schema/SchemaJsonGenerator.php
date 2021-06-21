@@ -72,7 +72,7 @@ class SchemaJsonGenerator extends Generator
         foreach ($this->relationFields as $key => $field) {
             $jsonField = FieldUtil::generateJsonSchemaRelationField($field);
             $this->relationFieldsJson .= $jsonField;
-            if ($key != count($this->fields) - 1)
+            if ($key != count($this->relationFields) - 1)
                 $this->relationFieldsJson .= ",";
         }
     }
