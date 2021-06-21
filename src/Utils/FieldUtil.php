@@ -80,6 +80,10 @@ class FieldUtil
                 $field["validations"] = self::addValidationIfNotExist($field["validations"], "boolean", "boolean");
             }
 
+            if ($field['nullable']) {
+                $field["validations"] = self::addValidationIfNotExist($field["validations"], "nullable", "nullable");
+            }
+
             array_push($fields, $field);
         }
 
