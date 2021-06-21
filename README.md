@@ -1,7 +1,12 @@
 <h1 align="center">CRUDER</h1>
 
 
-This package allows you to create API and perform CRUD Scaffolding. It helps you avoid repetition while typing your codes and saves time.
+This package allows you to create API and perform CRUD Scaffolding. It helps you avoid repetition while typing your codes and saves time. 
+
+# Documentation 
+
+You can find documentation on link: https://cruder.akcauser.com
+
 
 # Installation
 
