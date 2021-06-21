@@ -19,6 +19,20 @@ class SwaggerUtil
         return $template;
     }
 
+    public static function generateRelationField($relationField)
+    {
+        // get property template
+        $template = FileUtil::getContent(self::$templatePath);
+        // replace fields
+        $template = str_replace('%FIELD_NAME%', $relationField["fieldName"], $template);
+        // type generate and replace
+        $template = str_replace('%TYPE%', "integer", $template);
+        // format generate and replace
+        $template = str_replace('%FORMAT%', "", $template);
+
+        return $template;
+    }
+
     /** 
      * String field default olarak kabul edildi. Bu yüzden string için olan durumlar eklenmedi. 
      */

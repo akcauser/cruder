@@ -107,6 +107,11 @@ class ModelGenerator extends Generator
                 // add swagger template
                 $this->swaggerTemplate .= SwaggerUtil::generateProperty($field);
             }
+
+            foreach ($this->relationFields as $relationField) {
+                // add swagger template
+                $this->swaggerTemplate .= SwaggerUtil::generateRelationField($relationField);
+            }
         }
     }
 }
