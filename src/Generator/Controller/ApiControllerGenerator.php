@@ -8,8 +8,9 @@ use Encodeurs\Cruder\Utils\FileUtil;
 class ApiControllerGenerator extends Generator
 {
     private $swagger;
+    private $fields;
 
-    public function __construct($modelName, $swagger)
+    public function __construct($modelName, $swagger, $fields)
     {
         $this->modelName = $modelName;
         $this->targetFolder = config('cruder.path.controller') . config('cruder.api_prefix') . "/";
@@ -17,6 +18,7 @@ class ApiControllerGenerator extends Generator
         $this->targetFile = config('cruder.api_prefix') . $this->modelName . 'Controller.php';
         $this->fileChangeType = "new";
         $this->swagger = $swagger;
+        $this->fields = $fields;
 
         parent::__construct();
     }
@@ -41,6 +43,19 @@ class ApiControllerGenerator extends Generator
         $this->template = str_replace('%SWAGGER_STORE%', $swaggerStoreTemplate, $this->template);
         $this->template = str_replace('%SWAGGER_UPDATE%', $swaggerUpdateTemplate, $this->template);
         $this->template = str_replace('%SWAGGER_DESTROY%', $swaggerDestroyTemplate, $this->template);
+
+        /**
+         * 1 tane bile dosya var ise multipart-form data oluyor, bu durumda post metodu ile update yapılıyor.
+         */
+        $defaultUpdateMethod = "PUT";
+        foreach ($this->fields as $field) {
+            if ($field["htmltype"] == "image") {
+                $defaultUpdateMethod = "POST";
+                break;
+            }
+        }
+        // %UPDATE_METHOD%   
+        $this->template = str_replace("%UPDATE_METHOD%", $defaultUpdateMethod, $this->template);
 
         parent::replaceVariables();
     }

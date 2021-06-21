@@ -6,8 +6,14 @@
 * summary="Store a %MODEL_NAME_CAMEL_CASE_PLURAL%",
 * description="Store a %MODEL_NAME_CAMEL_CASE_PLURAL%",
 * @OA\RequestBody(
-* required=true,
-* @OA\JsonContent(ref="#/components/schemas/%MODEL_NAME%")
+*  required=true,
+*  @OA\MediaType(
+*      mediaType="multipart/form-data",
+*      @OA\Schema(
+*          ref="#/components/schemas/%MODEL_NAME%"
+*      ),
+*  ),
+*  @OA\JsonContent(ref="#/components/schemas/%MODEL_NAME%")
 * ),
 * @OA\Response(
 * response=200,

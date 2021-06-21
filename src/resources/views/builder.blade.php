@@ -2329,7 +2329,7 @@
         '<option value="mediumText">MediumText</option>' +
         '<option value="longText">LongText</option>' +
         '<option value="enum">Enum</option>' +
-        '<option value="binary">Binary</option>' +
+        '<option value="binary">Binary(64KB)</option>' +
         '<option value="dateTime">DateTime</option>' +
         '<option value="date">Date</option>' +
         '<option selected value="timestamp">Timestamp</option>' +

@@ -29,7 +29,9 @@ class TableTdsGenerator extends Generator
         $this->template .= '<td>{{$item->id}}</td>';
         foreach ($this->fields as $field) {
             if ($field["htmltype"] == "image") {
-                $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/custom_fields/image.stub');
+                $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/custom_table_td/image.stub');
+            } elseif ($field["htmltype"] == "textarea") {
+                $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/custom_table_td/textarea.stub');
             } else {
                 $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/table_td.stub');
             }

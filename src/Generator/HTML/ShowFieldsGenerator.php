@@ -33,6 +33,13 @@ class ShowFieldsGenerator extends Generator
 </a>';
         foreach ($this->fields as $field) {
             $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/show_field.stub');
+
+            if ($field["htmltype"] == "image")
+                $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/custom_fields/image_show.stub');
+
+            if ($field["htmltype"] == "textarea")
+                $fieldContent = file_get_contents(__DIR__ . '/../../templates/views/components/custom_fields/textarea_show.stub');
+
             $fieldContent = str_replace('%FIELD_NAME%', $field["name"], $fieldContent);
             $fieldContent = str_replace('%FIELD_DB_TYPE%', $field["dbtype"], $fieldContent);
             $this->template .= $fieldContent . "\n";

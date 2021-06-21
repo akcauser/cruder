@@ -1,0 +1,5 @@
+<td>{!! substr($item->%FIELD_NAME%, 0, 30) !!} 
+    @if(strlen($item->%FIELD_NAME%) > 50)
+        <a href="{{ route('cms.%MODEL_NAME_SNAKE_CASE_PLURAL%.show', ['%PRIMARY_KEY%' => $item->%PRIMARY_KEY%]) }}">devamı...</a>
+    @endif
+</td>

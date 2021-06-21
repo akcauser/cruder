@@ -76,7 +76,7 @@ class MainGenerator
             new SeederGenerator($this->modelName);
 
             // Generate Api Controller
-            new ApiControllerGenerator($this->modelName, $this->swagger);
+            new ApiControllerGenerator($this->modelName, $this->swagger, $this->fields);
 
             // Generate Web Controller
             new CmsControllerGenerator($this->modelName);
@@ -99,7 +99,7 @@ class MainGenerator
             new UpdateRequestGenerator($this->modelName);
 
             // Add Api Routes
-            new ApiRouteGenerator($this->modelName);
+            new ApiRouteGenerator($this->modelName, $this->fields);
             new CmsRouteGenerator($this->modelName);
 
             // Add Pages

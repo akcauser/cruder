@@ -1,13 +1,19 @@
 /**
-* @OA\PUT(
+* @OA\%UPDATE_METHOD%(
 * path="/%MODEL_NAME_SNAKE_CASE_PLURAL%/{id}",
 * operationId="v1Update%MODEL_NAME%",
 * tags={"%MODEL_NAME_PLURAL%"},
 * summary="Update a %MODEL_NAME_CAMEL_CASE_PLURAL%",
 * description="Update a %MODEL_NAME_CAMEL_CASE_PLURAL%",
 * @OA\RequestBody(
-* required=true,
-* @OA\JsonContent(ref="#/components/schemas/%MODEL_NAME%")
+*  required=true,
+*  @OA\MediaType(
+*      mediaType="multipart/form-data",
+*      @OA\Schema(
+*          ref="#/components/schemas/%MODEL_NAME%"
+*      ),
+*  ),
+*  @OA\JsonContent(ref="#/components/schemas/%MODEL_NAME%")
 * ),
 *      @OA\Parameter(
 *          name="id",

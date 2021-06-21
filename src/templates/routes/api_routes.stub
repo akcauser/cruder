@@ -2,6 +2,6 @@ Route::prefix('%MODEL_NAME_SNAKE_CASE_PLURAL%')->group(function () {
     Route::get('', [\%API_CONTROLLER_NAMESPACE%\API%MODEL_NAME%Controller::class, 'index'])->name('api.%MODEL_NAME_SNAKE_CASE_PLURAL%.index');
     Route::post('', [\%API_CONTROLLER_NAMESPACE%\API%MODEL_NAME%Controller::class, 'store'])->name('api.%MODEL_NAME_SNAKE_CASE_PLURAL%.store');
     Route::get('{id}', [\%API_CONTROLLER_NAMESPACE%\API%MODEL_NAME%Controller::class, 'show'])->name('api.%MODEL_NAME_SNAKE_CASE_PLURAL%.show');
-    Route::put('{id}', [\%API_CONTROLLER_NAMESPACE%\API%MODEL_NAME%Controller::class, 'update'])->name('api.%MODEL_NAME_SNAKE_CASE_PLURAL%.update');
+    Route::%UPDATE_METHOD%('{id}', [\%API_CONTROLLER_NAMESPACE%\API%MODEL_NAME%Controller::class, 'update'])->name('api.%MODEL_NAME_SNAKE_CASE_PLURAL%.update');
     Route::delete('{id}', [\%API_CONTROLLER_NAMESPACE%\API%MODEL_NAME%Controller::class, 'destroy'])->name('api.%MODEL_NAME_SNAKE_CASE_PLURAL%.destroy');
 });
