@@ -20,4 +20,14 @@ class StringUtil
     {
         return $string . "s";
     }
+
+    public static function titleCase($string)
+    {
+        return Str::title($string);
+    }
+
+    public static function clearSpace($string)
+    {
+        return str_replace(" ", "", $string);
+    }
 }

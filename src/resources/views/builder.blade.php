@@ -158,6 +158,12 @@
     </div>
   </div>
 
+  <!-- Modal -->
+    <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+        <div class="modal-dialog modal-sm  text-center text-white" role="document">
+            <p>Code Generating..<p>
+        </div>
+    </div>
   <!-- General JS Scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -257,17 +263,6 @@
 
       $("#info").html("");
       $("#info").append('<div class="alert alert-success">Successfully created.</div>');
-      $("#info").show();
-      var $container = $("html,body");
-      var $scrollTo = $('#info');
-      $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
-      setTimeout(function () {
-        $('#info').fadeOut('slow');
-      }, 1500);
-      setTimeout(function () {
-        //location.reload();
-      }, 1501);
-      console.log("fieldArr ",fieldArr)
 
       $.ajax({
         type: "POST",
@@ -297,17 +292,8 @@
             errorMessage = result.responseJSON.message;
           }
           $("#info").html("");
-          $("#info").append('<div class="alert alert-success">Successfully created.</div>');
+          $("#info").append('<div class="alert alert-danger">Error: '+errorMessage+'</div>');
           $("#info").show();
-          var $container = $("html,body");
-          var $scrollTo = $('#info');
-          $container.animate({ scrollTop: 0, scrollLeft: 0 }, 1000);
-          setTimeout(function () {
-            $('#info').fadeOut('slow');
-          }, 1500);
-          setTimeout(function () {
-            //location.reload();
-          }, 1501);
         }
       });
       return false;

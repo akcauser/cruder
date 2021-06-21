@@ -22,6 +22,7 @@ use Encodeurs\Cruder\Generator\Database\{SeederGenerator, MigrationGenerator, Fa
 use Encodeurs\Cruder\Generator\Service\{ServiceAbstractGenerator, ServiceConcreteGenerator, ServiceProviderGenerator};
 use Encodeurs\Cruder\Generator\Request\{StoreRequestGenerator, UpdateRequestGenerator};
 use Encodeurs\Cruder\Utils\DatabaseUtil;
+use Encodeurs\Cruder\Utils\StringUtil;
 use Illuminate\Support\Facades\Artisan;
 
 class MainGenerator
@@ -39,7 +40,8 @@ class MainGenerator
 
     public function __construct($modelName, $tableName, $fields, $softDelete, $primaryKey, $timestamps, $forceMigrate, $paginate = 15, $relationFields = [], $swagger = true)
     {
-        $this->modelName = $modelName;
+        $this->modelName = StringUtil::titleCase($modelName);
+        $this->modelName = StringUtil::clearSpace($this->modelName);
 
         // Generate Table Name
         if ($tableName)
