@@ -14,8 +14,8 @@
         <div class="section-header">
             <h1>New %MODEL_NAME%</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">%MODEL_NAME%s</a></div>
+                <div class="breadcrumb-item active"><a>Dashboard</a></div>
+                <div class="breadcrumb-item"><a>%MODEL_NAME%s</a></div>
                 <div class="breadcrumb-item">New</div>
             </div>
         </div>
