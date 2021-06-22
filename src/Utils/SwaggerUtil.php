@@ -85,7 +85,7 @@ class SwaggerUtil
                 $format = "binary";
                 break;
             case 'dateTime':
-                $format = "date-time";
+                $format = "date";
                 break;
             case 'date':
                 $format = "date";
