@@ -1,0 +1,55 @@
+{
+    "modelName": "Blog",
+    "tableName": "blogs",
+    "createdAt": "2021-06-21 17:51:36",
+    "options": {
+        "paginate": 10,
+        "softDelete": true,
+        "forceMigrate": false,
+        "timestamps": true,
+        "swagger": true
+    },
+    "fields": [
+        {
+            "name": "title",
+            "dbtype": "string",
+            "htmltype": "text",
+            "validations": "string|required",
+            "nullable": false,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        },
+        {
+            "name": "body",
+            "dbtype": "text",
+            "htmltype": "textarea",
+            "validations": "string|nullable",
+            "nullable": true,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        },
+        {
+            "name": "view_count",
+            "dbtype": "integer",
+            "htmltype": "number",
+            "validations": "required|integer",
+            "nullable": false,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        },
+        {
+            "name": "published_at",
+            "dbtype": "dateTime",
+            "htmltype": "datetime-local",
+            "validations": "date|required",
+            "nullable": false,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        }
+    ],
+    "relationFields": []
+}

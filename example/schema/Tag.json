@@ -1,0 +1,34 @@
+{
+    "modelName": "Tag",
+    "tableName": "tags",
+    "createdAt": "2021-06-21 18:05:40",
+    "options": {
+        "paginate": 2,
+        "softDelete": false,
+        "forceMigrate": false,
+        "timestamps": true,
+        "swagger": true
+    },
+    "fields": [
+        {
+            "name": "title",
+            "dbtype": "string",
+            "htmltype": "text",
+            "validations": "",
+            "nullable": false,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        }
+    ],
+    "relationFields": [
+        {
+            "fieldName": "blog_id",
+            "foreignField": "id",
+            "foreignModel": "Blog",
+            "foreignShowField": "title",
+            "foreignTable": "blogs",
+            "relationType": "1tm"
+        }
+    ]
+}

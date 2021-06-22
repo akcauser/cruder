@@ -1,0 +1,25 @@
+{
+    "modelName": "Student",
+    "tableName": "students",
+    "createdAt": "2021-06-21 20:04:06",
+    "options": {
+        "paginate": 3,
+        "softDelete": true,
+        "forceMigrate": false,
+        "timestamps": true,
+        "swagger": false
+    },
+    "fields": [
+        
+    ],
+    "relationFields": [
+        {
+    "fieldName": "book_id",
+    "foreignField": "id",
+    "foreignModel": "Book",
+    "foreignShowField": "title",
+    "foreignTable": "books",
+    "relationType": "1tm"
+}
+    ]
+}

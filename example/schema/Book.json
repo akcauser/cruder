@@ -1,0 +1,55 @@
+{
+    "modelName": "Book",
+    "tableName": "books",
+    "createdAt": "2021-06-21 13:24:14",
+    "options": {
+        "paginate": 4,
+        "softDelete": true,
+        "forceMigrate": false,
+        "timestamps": true,
+        "swagger": false
+    },
+    "fields": [
+        {
+            "name": "isbn",
+            "dbtype": "string",
+            "htmltype": "text",
+            "validations": "required|string",
+            "nullable": false,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        },
+        {
+            "name": "title",
+            "dbtype": "string",
+            "htmltype": "text",
+            "validations": "string|required",
+            "nullable": false,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        },
+        {
+            "name": "author",
+            "dbtype": "string",
+            "htmltype": "text",
+            "validations": "required|string",
+            "nullable": false,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        },
+        {
+            "name": "page",
+            "dbtype": "integer",
+            "htmltype": "number",
+            "validations": "integer|required",
+            "nullable": false,
+            "searchable": true,
+            "inIndex": false,
+            "fillable": true
+        }
+    ],
+    "relationFields": []
+}
