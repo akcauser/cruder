@@ -52,15 +52,14 @@ App\Providers\DataServiceProvider::class,
         
 # Usage
 
-When create new API with command line:
-`php artisan cruder:new {MODEL_NAME}`
-
 Also you can use the builder interface:
 - https://your-domain-address/cruder/builder
 
 Then you will be able to see your APIs:
 - https://your-domain-address/cruder
 
+When create new API with command line:
+`php artisan cruder:new {MODEL_NAME}`
 
 # Contributors
 
