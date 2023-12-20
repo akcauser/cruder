@@ -5,7 +5,7 @@ This package allows you to create API and perform CRUD Scaffolding. It helps you
 
 # Documentation 
 
-You can find documentation on link: https://cruder.akcauser.com
+
 
 
 # Installation
